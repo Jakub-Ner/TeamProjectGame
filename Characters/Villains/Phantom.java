@@ -1,4 +1,6 @@
 package game.TeamProjectGame.Characters.Villains;
 
-public class Phantom {
+import game.TeamProjectGame.Characters.Character;
+
+public class Phantom extends Villain {
 }

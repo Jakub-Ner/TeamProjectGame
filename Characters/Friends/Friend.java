@@ -1,5 +1,7 @@
 package game.TeamProjectGame.Characters.Friends;
 
-public abstract class Friend {
-  int test;
+import game.TeamProjectGame.Characters.Character;
+
+public abstract class Friend extends Character {
+
 }
