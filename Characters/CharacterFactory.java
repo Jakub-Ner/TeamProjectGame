@@ -38,6 +38,7 @@ public enum CharacterFactory {
 	 * <p>toCharacterType(4) returns PHANTOM.</p>
 	 * <p>toCharacterType(5) returns DRAGON.</p>
 	 * @param	type	number to be interpreted
+	 * @return	returns int as a type of character
 	 */
 	public static CharacterFactory toCharacterType(int type){
 		return CharacterFactory.values()[type];
