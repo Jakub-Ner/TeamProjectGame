@@ -12,14 +12,15 @@ public enum CharacterFactory {
 
 	//returns pointer to a newly created character
 	private static Character createNew(CharacterFactory type){
-		return switch (type) {
-			case HUMAN -> new Human();
-			case DWARF -> new Dwarf();
-			case ELF -> new Elf();
-			case ORC -> new Orc();
-			case PHANTOM -> new Phantom();
-			case DRAGON -> new Dragon();
-		};
+		switch (type) {
+			case HUMAN: return new Human();
+			case DWARF: return new Dwarf();
+			case ELF: return new Elf();
+			case ORC: return new Orc();
+			case PHANTOM: return new Phantom();
+			case DRAGON: return new Dragon();
+		}
+		return null;
 	}
 
 	//returns pointer to a newly created character
