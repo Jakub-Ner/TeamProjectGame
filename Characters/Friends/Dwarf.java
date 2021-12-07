@@ -1,4 +1,6 @@
 package game.TeamProjectGame.Characters.Friends;
 
-public class Dwarf {
+import game.TeamProjectGame.Characters.Character;
+
+public class Dwarf extends Friend {
 }

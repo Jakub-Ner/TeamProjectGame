@@ -1,4 +1,6 @@
 package game.TeamProjectGame.Characters.Villains;
 
-public class Dragon {
+import game.TeamProjectGame.Characters.Character;
+
+public class Dragon extends Villain {
 }

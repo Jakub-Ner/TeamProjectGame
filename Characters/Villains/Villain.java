@@ -1,4 +1,6 @@
 package game.TeamProjectGame.Characters.Villains;
 
-public abstract class Villain {
+import game.TeamProjectGame.Characters.Character;
+
+public abstract class Villain extends Character {
 }
