@@ -1,17 +1,23 @@
 package game.TeamProjectGame.Board;
 
+import game.TeamProjectGame.Characters.Character;
+
 import java.util.Arrays;
 import java.util.Random;
 
+
 public class Board {
-    final int HEIGHT = 25;
-    final int WIDTH = 61;
+    public final int HEIGHT = 25;
+    public final int WIDTH = 61;
 
     //    SideBar sideBar;
     public static char[][] board;
     Character character;
 
-    public Board() {
+    public Board(Character character) {
+        board = new char[HEIGHT][WIDTH];
+        this.character = character;
+        initBoard();
     }
 
 
@@ -81,8 +87,7 @@ public class Board {
 //        sideBar = new SideBar(HEIGHT, WIDTH / 4);
 
         drawBoard();
-//        drawNPC();
-        updateBoard(0);
+        updateBoard('w');
     }
 
     public void drawScreen() {
@@ -97,12 +102,12 @@ public class Board {
         for (int i = 0; i < 10; i++) System.out.println("");
     }
 
-    public void updateBoard(int goFurther) {
+    public void updateBoard(char goFurther) {
         board[character.getX()][character.getY()] = ' '; //erases previous location
 
-        character.moveCharacter(goFurther, board);
+        character.moveCharacter(goFurther, this);
 
-        board[character.getX()][character.getY()] = 'B'; // sets new location
+        board[character.getX()][character.getY()] = 'O'; // sets new location
 
         space();
         drawScreen();
