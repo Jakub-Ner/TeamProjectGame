@@ -1,6 +1,8 @@
 package game.TeamProjectGame.MeetingAndFight;
 
-import game.TeamProjectGame.Characters.*;
+import game.TeamProjectGame.Characters.Character;
+import game.TeamProjectGame.Characters.Friends.Friend;
+import game.TeamProjectGame.Characters.Villains.Villain;
 
 class MeetingAndFight{
 
