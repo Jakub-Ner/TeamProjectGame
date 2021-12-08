@@ -5,6 +5,8 @@ import game.TeamProjectGame.Characters.Character;
 import java.util.Arrays;
 import java.util.Random;
 
+import game.TeamProjectGame.Characters.Character;
+
 public class Board {
     final int HEIGHT = 25;
     final int WIDTH = 61;
