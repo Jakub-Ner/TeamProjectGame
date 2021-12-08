@@ -1,9 +1,14 @@
 package game.TeamProjectGame.MeetingAndFight;
 
+
 import game.TeamProjectGame.Characters.*;
 import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.Friends.Friend;
 import game.TeamProjectGame.Characters.Villains.Dragon;
+import game.TeamProjectGame.Characters.Character;
+import game.TeamProjectGame.Characters.Friends.Friend;
+
+
 import game.TeamProjectGame.Characters.Villains.Villain;
 
 import javax.xml.stream.events.Characters;
