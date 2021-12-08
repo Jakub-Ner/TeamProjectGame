@@ -110,4 +110,16 @@ public abstract class Character {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getDmg() {
+        return dmg;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
 }
