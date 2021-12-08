@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Board {
-    final int HEIGHT = 25;
-    final int WIDTH = 61;
+    public final int HEIGHT = 25;
+    public final int WIDTH = 61;
 
     //    SideBar sideBar;
     public static char[][] board;
@@ -102,7 +102,7 @@ public class Board {
 
         character.moveCharacter(goFurther, board);
 
-        board[character.getX()][character.getY()] = 'B'; // sets new location
+        board[character.getX()][character.getY()] = 'O'; // sets new location
 
         space();
         drawScreen();
