@@ -1,5 +1,7 @@
 package game.TeamProjectGame.Board;
 
+import game.TeamProjectGame.Characters.Character;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -11,7 +13,10 @@ public class Board {
     public static char[][] board;
     Character character;
 
-    public Board() {
+    public Board(Character character) {
+        board = new char[HEIGHT][WIDTH];
+        this.character = character;
+        initBoard();
     }
 
 
@@ -81,7 +86,6 @@ public class Board {
 //        sideBar = new SideBar(HEIGHT, WIDTH / 4);
 
         drawBoard();
-//        drawNPC();
         updateBoard(0);
     }
 
@@ -98,7 +102,7 @@ public class Board {
     }
 
     public void updateBoard(int goFurther) {
-        board[character.getX()][character.getY()] = ' '; //erases previous location
+        board[character.getX][character.getY()] = ' '; //erases previous location
 
         character.moveCharacter(goFurther, board);
 
