@@ -32,10 +32,10 @@ public abstract class Character {
 
     //methods
 
-    public void moveCharacter(String further, Board board) {
+    public void moveCharacter(char further, Board board) {
 
         switch(further) {
-            case "w":
+            case 'w':
             {
                 if ( y < board.HEIGHT ) {
 
@@ -45,7 +45,7 @@ public abstract class Character {
                 }
 
             }
-            case "s":
+            case 's':
             {
                 if ( y > 0 ) {
 
@@ -54,7 +54,7 @@ public abstract class Character {
                     }
                 }
             }
-            case "d":
+            case 'd':
             {
                 if ( x < board.WIDTH ) {
 
@@ -63,7 +63,7 @@ public abstract class Character {
                     }
                 }
             }
-            case "a":
+            case 'a':
             {
                 if ( x > 0 ) {
 
