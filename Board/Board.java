@@ -5,7 +5,6 @@ import game.TeamProjectGame.Characters.Character;
 import java.util.Arrays;
 import java.util.Random;
 
-import game.TeamProjectGame.Characters.Character;
 
 public class Board {
     final int HEIGHT = 25;
@@ -88,7 +87,7 @@ public class Board {
 //        sideBar = new SideBar(HEIGHT, WIDTH / 4);
 
         drawBoard();
-        updateBoard(0);
+        updateBoard('w');
     }
 
     public void drawScreen() {
@@ -103,10 +102,10 @@ public class Board {
         for (int i = 0; i < 10; i++) System.out.println("");
     }
 
-    public void updateBoard(int goFurther) {
-        board[character.getX][character.getY()] = ' '; //erases previous location
+    public void updateBoard(char goFurther) {
+        board[character.getX()][character.getY()] = ' '; //erases previous location
 
-        character.moveCharacter(goFurther, board);
+        character.moveCharacter(goFurther, this);
 
         board[character.getX()][character.getY()] = 'B'; // sets new location
 
