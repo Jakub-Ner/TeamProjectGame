@@ -38,37 +38,19 @@ public class Menu {
                 System.out.println("Choose number of a character:\n" +
                         "1 - HUMAN\n" +
                         "2 - DWARF\n" +
-                        "3 - ELF\n" +
-                        "4 - ORC\n" +
-                        "5 - PHANTOM\n" +
-                        "6 - DRAGON\n");
+                        "3 - ELF\n");
 
-                int n = choosingNumber(6);
+                int n = choosingNumber(4);
                 return CharacterFactory.addCharacter(n-1);
         }
 
-        public static void printCharacters(){
-                for(int i = 0; i< CharacterFactory.getCharacters().size(); i++)
-                {
-                        System.out.println(CharacterFactory.getCharacters().get(i).getClass().getSimpleName()
-                        + "HP: " + CharacterFactory.getCharacters().get(i).getHp()
-                        + "Dmg: "+ CharacterFactory.getCharacters().get(i).getDmg()
-                        + "Speed"     + CharacterFactory.getCharacters().get(i).getSpeed());
-                }
-        }
-        public static int chooseAction(){
-                System.out.println("What do you want to do? Choose number:\n" +
-                        "1 - print a list of Characters\n" +
-                        "2 - end the game\n");
-                int n = choosingNumber(2);
+        public static void printStats(){
 
-                if(n==1) printCharacters();
-                if(n==2) end();
-        }
+                        System.out.println(CharacterFactory.getCharacters().get(0).getClass().getSimpleName()
+                        + "\tHP: " + CharacterFactory.getCharacters().get(0).getHp()
+                        + "\tDmg: "+ CharacterFactory.getCharacters().get(0).getDmg()
+                        + "\tSpeed: " + CharacterFactory.getCharacters().get(0).getSpeed());
 
-        public static void end(){
-                System.out.println("Goodbye!");
         }
-
 
 }

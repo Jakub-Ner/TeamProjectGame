@@ -1,7 +1,10 @@
 package game.TeamProjectGame.Characters.Friends;
 
 import game.TeamProjectGame.Characters.Character;
-import game.TeamProjectGame.Cries.src.Cry;
+import game.TeamProjectGame.Cries.BattleElvenCry;
+import game.TeamProjectGame.Cries.Cry;
+import game.TeamProjectGame.Cries.FriendlyElvenCry;
+
 
 public abstract class Friend extends Character {
 
@@ -16,8 +19,12 @@ public abstract class Friend extends Character {
         super(hp,dmg,speed);
     }
 
-    public Cry getCry() {
-        return cry;
+    public void getBattleCry(){
+        this.cry.shout();
+    }
+
+    public void getFriendlyCry(){
+        this.cry.shout();
     }
 
     public void setCry(Cry cry) {

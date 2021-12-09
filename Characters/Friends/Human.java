@@ -1,7 +1,9 @@
 package game.TeamProjectGame.Characters.Friends;
 
-import game.TeamProjectGame.Characters.Character;
-import game.TeamProjectGame.Cries.src.*;
+import game.TeamProjectGame.Cries.BattleElvenCry;
+import game.TeamProjectGame.Cries.BattleHumanCry;
+import game.TeamProjectGame.Cries.FriendlyElvenCry;
+import game.TeamProjectGame.Cries.FriendlyHumanCry;
 
 
 public class Human extends Friend {
@@ -10,13 +12,13 @@ public class Human extends Friend {
         super(80,9,5,"Talwyn");
     }
 
-    public void getBattleHumanCry(){
+    public void getBattleCry(){
         setCry(new BattleHumanCry());
-        this.cry.shout();
+        super.getBattleCry();
     }
 
-    public void getFriendlyHumanCry(){
+    public void getFriendlyCry(){
         setCry(new FriendlyHumanCry());
-        this.cry.shout();
+        super.getFriendlyCry();
     }
 }

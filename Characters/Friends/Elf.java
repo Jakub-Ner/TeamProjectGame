@@ -1,7 +1,7 @@
 package game.TeamProjectGame.Characters.Friends;
 
-import game.TeamProjectGame.Characters.Character;
-import game.TeamProjectGame.Cries.src.*;
+import game.TeamProjectGame.Cries.BattleElvenCry;
+import game.TeamProjectGame.Cries.FriendlyElvenCry;
 
 public class Elf extends Friend {
 
@@ -9,13 +9,13 @@ public class Elf extends Friend {
         super(60,6,8,"Laurion");
     }
 
-    public void getBattleElvenCry(){
+    public void getBattleCry(){
         setCry(new BattleElvenCry());
-        this.cry.shout();
+        super.getBattleCry();
     }
 
-    public void getFriendlyElvenCry(){
+    public void getFriendlyCry(){
         setCry(new FriendlyElvenCry());
-        this.cry.shout();
+        super.getFriendlyCry();
     }
 }

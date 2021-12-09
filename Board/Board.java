@@ -10,7 +10,6 @@ public class Board {
     public final int HEIGHT = 25;
     public final int WIDTH = 61;
 
-    //    SideBar sideBar;
     public static char[][] board;
     Character character;
 
@@ -24,7 +23,7 @@ public class Board {
     private void obstacles() {
         Random random = new Random();
         for (int i = 0; i < HEIGHT; i++) {
-            for (int j = 0; j < WIDTH * 3 / 4; j++) {
+            for (int j = 0; j < WIDTH ; j++) {
                 if (random.nextInt(100) > 80) {
                     board[i][j] = 'X';
                 } else board[i][j] = '#';
@@ -50,7 +49,8 @@ public class Board {
                 if (start[i][coordinate] + direction <= 0
                         || (coordinate == 0 && start[i][coordinate] + direction >= board.length)
                         || (coordinate == 1 && start[i][coordinate] + direction >= board[0].length)) {
-                    break;
+                    System.out.println("elo ");
+                    continue;
                 }
                 licznik++;
             }
@@ -77,15 +77,12 @@ public class Board {
         int[][] fields2 = new int[][]{
                 {board.length - 2, board[0].length - 2}, {board.length - 2, board[0].length - 1},
                 {board.length - 1, board[0].length - 2}, {board.length - 1, board[0].length - 1}};
-        partOfBoard(12, fields2);
+        partOfBoard(352, fields2);
 
     }
 
 
     public void initBoard() {
-//        board = new char[HEIGHT][WIDTH * 3 / 4];
-//        sideBar = new SideBar(HEIGHT, WIDTH / 4);
-
         drawBoard();
         NPC_generator.generateNPC(board);
         updateBoard('w');
@@ -103,12 +100,12 @@ public class Board {
         for (int i = 0; i < 10; i++) System.out.println("");
     }
 
-    public void updateBoard(char goFurther) {
-        board[character.getX()][character.getY()] = ' '; //erases previous location
+    public void updateBoard(int goFurther) {
+        board[character.getY()][character.getX()] = ' '; //erases previous location
 
         character.moveCharacter(goFurther, this);
 
-        board[character.getY()][character.getX()] = 'O'; // sets new location
+        board[character.getY()][character.getX()] = 'B'; // sets new location
 
         space();
         drawScreen();
