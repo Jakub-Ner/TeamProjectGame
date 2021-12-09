@@ -44,7 +44,6 @@ public abstract class Character {
                 break;
             }
         }
-
     }
 
     private void surroundings(Board board) {
