@@ -53,22 +53,4 @@ public class Menu {
 
         }
 
-        /*public static int chooseAction(){
-                System.out.println("What do you want to do? Choose number:\n" +
-                        "1 - print a list of Characters\n" +
-                        "2 - end the game\n");
-                int n = choosingNumber(2);
-
-                if(n==1) printStats();
-                if(n==2) end();
-                return 0;
-
-                System.out.println(CharacterFactory.getCharacters().get(0).getClass().getSimpleName()
-                        + "HP: " + CharacterFactory.getCharacters().get(0).getHp()
-                        + "Dmg: "+ CharacterFactory.getCharacters().get(0).getDmg()
-                        + "Speed"     + CharacterFactory.getCharacters().get(0).getSpeed());
-
-        }
-        
-         */
 }
