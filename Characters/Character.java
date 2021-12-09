@@ -1,6 +1,7 @@
 package game.TeamProjectGame.Characters;
 
 import game.TeamProjectGame.Board.Board;
+import game.TeamProjectGame.MeetingAndFight.MeetingAndFight;
 
 import javax.swing.*;
 import java.util.Base64;
@@ -35,6 +36,41 @@ public abstract class Character {
 
     //methods
 
+    private void meet(int x, int y) {
+
+        for (int i = 0; i < CharacterFactory.getCharacters().size(); i++) {
+            if ( (CharacterFactory.getCharacters().elementAt(i).getX() == x) && (CharacterFactory.getCharacters().elementAt(i).getY() == y)) {
+                MeetingAndFight.Meeting(this, CharacterFactory.getCharacters().elementAt(i));
+                break;
+            }
+        }
+
+    }
+
+    private void surroundings(Board board) {
+        String npc = "hdeDOP";
+
+        if (npc.indexOf( board.board[y+1][x] ) != -1) {
+            meet( (y+1), (x+1) );
+        }
+
+        if (npc.indexOf( board.board[y-1][x] ) != -1) {
+            meet( (y+1), (x+1) );
+        }
+
+        if (npc.indexOf( board.board[y][x-1] ) != -1) {
+            meet( (y+1), (x+1) );
+        }
+
+        if (npc.indexOf( board.board[y][x+1] ) != -1) {
+            meet( (y+1), (x+1) );
+        }
+    }
+
+    public void moveCharacter(int further, Board board) {
+
+        switch(further) {
+            case '2':
     public void moveCharacter(int further, Board board) {
 
         switch(further) {
@@ -45,8 +81,14 @@ public abstract class Character {
                     if ( Board.board[y+1][x] == ' ' ) {
                         y++;
                     }
+
                 }
 
+                surroundings(board);
+                break;
+
+            }
+            case '8':
                 break;
 
             }
@@ -59,6 +101,11 @@ public abstract class Character {
                     }
                 }
 
+                surroundings(board);
+                break;
+
+            }
+            case '6':
                 break;
             }
             case 6:
@@ -70,6 +117,11 @@ public abstract class Character {
                     }
                 }
 
+                surroundings(board);
+                break;
+
+            }
+            case '4':
                 break;
             }
             case 4:
@@ -81,10 +133,17 @@ public abstract class Character {
                     }
                 }
 
+                surroundings(board);
+                break;
+
+            }
+            default: {
+                System.out.println("Please use NumPad to move");
                 break;
             }
             default: {
                 System.out.println("Please use numpad to move");
+
             }
         }
 

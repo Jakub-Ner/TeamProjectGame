@@ -8,7 +8,7 @@ import java.util.Vector;
 public enum CharacterFactory {
 	HUMAN, ELF, DWARF, ORC, PHANTOM, DRAGON;
 
-	static Vector<Character> characters = new Vector<>();
+	private static Vector<Character> characters = new Vector<>();
 
 	//returns pointer to a newly created character
 	private static Character createNew(CharacterFactory type){
