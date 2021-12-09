@@ -108,7 +108,7 @@ public class Board {
 
         character.moveCharacter(goFurther, this);
 
-        board[character.getY()][character.getX()] = 'O'; // sets new location
+        board[character.getY()][character.getX()] = 'B'; // sets new location
 
         space();
         drawScreen();

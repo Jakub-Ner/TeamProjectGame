@@ -24,6 +24,11 @@ public class Game {
 
             board.updateBoard( scanner.nextInt() );
 
+            if (player.getHp() <= 0) {
+                System.out.println("GAME OVER");
+                run = false;
+            }
+
 
         }
 

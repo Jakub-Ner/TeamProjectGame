@@ -36,11 +36,11 @@ public abstract class Character {
 
     //methods
 
-    private void meet(int x, int y) {
+    private void meet(int x, int y, Board board) {
 
         for (int i = 0; i < CharacterFactory.getCharacters().size(); i++) {
             if ( (CharacterFactory.getCharacters().elementAt(i).getX() == x) && (CharacterFactory.getCharacters().elementAt(i).getY() == y)) {
-                MeetingAndFight.Meeting(this, CharacterFactory.getCharacters().elementAt(i));
+                MeetingAndFight.Meeting(this, CharacterFactory.getCharacters().elementAt(i), board);
                 break;
             }
         }
@@ -50,19 +50,19 @@ public abstract class Character {
         String npc = "hdeDOP";
 
         if ( ( y+1 <= board.HEIGHT) && (npc.indexOf( board.board[y+1][x] ) != -1) ) {
-            meet( (y+1), x );
+            meet( (y+1), x, board);
         }
 
         if ( ( y-1 >= 0) && (npc.indexOf( board.board[y-1][x] ) != -1) ) {
-            meet( (y-1), x );
+            meet( (y-1), x, board );
         }
 
         if ( ( x-1 >= 0) && (npc.indexOf( board.board[y][x-1] ) != -1) ) {
-            meet( y, (x-1) );
+            meet( y, (x-1), board );
         }
 
         if ( ( x+1 <= board.WIDTH) && (npc.indexOf( board.board[y][x+1] ) != -1) ) {
-            meet( y, (x+1) );
+            meet( y, (x+1), board );
         }
     }
 

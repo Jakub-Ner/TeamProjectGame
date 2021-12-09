@@ -1,20 +1,22 @@
 package game.TeamProjectGame.Characters.Friends;
 
 import game.TeamProjectGame.Cries.BattleDwarvenCry;
+import game.TeamProjectGame.Cries.BattleElvenCry;
 import game.TeamProjectGame.Cries.FriendlyDwarvenCry;
+import game.TeamProjectGame.Cries.FriendlyElvenCry;
 
 public class Dwarf extends Friend {
     public Dwarf(){
         super(100,12,3,"Murdoch");
     }
 
-    public void getBattleDwarvenCry(){
+    public void getBattleCry(){
         setCry(new BattleDwarvenCry());
-        this.cry.shout();
+        super.getBattleCry();
     }
 
-    public void getFriendlyDwarvenCry(){
+    public void getFriendlyCry(){
         setCry(new FriendlyDwarvenCry());
-        this.cry.shout();
+        super.getFriendlyCry();
     }
 }

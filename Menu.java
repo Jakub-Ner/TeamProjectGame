@@ -38,16 +38,13 @@ public class Menu {
                 System.out.println("Choose number of a character:\n" +
                         "1 - HUMAN\n" +
                         "2 - DWARF\n" +
-                        "3 - ELF\n" +
-                        "4 - ORC\n" +
-                        "5 - PHANTOM\n" +
-                        "6 - DRAGON\n");
+                        "3 - ELF\n");
 
-                int n = choosingNumber(6);
+                int n = choosingNumber(3);
                 return CharacterFactory.addCharacter(n-1);
         }
 
-        public static void printCharacters(){
+        public static void printStats(){
                 for(int i = 0; i< CharacterFactory.getCharacters().size(); i++)
                 {
                         System.out.println(CharacterFactory.getCharacters().get(i).getClass().getSimpleName()
@@ -62,7 +59,7 @@ public class Menu {
                         "2 - end the game\n");
                 int n = choosingNumber(2);
 
-                if(n==1) printCharacters();
+                if(n==1) printStats();
                 if(n==2) end();
                 return 0;
         }

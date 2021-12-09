@@ -9,13 +9,13 @@ public class Elf extends Friend {
         super(60,6,8,"Laurion");
     }
 
-    public void getBattleElvenCry(){
+    public void getBattleCry(){
         setCry(new BattleElvenCry());
-        this.cry.shout();
+        super.getBattleCry();
     }
 
-    public void getFriendlyElvenCry(){
+    public void getFriendlyCry(){
         setCry(new FriendlyElvenCry());
-        this.cry.shout();
+        super.getFriendlyCry();
     }
 }
