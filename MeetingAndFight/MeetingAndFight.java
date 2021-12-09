@@ -18,12 +18,33 @@ class MeetingAndFight{
     public static void Meeting(Character char1, Character char2) {
         // Przyjaciel i przyjaciel, tu nie ma walki to dokończe później
         if(char1 instanceof Friend && char2 instanceof Friend){
-            // Okrzyki
+            switch (char1.getClass().getSimpleName()) {
+                case "Elf":
+                    ((Elf)char1).getFriendlyElvenCry();
+                    break;
+                case "Human":
+                    ((Human)char1).getFriendlyHumanCry();
+                    break;
+                case "Dwarf":
+                    ((Dwarf)char1).getFriendlyDwarvenCry();
+                    break;
+            }
         }
         //  Przyjaciel i wróg, tu będzie wywoływana walka
         else if(char1 instanceof Friend && char2 instanceof Villain){
 
-            // Fight(char1,char2)
+            switch (char1.getClass().getSimpleName()) {
+                case "Elf":
+                    ((Elf)char1).getBattleElvenCry();
+                    break;
+                case "Human":
+                    ((Human)char1).getBattleHumanCry();
+                    break;
+                case "Dwarf":
+                    ((Dwarf)char1).getBattleDwarvenCry();
+                    break;
+            }
+            Fight(char1,char2);
             
         }else
         {
