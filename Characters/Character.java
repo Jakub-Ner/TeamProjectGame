@@ -17,9 +17,12 @@ public abstract class Character {
     private int dmg;
     private int speed;
 
-    //constructors
+    //constructor
 
     public Character() {
+        hp = 1;
+        dmg = 1;
+        speed = 1;
 
     }
 
@@ -68,6 +71,10 @@ public abstract class Character {
 
         switch(further) {
             case '2':
+    public void moveCharacter(int further, Board board) {
+
+        switch(further) {
+            case 2:
             {
                 if ( y < board.HEIGHT ) {
 
@@ -82,6 +89,10 @@ public abstract class Character {
 
             }
             case '8':
+                break;
+
+            }
+            case 8:
             {
                 if ( y > 0 ) {
 
@@ -95,6 +106,9 @@ public abstract class Character {
 
             }
             case '6':
+                break;
+            }
+            case 6:
             {
                 if ( x < board.WIDTH ) {
 
@@ -108,6 +122,9 @@ public abstract class Character {
 
             }
             case '4':
+                break;
+            }
+            case 4:
             {
                 if ( x > 0 ) {
 
@@ -122,6 +139,11 @@ public abstract class Character {
             }
             default: {
                 System.out.println("Please use NumPad to move");
+                break;
+            }
+            default: {
+                System.out.println("Please use numpad to move");
+
             }
         }
 
