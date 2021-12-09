@@ -61,7 +61,7 @@ public abstract class Character {
             meet( y, (x-1) );
         }
 
-        if ( ( x+1 <= board.WIDTH) && (npc.indexOf( board.board[y][x+1] ) != -1)) {
+        if ( ( x+1 <= board.WIDTH) && (npc.indexOf( board.board[y][x+1] ) != -1) ) {
             meet( y, (x+1) );
         }
     }

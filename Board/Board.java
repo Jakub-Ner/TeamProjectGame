@@ -103,8 +103,8 @@ public class Board {
         for (int i = 0; i < 10; i++) System.out.println("");
     }
 
-    public void updateBoard(char goFurther) {
-        board[character.getX()][character.getY()] = ' '; //erases previous location
+    public void updateBoard(int goFurther) {
+        board[character.getY()][character.getX()] = ' '; //erases previous location
 
         character.moveCharacter(goFurther, this);
 
