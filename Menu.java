@@ -16,7 +16,7 @@ public class Menu {
                         "2 - DWARF\n" +
                         "3 - ELF\n" +
                         "4 - ORC\n" +
-                        "5 - PANTHOM\n" +
+                        "5 - PHANTOM\n" +
                         "6 - DRAGON\n");
 
                 int n = scanner.nextInt() - 1;

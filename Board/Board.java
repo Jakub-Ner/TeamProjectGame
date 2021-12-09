@@ -87,8 +87,8 @@ public class Board {
 //        sideBar = new SideBar(HEIGHT, WIDTH / 4);
 
         drawBoard();
-        updateBoard('w');
         NPC_generator.generateNPC(board);
+        updateBoard('w');
     }
 
     public void drawScreen() {
