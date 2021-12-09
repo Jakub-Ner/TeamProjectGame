@@ -58,18 +58,22 @@ public enum CharacterFactory {
 	 * Adds new character to the list
 	 *
 	 * @param type	enum type of a character to be created
+	 * @return returns newly created character
 	 */
-	public static void addCharacter(CharacterFactory type){
+	public static Character addCharacter(CharacterFactory type){
 		characters.add(createNew(type));
+		return characters.lastElement();
 	}
 
 	/**
 	 * Adds new character to the list
 	 *
 	 * @param type	is promoted to an enum type required for internal work
+	 * @return returns newly created character
 	 */
-	public static void addCharacter(int type){
+	public static Character addCharacter(int type){
 		characters.add(createNew(type));
+		return characters.lastElement();
 	}
 
 	@Override
