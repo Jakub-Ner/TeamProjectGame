@@ -16,9 +16,12 @@ public abstract class Character {
     private int dmg;
     private int speed;
 
-    //constructors
+    //constructor
 
     public Character() {
+        hp = 1;
+        dmg = 1;
+        speed = 1;
 
     }
 
@@ -32,10 +35,10 @@ public abstract class Character {
 
     //methods
 
-    public void moveCharacter(char further, Board board) {
+    public void moveCharacter(int further, Board board) {
 
         switch(further) {
-            case 'w':
+            case 2:
             {
                 if ( y < board.HEIGHT ) {
 
@@ -44,8 +47,10 @@ public abstract class Character {
                     }
                 }
 
+                break;
+
             }
-            case 's':
+            case 8:
             {
                 if ( y > 0 ) {
 
@@ -53,8 +58,10 @@ public abstract class Character {
                         y--;
                     }
                 }
+
+                break;
             }
-            case 'd':
+            case 6:
             {
                 if ( x < board.WIDTH ) {
 
@@ -62,8 +69,10 @@ public abstract class Character {
                         x++;
                     }
                 }
+
+                break;
             }
-            case 'a':
+            case 4:
             {
                 if ( x > 0 ) {
 
@@ -71,9 +80,11 @@ public abstract class Character {
                         x--;
                     }
                 }
+
+                break;
             }
             default: {
-                //System.out.println("Please use WSAD to move");
+                System.out.println("Please use numpad to move");
             }
         }
 
