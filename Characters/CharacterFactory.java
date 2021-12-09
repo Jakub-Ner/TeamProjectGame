@@ -7,7 +7,7 @@ import game.TeamProjectGame.Characters.Villains.Orc;
 import java.util.Vector;
 
 public enum CharacterFactory {
-	HUMAN, ELF, DWARF, ORC, PHANTOM, DRAGON;
+	HUMAN, DWARF, ELF, ORC, PHANTOM, DRAGON;
 
 	private static Vector<Character> characters = new Vector<>();
 

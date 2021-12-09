@@ -40,19 +40,19 @@ public class Menu {
                         "2 - DWARF\n" +
                         "3 - ELF\n");
 
-                int n = choosingNumber(3);
+                int n = choosingNumber(4);
                 return CharacterFactory.addCharacter(n-1);
         }
 
         public static void printStats(){
-                for(int i = 0; i< CharacterFactory.getCharacters().size(); i++)
-                {
-                        System.out.println(CharacterFactory.getCharacters().get(i).getClass().getSimpleName()
-                        + "HP: " + CharacterFactory.getCharacters().get(i).getHp()
-                        + "Dmg: "+ CharacterFactory.getCharacters().get(i).getDmg()
-                        + "Speed"     + CharacterFactory.getCharacters().get(i).getSpeed());
-                }
+
+                        System.out.println(CharacterFactory.getCharacters().get(0).getClass().getSimpleName()
+                        + "\tHP: " + CharacterFactory.getCharacters().get(0).getHp()
+                        + "\tDmg: "+ CharacterFactory.getCharacters().get(0).getDmg()
+                        + "\tSpeed: "     + CharacterFactory.getCharacters().get(0).getSpeed());
+
         }
+
         public static int chooseAction(){
                 System.out.println("What do you want to do? Choose number:\n" +
                         "1 - print a list of Characters\n" +
