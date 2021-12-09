@@ -23,7 +23,7 @@ public class Menu {
                         input = -1;
                 }
 
-                while(0 > input || options <= input){
+                while(1 > input || options <= input){
                         System.out.print("Answer out of reach! Try again.\n>");
 
                         try{input = scanner.nextInt();} catch (InputMismatchException e){
@@ -43,7 +43,7 @@ public class Menu {
                         "5 - PHANTOM\n" +
                         "6 - DRAGON\n");
 
-                int n = choosingNumber(7);
+                int n = choosingNumber(6);
                 return CharacterFactory.addCharacter(n-1);
         }
 
@@ -60,11 +60,12 @@ public class Menu {
                 System.out.println("What do you want to do? Choose number:\n" +
                         "1 - print a list of Characters\n" +
                         "2 - end the game\n");
-                int n = choosingNumber(3);
+                int n = choosingNumber(2);
 
                 if(n==1) printCharacters();
                 if(n==2) end();
         }
+
         public static void end(){
                 System.out.println("Goodbye!");
         }
