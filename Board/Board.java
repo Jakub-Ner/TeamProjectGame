@@ -88,6 +88,7 @@ public class Board {
 
         drawBoard();
         updateBoard('w');
+        NPC_generator.generateNPC(board);
     }
 
     public void drawScreen() {
