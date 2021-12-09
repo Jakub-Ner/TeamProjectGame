@@ -43,7 +43,7 @@ class MeetingAndFight{
             if (friend.getSpeed()>enemy.getSpeed())
                 enemy.setHp(enemy.getHp()-friend.getDmg());
 
-            while (friend.getHp()>0 && enemy.getHp>0)
+            while (friend.getHp()>0 && enemy.getHp()>0)
             {
                 friend.setHp(friend.getHp()-enemy.getDmg());
                 enemy.setHp(enemy.getHp()-friend.getDmg());
