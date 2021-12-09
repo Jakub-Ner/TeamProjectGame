@@ -12,6 +12,8 @@ public class Game {
     public void run(){
 
         Scanner scanner = new Scanner(System.in);
+
+        Menu.start();
         Character player = Menu.chooseCharacterMenu();
 
         boolean run = true;

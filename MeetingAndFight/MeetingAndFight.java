@@ -11,6 +11,7 @@ import game.TeamProjectGame.Characters.Friends.Friend;
 
 
 import game.TeamProjectGame.Characters.Villains.Villain;
+import game.TeamProjectGame.Menu;
 
 import javax.xml.stream.events.Characters;
 
@@ -55,6 +56,7 @@ public class MeetingAndFight{
             if (friend.getHp()>0) {
                 System.out.println("You won the fight!");
                 board.board[enemy.getX()][enemy.getY()] = '+';
+                Menu.printStats();
             }
             else
                 System.out.println("You lost the fight!");
