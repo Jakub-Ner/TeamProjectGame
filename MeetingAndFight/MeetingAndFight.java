@@ -13,37 +13,41 @@ import game.TeamProjectGame.Characters.Villains.Villain;
 
 import javax.xml.stream.events.Characters;
 
-class MeetingAndFight{
+public class MeetingAndFight{
 
     public static void Meeting(Character char1, Character char2) {
         // Przyjaciel i przyjaciel, tu nie ma walki to dokończe później
         if(char1 instanceof Friend && char2 instanceof Friend){
-            switch (char1.getClass().getSimpleName()) {
-                case "Elf":
-                    ((Elf)char1).getFriendlyElvenCry();
-                    break;
-                case "Human":
-                    ((Human)char1).getFriendlyHumanCry();
-                    break;
-                case "Dwarf":
-                    ((Dwarf)char1).getFriendlyDwarvenCry();
-                    break;
-            }
+            ((Friend) char1).getCry();
+            //nie trzeba tak robic:
+            //switch (char1.getClass().getSimpleName()) {
+
+                //case "Elf":
+                //    ((Elf)char1).getFriendlyElvenCry();
+                //    break;
+                //case "Human":
+                //    ((Human)char1).getFriendlyHumanCry();
+                //    break;
+                //case "Dwarf":
+                //    ((Dwarf)char1).getFriendlyDwarvenCry();
+                //    break;
+            //}
         }
         //  Przyjaciel i wróg, tu będzie wywoływana walka
         else if(char1 instanceof Friend && char2 instanceof Villain){
-
-            switch (char1.getClass().getSimpleName()) {
-                case "Elf":
-                    ((Elf)char1).getBattleElvenCry();
-                    break;
-                case "Human":
-                    ((Human)char1).getBattleHumanCry();
-                    break;
-                case "Dwarf":
-                    ((Dwarf)char1).getBattleDwarvenCry();
-                    break;
-            }
+            ((Friend) char1).getCry();
+            //nie trzeba tak robic:
+            //switch (char1.getClass().getSimpleName()) {
+            //    case "Elf":
+            //        ((Elf)char1).getBattleElvenCry();
+            //        break;
+            //    case "Human":
+            //        ((Human)char1).getBattleHumanCry();
+            //        break;
+            //    case "Dwarf":
+            //        ((Dwarf)char1).getBattleDwarvenCry();
+            //        break;
+            //}
             Fight(char1,char2);
             
         }else
