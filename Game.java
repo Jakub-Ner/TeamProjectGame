@@ -41,7 +41,7 @@ public class Game {
         System.out.println("3. Elf");
         System.out.println("0. Exit");
 
-        switch( choosingCharacterMenu(4) )
+        switch( choosingCharacterMenu(3) )
         {
             case 1:
                 CharacterFactory.addCharacter( CharacterFactory.HUMAN );
@@ -60,7 +60,8 @@ public class Game {
 
     public void run(){
 
-        Character player;
+        Character player = Menu.chooseCharacterMenu();
+
         boolean run = true;
 
         menu();
