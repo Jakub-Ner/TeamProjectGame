@@ -10,7 +10,6 @@ public class Board {
     public final int HEIGHT = 25;
     public final int WIDTH = 61;
 
-    //    SideBar sideBar;
     public static char[][] board;
     Character character;
 
@@ -24,7 +23,7 @@ public class Board {
     private void obstacles() {
         Random random = new Random();
         for (int i = 0; i < HEIGHT; i++) {
-            for (int j = 0; j < WIDTH * 3 / 4; j++) {
+            for (int j = 0; j < WIDTH ; j++) {
                 if (random.nextInt(100) > 80) {
                     board[i][j] = 'X';
                 } else board[i][j] = '#';
@@ -77,15 +76,12 @@ public class Board {
         int[][] fields2 = new int[][]{
                 {board.length - 2, board[0].length - 2}, {board.length - 2, board[0].length - 1},
                 {board.length - 1, board[0].length - 2}, {board.length - 1, board[0].length - 1}};
-        partOfBoard(12, fields2);
+        partOfBoard(52, fields2);
 
     }
 
 
     public void initBoard() {
-//        board = new char[HEIGHT][WIDTH * 3 / 4];
-//        sideBar = new SideBar(HEIGHT, WIDTH / 4);
-
         drawBoard();
         NPC_generator.generateNPC(board);
         updateBoard('w');

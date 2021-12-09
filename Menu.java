@@ -49,11 +49,11 @@ public class Menu {
                         System.out.println(CharacterFactory.getCharacters().get(0).getClass().getSimpleName()
                         + "\tHP: " + CharacterFactory.getCharacters().get(0).getHp()
                         + "\tDmg: "+ CharacterFactory.getCharacters().get(0).getDmg()
-                        + "\tSpeed: "     + CharacterFactory.getCharacters().get(0).getSpeed());
+                        + "\tSpeed: " + CharacterFactory.getCharacters().get(0).getSpeed());
 
         }
 
-        public static int chooseAction(){
+        /*public static int chooseAction(){
                 System.out.println("What do you want to do? Choose number:\n" +
                         "1 - print a list of Characters\n" +
                         "2 - end the game\n");
@@ -62,11 +62,13 @@ public class Menu {
                 if(n==1) printStats();
                 if(n==2) end();
                 return 0;
+
+                System.out.println(CharacterFactory.getCharacters().get(0).getClass().getSimpleName()
+                        + "HP: " + CharacterFactory.getCharacters().get(0).getHp()
+                        + "Dmg: "+ CharacterFactory.getCharacters().get(0).getDmg()
+                        + "Speed"     + CharacterFactory.getCharacters().get(0).getSpeed());
+
         }
-
-        public static void end(){
-                System.out.println("Goodbye!");
-        }
-
-
+        
+         */
 }
