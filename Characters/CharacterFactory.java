@@ -2,6 +2,7 @@ package game.TeamProjectGame.Characters;
 
 import game.TeamProjectGame.Characters.Friends.*;
 import game.TeamProjectGame.Characters.Villains.*;
+import game.TeamProjectGame.Characters.Villains.Orc;
 
 import java.util.Vector;
 

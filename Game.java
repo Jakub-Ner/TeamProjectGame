@@ -3,7 +3,6 @@ package game.TeamProjectGame;
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.CharacterFactory;
-import game.TeamProjectGame.Characters.Friends.Dwarf;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -75,7 +74,7 @@ public class Game {
 
         while (run) {
 
-            board.updateBoard( scanner.nextInt() );
+            board.updateBoard( (char)scanner.nextInt() );
 
 
         }

@@ -14,8 +14,8 @@ public class NPC_generator {
             CharacterFactory.addCharacter(type);
             Character npc=CharacterFactory.getCharacters().lastElement();
             do {
-                npc.setX(rand.nextInt(board.length) + 1);
-                npc.setY(rand.nextInt(board[0].length) + 1);
+                npc.setX(rand.nextInt(board.length));
+                npc.setY(rand.nextInt(board[0].length));
             } while (board[npc.getX()][npc.getY()]!=' ');
             switch(type){
                 case 0: board[npc.getX()][npc.getY()]='h';

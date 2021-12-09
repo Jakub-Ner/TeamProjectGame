@@ -64,6 +64,7 @@ public class Menu {
 
                 if(n==1) printCharacters();
                 if(n==2) end();
+                return 0;
         }
 
         public static void end(){

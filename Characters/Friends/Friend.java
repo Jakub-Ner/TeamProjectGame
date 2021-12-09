@@ -1,7 +1,8 @@
 package game.TeamProjectGame.Characters.Friends;
 
 import game.TeamProjectGame.Characters.Character;
-import game.TeamProjectGame.Cries.src.Cry;
+import game.TeamProjectGame.Cries.Cry;
+
 
 public abstract class Friend extends Character {
 

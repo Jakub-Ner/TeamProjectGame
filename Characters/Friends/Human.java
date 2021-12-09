@@ -1,7 +1,7 @@
 package game.TeamProjectGame.Characters.Friends;
 
-import game.TeamProjectGame.Characters.Character;
-import game.TeamProjectGame.Cries.src.*;
+import game.TeamProjectGame.Cries.BattleHumanCry;
+import game.TeamProjectGame.Cries.FriendlyHumanCry;
 
 
 public class Human extends Friend {

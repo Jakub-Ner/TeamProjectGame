@@ -1,7 +1,7 @@
 package game.TeamProjectGame.Characters.Friends;
 
-import game.TeamProjectGame.Characters.Character;
-import game.TeamProjectGame.Cries.src.*;
+import game.TeamProjectGame.Cries.BattleDwarvenCry;
+import game.TeamProjectGame.Cries.FriendlyDwarvenCry;
 
 public class Dwarf extends Friend {
     public Dwarf(){

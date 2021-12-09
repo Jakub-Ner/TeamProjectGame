@@ -1,7 +1,7 @@
 package game.TeamProjectGame.Characters.Friends;
 
-import game.TeamProjectGame.Characters.Character;
-import game.TeamProjectGame.Cries.src.*;
+import game.TeamProjectGame.Cries.BattleElvenCry;
+import game.TeamProjectGame.Cries.FriendlyElvenCry;
 
 public class Elf extends Friend {
 
