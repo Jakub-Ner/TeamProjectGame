@@ -50,27 +50,23 @@ public abstract class Character {
     private void surroundings(Board board) {
         String npc = "hdeDOP";
 
-        if (npc.indexOf( board.board[y+1][x] ) != -1) {
-            meet( (y+1), (x+1) );
+        if ( ( y+1 <= board.HEIGHT) && (npc.indexOf( board.board[y+1][x] ) != -1) ) {
+            meet( (y+1), x );
         }
 
-        if (npc.indexOf( board.board[y-1][x] ) != -1) {
-            meet( (y+1), (x+1) );
+        if ( ( y-1 >= 0) && (npc.indexOf( board.board[y-1][x] ) != -1) ) {
+            meet( (y-1), x );
         }
 
-        if (npc.indexOf( board.board[y][x-1] ) != -1) {
-            meet( (y+1), (x+1) );
+        if ( ( x-1 >= 0) && (npc.indexOf( board.board[y][x-1] ) != -1) ) {
+            meet( y, (x-1) );
         }
 
-        if (npc.indexOf( board.board[y][x+1] ) != -1) {
-            meet( (y+1), (x+1) );
+        if ( ( x+1 <= board.WIDTH) && (npc.indexOf( board.board[y][x+1] ) != -1)) {
+            meet( y, (x+1) );
         }
     }
 
-    public void moveCharacter(int further, Board board) {
-
-        switch(further) {
-            case '2':
     public void moveCharacter(int further, Board board) {
 
         switch(further) {
@@ -88,10 +84,6 @@ public abstract class Character {
                 break;
 
             }
-            case '8':
-                break;
-
-            }
             case 8:
             {
                 if ( y > 0 ) {
@@ -105,9 +97,6 @@ public abstract class Character {
                 break;
 
             }
-            case '6':
-                break;
-            }
             case 6:
             {
                 if ( x < board.WIDTH ) {
@@ -120,9 +109,6 @@ public abstract class Character {
                 surroundings(board);
                 break;
 
-            }
-            case '4':
-                break;
             }
             case 4:
             {
@@ -141,10 +127,7 @@ public abstract class Character {
                 System.out.println("Please use NumPad to move");
                 break;
             }
-            default: {
-                System.out.println("Please use numpad to move");
 
-            }
         }
 
     }
