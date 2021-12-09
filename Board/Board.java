@@ -49,7 +49,8 @@ public class Board {
                 if (start[i][coordinate] + direction <= 0
                         || (coordinate == 0 && start[i][coordinate] + direction >= board.length)
                         || (coordinate == 1 && start[i][coordinate] + direction >= board[0].length)) {
-                    break;
+                    System.out.println("elo ");
+                    continue;
                 }
                 licznik++;
             }
@@ -76,7 +77,7 @@ public class Board {
         int[][] fields2 = new int[][]{
                 {board.length - 2, board[0].length - 2}, {board.length - 2, board[0].length - 1},
                 {board.length - 1, board[0].length - 2}, {board.length - 1, board[0].length - 1}};
-        partOfBoard(52, fields2);
+        partOfBoard(352, fields2);
 
     }
 

@@ -21,7 +21,6 @@ public class Game {
 
 
         while (run) {
-
             board.updateBoard( scanner.nextInt() );
 
             if (player.getHp() <= 0) {
