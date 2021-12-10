@@ -49,7 +49,6 @@ public class Board {
                 if (start[i][coordinate] + direction <= 0
                         || (coordinate == 0 && start[i][coordinate] + direction >= board.length)
                         || (coordinate == 1 && start[i][coordinate] + direction >= board[0].length)) {
-                    System.out.println("elo ");
                     continue;
                 }
                 licznik++;
