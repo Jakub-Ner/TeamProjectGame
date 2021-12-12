@@ -19,7 +19,7 @@ public class BoardAPI {
             }
             sum += "\n";}
         try{
-            outB =  new BufferedWriter(new FileWriter("test.txt"));
+            outB =  new BufferedWriter(new FileWriter("board.txt"));
             outB.write(sum);
         }
         catch (IOException e){
@@ -36,7 +36,7 @@ public class BoardAPI {
 
     public  static void LoadBoard(Board board){
         char[][] tmpboard = new char[board.HEIGHT][board.WIDTH];
-        File plik = new File("test.txt");
+        File plik = new File("board.txt");
         try (Scanner scan = new Scanner(new BufferedReader(new FileReader(plik)))) {
             int J = 0;
             while( scan.hasNext() )
@@ -51,7 +51,8 @@ public class BoardAPI {
                 }
                 J++;
             }
-
+            board.board = tmpboard;
+            System.out.print(board.board);
         }catch (Exception e){
             e.printStackTrace();
         }
