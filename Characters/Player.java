@@ -4,7 +4,8 @@ import game.TeamProjectGame.Characters.Friends.Friend;
 
 public class Player extends Friend {
 	/**
-	 * Initializes players with stats of said Friend
+	 * Initializes players with stats of said Friend.
+	 * It MUST NOT use NPCFactory to initialize itself
 	 *
 	 * @param type takes Friend which represents player's race
 	 */
