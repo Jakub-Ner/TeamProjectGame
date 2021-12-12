@@ -1,6 +1,7 @@
 package game.TeamProjectGame.Characters;
 
 import game.TeamProjectGame.Board.Board;
+import game.TeamProjectGame.MovePattern.MovePattern;
 
 public abstract class Npc extends Character {
 
@@ -28,9 +29,9 @@ public abstract class Npc extends Character {
 
         if (turn <= 0) {
 
-            moveCharacter(pattern.pattern[nextMove], board);
+            moveCharacter(pattern.pattern()[nextMove], board);
 
-            if (nextMove >= pattern.pattern.length ) {
+            if (nextMove >= pattern.pattern().length ) {
                 nextMove = 0;
             }
             else nextMove++;

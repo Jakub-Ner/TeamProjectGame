@@ -114,7 +114,7 @@ public class Board {
     private void updateNPC(){
         Vector<Character> npc= CharacterFactory.getCharacters();
         for (int i=0; i<npc.size(); i++){
-            npc.get(i).move();
+            npc.get(i).move(this);
         }
     }
 }
