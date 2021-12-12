@@ -1,7 +1,7 @@
 package game.TeamProjectGame.Board;
 
 import game.TeamProjectGame.Characters.Character;
-import game.TeamProjectGame.Characters.CharacterFactory;
+import game.TeamProjectGame.Characters.NPCFactory;
 
 import java.util.Random;
 
@@ -11,8 +11,8 @@ public class NPC_generator {
         Random rand = new Random();
         for (int i=0; i<n; i++){
             int type=rand.nextInt(6);
-            CharacterFactory.addCharacter(type);
-            Character npc=CharacterFactory.getCharacters().lastElement();
+            NPCFactory.addCharacter(type);
+            Character npc= NPCFactory.getCharacters().lastElement();
             do {
                 npc.setX(rand.nextInt(board.length));
                 npc.setY(rand.nextInt(board[0].length));

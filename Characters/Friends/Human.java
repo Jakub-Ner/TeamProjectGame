@@ -4,6 +4,7 @@ import game.TeamProjectGame.Cries.BattleElvenCry;
 import game.TeamProjectGame.Cries.BattleHumanCry;
 import game.TeamProjectGame.Cries.FriendlyElvenCry;
 import game.TeamProjectGame.Cries.FriendlyHumanCry;
+import game.TeamProjectGame.MovePattern.MovePattern;
 
 
 public class Human extends Friend {

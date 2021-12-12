@@ -1,7 +1,7 @@
 package game.TeamProjectGame;
 
 import game.TeamProjectGame.Characters.Character;
-import game.TeamProjectGame.Characters.CharacterFactory;
+import game.TeamProjectGame.Characters.NPCFactory;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -41,15 +41,15 @@ public class Menu {
                         "3 - ELF\n");
 
                 int n = choosingNumber(4);
-                return CharacterFactory.addCharacter(n-1);
+                return NPCFactory.addCharacter(n-1);
         }
 
         public static void printStats(){
 
-                        System.out.println(CharacterFactory.getCharacters().get(0).getClass().getSimpleName()
-                        + "\tHP: " + CharacterFactory.getCharacters().get(0).getHp()
-                        + "\tDmg: "+ CharacterFactory.getCharacters().get(0).getDmg()
-                        + "\tSpeed: " + CharacterFactory.getCharacters().get(0).getSpeed());
+                        System.out.println(NPCFactory.getCharacters().get(0).getClass().getSimpleName()
+                        + "\tHP: " + NPCFactory.getCharacters().get(0).getHp()
+                        + "\tDmg: "+ NPCFactory.getCharacters().get(0).getDmg()
+                        + "\tSpeed: " + NPCFactory.getCharacters().get(0).getSpeed());
 
         }
 
