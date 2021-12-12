@@ -15,7 +15,7 @@ public abstract class Character {
 
     private int hp;
     private int dmg;
-    private int speed;
+    protected int speed;
 
     //constructor
 
