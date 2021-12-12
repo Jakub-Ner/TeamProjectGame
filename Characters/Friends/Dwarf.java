@@ -4,6 +4,7 @@ import game.TeamProjectGame.Cries.BattleDwarvenCry;
 import game.TeamProjectGame.Cries.BattleElvenCry;
 import game.TeamProjectGame.Cries.FriendlyDwarvenCry;
 import game.TeamProjectGame.Cries.FriendlyElvenCry;
+import game.TeamProjectGame.MovePattern.MovePattern;
 
 public class Dwarf extends Friend {
     public Dwarf(MovePattern pattern){

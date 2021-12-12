@@ -1,6 +1,7 @@
 package game.TeamProjectGame.Characters.Villains;
 
 import game.TeamProjectGame.Characters.Character;
+import game.TeamProjectGame.MovePattern.MovePattern;
 
 public class Dragon extends Villain {
 
