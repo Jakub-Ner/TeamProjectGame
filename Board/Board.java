@@ -1,9 +1,11 @@
 package game.TeamProjectGame.Board;
 
 import game.TeamProjectGame.Characters.Character;
+import game.TeamProjectGame.Characters.CharacterFactory;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Vector;
 
 
 public class Board {
@@ -101,13 +103,19 @@ public class Board {
 
     public void updateBoard(int goFurther) {
         board[character.getY()][character.getX()] = ' '; //erases previous location
-
         character.moveCharacter(goFurther, this);
-
         board[character.getY()][character.getX()] = 'B'; // sets new location
 
+        updateNPC();
         space();
         drawScreen();
+    }
+
+    private void updateNPC(){
+        Vector<Character> npc= CharacterFactory.getCharacters();
+        for (int i=0; i<npc.size(); i++){
+            npc.get(i).move(this);
+        }
     }
 }
 
