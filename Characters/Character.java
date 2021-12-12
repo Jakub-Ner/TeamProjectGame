@@ -36,67 +36,44 @@ public abstract class Character {
 
     //methods
 
-    public void move(Board board) {
-    }
-
-    ;
-
     private void meet(int x, int y, Board board) {
 
         for (int i = 0; i < CharacterFactory.getCharacters().size(); i++) {
-            if ((CharacterFactory.getCharacters().elementAt(i).getX() == x) && (CharacterFactory.getCharacters().elementAt(i).getY() == y)) {
+            if ( (CharacterFactory.getCharacters().elementAt(i).getX() == x) && (CharacterFactory.getCharacters().elementAt(i).getY() == y)) {
                 MeetingAndFight.Meeting(this, CharacterFactory.getCharacters().elementAt(i), board);
                 break;
             }
         }
     }
 
-
-    private boolean surroundings(Board board) {
+    private void surroundings(Board board) {
         String npc = "hdeDOP";
 
-        if ((y + 1 <= board.HEIGHT) && (npc.indexOf(board.board[y + 1][x]) != -1)) {
-            meet((y + 1), x, board);
+        if ( ( y+1 <= board.HEIGHT) && (npc.indexOf( board.board[y+1][x] ) != -1) ) {
+            meet( (y+1), x, board);
         }
 
-        if ((y - 1 >= 0) && (npc.indexOf(board.board[y - 1][x]) != -1)) {
-            meet((y - 1), x, board);
+        if ( ( y-1 >= 0) && (npc.indexOf( board.board[y-1][x] ) != -1) ) {
+            meet( (y-1), x, board );
         }
 
-        if ((x - 1 >= 0) && (npc.indexOf(board.board[y][x - 1]) != -1)) {
-            meet(y, (x - 1), board);
+        if ( ( x-1 >= 0) && (npc.indexOf( board.board[y][x-1] ) != -1) ) {
+            meet( y, (x-1), board );
         }
 
-        if ((x + 1 <= board.WIDTH) && (npc.indexOf(board.board[y][x + 1]) != -1)) {
-            meet(y, (x + 1), board);
-            meet((y + 1), x, board);
-            return true;
+        if ( ( x+1 <= board.WIDTH) && (npc.indexOf( board.board[y][x+1] ) != -1) ) {
+            meet( y, (x+1), board );
         }
-
-        if ((y - 1 >= 0) && (npc.indexOf(board.board[y - 1][x]) != -1)) {
-            meet((y - 1), x, board);
-            return true;
-        }
-
-        if ((x - 1 >= 0) && (npc.indexOf(board.board[y][x - 1]) != -1)) {
-            meet(y, (x - 1), board);
-            return true;
-        }
-
-        if ((x + 1 <= board.WIDTH) && (npc.indexOf(board.board[y][x + 1]) != -1)) {
-            meet(y, (x + 1), board);
-            return true;
-        }
-        return false;
     }
 
     public void moveCharacter(int further, Board board) {
 
-        switch (further) {
-            case 2: {
-                if (y < board.HEIGHT) {
+        switch(further) {
+            case 2:
+            {
+                if ( y < board.HEIGHT ) {
 
-                    if (Board.board[y + 1][x] == ' ') {
+                    if ( Board.board[y+1][x] == ' ' ) {
                         y++;
                     }
 
@@ -106,10 +83,11 @@ public abstract class Character {
                 break;
 
             }
-            case 8: {
-                if (y > 0) {
+            case 8:
+            {
+                if ( y > 0 ) {
 
-                    if (Board.board[y - 1][x] == ' ') {
+                    if ( Board.board[y-1][x] == ' ' ) {
                         y--;
                     }
                 }
@@ -118,10 +96,11 @@ public abstract class Character {
                 break;
 
             }
-            case 6: {
-                if (x < board.WIDTH) {
+            case 6:
+            {
+                if ( x < board.WIDTH ) {
 
-                    if (Board.board[y][x + 1] == ' ') {
+                    if ( Board.board[y][x+1] == ' ' ) {
                         x++;
                     }
                 }
@@ -130,10 +109,11 @@ public abstract class Character {
                 break;
 
             }
-            case 4: {
-                if (x > 0) {
+            case 4:
+            {
+                if ( x > 0 ) {
 
-                    if (Board.board[y][x - 1] == ' ') {
+                    if ( Board.board[y][x-1] == ' ' ) {
                         x--;
                     }
                 }
