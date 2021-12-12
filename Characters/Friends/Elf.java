@@ -5,8 +5,8 @@ import game.TeamProjectGame.Cries.FriendlyElvenCry;
 
 public class Elf extends Friend {
 
-    public Elf(){
-        super(60,6,8,"Laurion");
+    public Elf(MovePattern pattern){
+        super(60,6,8,"Laurion", pattern);
     }
 
     public void getBattleCry(){

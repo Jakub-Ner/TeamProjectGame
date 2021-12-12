@@ -6,8 +6,8 @@ import game.TeamProjectGame.Cries.FriendlyDwarvenCry;
 import game.TeamProjectGame.Cries.FriendlyElvenCry;
 
 public class Dwarf extends Friend {
-    public Dwarf(){
-        super(100,12,3,"Murdoch");
+    public Dwarf(MovePattern pattern){
+        super(100,12,3,"Murdoch", pattern);
     }
 
     public void getBattleCry(){

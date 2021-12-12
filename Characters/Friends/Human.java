@@ -8,8 +8,8 @@ import game.TeamProjectGame.Cries.FriendlyHumanCry;
 
 public class Human extends Friend {
 
-    public Human(){
-        super(80,9,5,"Talwyn");
+    public Human(MovePattern pattern){
+        super(80,9,5,"Talwyn", pattern);
     }
 
     public void getBattleCry(){
