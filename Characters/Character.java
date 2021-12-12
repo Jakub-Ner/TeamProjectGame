@@ -46,7 +46,7 @@ public abstract class Character {
         }
     }
 
-    private void surroundings(Board board) {
+    private boolean surroundings(Board board) {
         String npc = "hdeDOP";
 
         if ( ( y+1 <= board.HEIGHT) && (npc.indexOf( board.board[y+1][x] ) != -1) ) {
@@ -63,7 +63,25 @@ public abstract class Character {
 
         if ( ( x+1 <= board.WIDTH) && (npc.indexOf( board.board[y][x+1] ) != -1) ) {
             meet( y, (x+1), board );
+            meet( (y+1), x );
+            return true;
         }
+
+        if ( ( y-1 >= 0) && (npc.indexOf( board.board[y-1][x] ) != -1) ) {
+            meet( (y-1), x );
+            return true;
+        }
+
+        if ( ( x-1 >= 0) && (npc.indexOf( board.board[y][x-1] ) != -1) ) {
+            meet( y, (x-1) );
+            return true;
+        }
+
+        if ( ( x+1 <= board.WIDTH) && (npc.indexOf( board.board[y][x+1] ) != -1) ) {
+            meet( y, (x+1) );
+            return true;
+        }
+        return false;
     }
 
     public void moveCharacter(int further, Board board) {
