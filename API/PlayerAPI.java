@@ -1,3 +1,4 @@
+
 package game.TeamProjectGame.API;
 
 import game.TeamProjectGame.Characters.Player;
@@ -6,7 +7,7 @@ import java.io.IOException;
 import java.io.*;
 
 public class PlayerAPI {
-    public void savePlayer(Player player) {
+    public static void savePlayer(Player player) {
         try (ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream("Player.ser")))
         {
             so.writeObject(player);
@@ -16,7 +17,7 @@ public class PlayerAPI {
 
     }
 
-    public boolean loadPlayer(Player player){
+    public static boolean loadPlayer(Player player){
         try (ObjectInputStream is = new ObjectInputStream(new FileInputStream("Player.ser"))) {
             Object obj1 = is.readObject();
             player = null;
@@ -25,10 +26,10 @@ public class PlayerAPI {
             e.printStackTrace();
         }
         File file = new File ("Player.ser");
-        return checkFileEpmty(file);
+        return checkFileEmpty(file);
     }
 
-    public static boolean checkFileEpmty (File file){
+    public static boolean checkFileEmpty(File file){
         if(file.length()==0)
             return true;
         else

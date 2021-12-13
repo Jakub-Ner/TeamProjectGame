@@ -2,6 +2,7 @@ package game.TeamProjectGame.Characters;
 
 import game.TeamProjectGame.Characters.Friends.Friend;
 
+
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -16,6 +17,8 @@ public class Player extends Character implements Serializable {
 	 *
 	 * @param type takes Friend which represents player's race
 	 */
+	public Player(){
+	}
 	public Player(Friend type){
 		super(type.getHp(), type.getDmg(), type.getSpeed());
 	}
