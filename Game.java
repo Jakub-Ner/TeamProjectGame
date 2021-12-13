@@ -14,14 +14,17 @@ public class Game {
 
         Scanner scanner = new Scanner(System.in);
 
-        Menu.start();
-        Player player = new Player(Menu.chooseCharacterMenu());
+        Player player = new Player();
+        Board board = new Board(player);
+
+        Menu.start(player,board);
 
         boolean run = true;
+        //player = NPCFactory.getCharacters().lastElement();
 
-        Board board = new Board(player);
+
 //        BoardAPI.SaveBoard(board);
-        BoardAPI.LoadBoard(board);
+//        BoardAPI.LoadBoard(board);
         while (run) {
             board.updateBoard( scanner.nextInt() );
 
