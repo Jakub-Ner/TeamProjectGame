@@ -17,8 +17,6 @@ public class Player extends Character {
 	 *
 	 * @param type takes Friend which represents player's race
 	 */
-	public Player(){
-	}
 	public Player(Friend type){
 		super(type.getHp(), type.getDmg(), type.getSpeed(), 'B');
 		this.cry = type.getCry();
