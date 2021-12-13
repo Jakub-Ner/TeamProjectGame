@@ -3,9 +3,6 @@ package game.TeamProjectGame.Characters;
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.MeetingAndFight.MeetingAndFight;
 
-import javax.swing.*;
-import java.util.Base64;
-
 
 public abstract class Character {
 
@@ -38,9 +35,9 @@ public abstract class Character {
 
     private void meet(int x, int y, Board board) {
 
-        for (int i = 0; i < CharacterFactory.getCharacters().size(); i++) {
-            if ( (CharacterFactory.getCharacters().elementAt(i).getX() == x) && (CharacterFactory.getCharacters().elementAt(i).getY() == y)) {
-                MeetingAndFight.Meeting(this, CharacterFactory.getCharacters().elementAt(i), board);
+        for (int i = 0; i < NPCFactory.getCharacters().size(); i++) {
+            if ( (NPCFactory.getCharacters().elementAt(i).getX() == x) && (NPCFactory.getCharacters().elementAt(i).getY() == y)) {
+                MeetingAndFight.Meeting(this, NPCFactory.getCharacters().elementAt(i), board);
                 break;
             }
         }
