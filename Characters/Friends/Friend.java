@@ -20,11 +20,11 @@ public abstract class Friend extends Character {
     }
 
     public void getBattleCry(){
-        this.cry.shout();
+        cry.shout();
     }
 
     public void getFriendlyCry(){
-        this.cry.shout();
+        cry.shout();
     }
 
     public void setCry(Cry cry) {
