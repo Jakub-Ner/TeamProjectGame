@@ -1,5 +1,7 @@
 package game.TeamProjectGame.Cries;
 
 public interface Cry {
-    void shout ();
+    void battleShout ();
+
+    void friendlyShout();
 }
