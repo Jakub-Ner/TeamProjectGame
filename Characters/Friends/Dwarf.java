@@ -1,7 +1,7 @@
 package game.TeamProjectGame.Characters.Friends;
 
 import game.TeamProjectGame.Cries.DwarvenCries;
-import game.TeamProjectGame.MovePattern.MovePattern;
+import game.TeamProjectGame.Pattern.MovePattern;
 
 public class Dwarf extends Friend {
     public Dwarf(MovePattern pattern){

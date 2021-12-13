@@ -1,7 +1,7 @@
 package game.TeamProjectGame.Characters;
 
 import game.TeamProjectGame.Board.Board;
-import game.TeamProjectGame.MovePattern.MovePattern;
+import game.TeamProjectGame.Pattern.MovePattern;
 
 public abstract class Npc extends Character {
 

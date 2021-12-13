@@ -3,7 +3,7 @@ package game.TeamProjectGame.Characters;
 import game.TeamProjectGame.Characters.Friends.*;
 import game.TeamProjectGame.Characters.Villains.*;
 import game.TeamProjectGame.Characters.Villains.Orc;
-import game.TeamProjectGame.MovePattern.*;
+import game.TeamProjectGame.Pattern.*;
 
 import java.util.Random;
 import java.util.Vector;

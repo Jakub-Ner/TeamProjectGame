@@ -1,4 +1,4 @@
-package game.TeamProjectGame.MovePattern;
+package game.TeamProjectGame.Pattern;
 
 public class SPattern implements MovePattern{
     @Override

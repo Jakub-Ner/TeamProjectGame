@@ -1,4 +1,4 @@
-package game.TeamProjectGame.MovePattern;
+package game.TeamProjectGame.Pattern;
 
 public class LPattern implements MovePattern{
 

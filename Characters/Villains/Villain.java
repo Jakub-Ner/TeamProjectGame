@@ -1,8 +1,7 @@
 package game.TeamProjectGame.Characters.Villains;
 
-import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.Npc;
-import game.TeamProjectGame.MovePattern.MovePattern;
+import game.TeamProjectGame.Pattern.MovePattern;
 
 public abstract class Villain extends Npc {
 

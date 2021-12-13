@@ -3,6 +3,7 @@ package game.TeamProjectGame;
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.NPCFactory;
+import game.TeamProjectGame.Characters.Player;
 
 import java.util.Scanner;
 
@@ -13,10 +14,9 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
 
         Menu.start();
-        Character player = Menu.chooseCharacterMenu();
+        Player player = Menu.chooseCharacterMenu();
 
         boolean run = true;
-        player = NPCFactory.getCharacters().lastElement();
 
         Board board = new Board(player);
 //        BoardAPI.SaveBoard(board);

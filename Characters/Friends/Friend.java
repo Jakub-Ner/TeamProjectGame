@@ -2,7 +2,7 @@ package game.TeamProjectGame.Characters.Friends;
 
 import game.TeamProjectGame.Characters.Npc;
 import game.TeamProjectGame.Cries.Cry;
-import game.TeamProjectGame.MovePattern.MovePattern;
+import game.TeamProjectGame.Pattern.MovePattern;
 
 
 public abstract class Friend extends Npc {
@@ -13,7 +13,7 @@ public abstract class Friend extends Npc {
 //    public Friend(){ // w npc też musi byc konstruktor domyslny jesli chcemy go zrobic dla friend
 //    }
 
-    public Friend(int hp, int dmg, int speed,String name, MovePattern pattern,Cry cry){
+    public Friend(int hp, int dmg, int speed, String name, MovePattern pattern, Cry cry){
         super(hp,dmg,speed, pattern);
         this.name = name;
         this.cry = cry;
