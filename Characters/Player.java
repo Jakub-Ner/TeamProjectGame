@@ -2,7 +2,9 @@ package game.TeamProjectGame.Characters;
 
 import game.TeamProjectGame.Characters.Friends.Friend;
 
-public class Player extends Character implements Serializable{
+import java.io.Serializable;
+
+public class Player extends Character implements Serializable {
 	
 	 @Serial
    	 private static final long serialVersionUID = 1553400894846351235L;
@@ -13,6 +15,8 @@ public class Player extends Character implements Serializable{
 	 *
 	 * @param type takes Friend which represents player's race
 	 */
+	public Player(){
+	}
 	public Player(Friend type){
 		super(type.getHp(), type.getDmg(), type.getSpeed());
 	}
