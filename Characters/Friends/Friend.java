@@ -1,10 +1,7 @@
 package game.TeamProjectGame.Characters.Friends;
 
-import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.Npc;
-import game.TeamProjectGame.Cries.BattleElvenCry;
 import game.TeamProjectGame.Cries.Cry;
-import game.TeamProjectGame.Cries.FriendlyElvenCry;
 import game.TeamProjectGame.MovePattern.MovePattern;
 
 
@@ -16,17 +13,18 @@ public abstract class Friend extends Npc {
 //    public Friend(){ // w npc też musi byc konstruktor domyslny jesli chcemy go zrobic dla friend
 //    }
 
-    public Friend(int hp, int dmg, int speed,String name, MovePattern pattern){
+    public Friend(int hp, int dmg, int speed,String name, MovePattern pattern,Cry cry){
         super(hp,dmg,speed, pattern);
         this.name = name;
+        this.cry = cry;
     }
 
     public void getBattleCry(){
-        this.cry.shout();
+        this.cry.battleShout();
     }
 
     public void getFriendlyCry(){
-        this.cry.shout();
+        this.cry.friendlyShout();
     }
 
     public void setCry(Cry cry) {
