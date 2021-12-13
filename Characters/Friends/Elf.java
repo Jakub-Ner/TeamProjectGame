@@ -1,9 +1,12 @@
 package game.TeamProjectGame.Characters.Friends;
 
+import game.TeamProjectGame.Cries.ElvenCries;
+import game.TeamProjectGame.MovePattern.MovePattern;
+
 public class Elf extends Friend {
 
-    public Elf(){
-        super(60,6,8,"Laurion");
+    public Elf(MovePattern movePattern){
+        super(60,6,8,"Laurion", movePattern, new ElvenCries(), 'e');
     }
 
 }

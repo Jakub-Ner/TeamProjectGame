@@ -1,20 +1,19 @@
 package game.TeamProjectGame.Characters.Friends;
 
 import game.TeamProjectGame.Characters.Character;
+import game.TeamProjectGame.Characters.Npc;
 import game.TeamProjectGame.Cries.Cry;
+import game.TeamProjectGame.MovePattern.MovePattern;
 
 
-public abstract class Friend extends Character {
+public abstract class Friend extends Npc {
 
     protected Cry cry;
     private String name;
 
-    public Friend(){
-        super();
-    }
-
-    public Friend(int hp, int dmg, int speed,String name){
-        super(hp,dmg,speed);
+    public Friend(int hp, int dmg, int speed, String name, MovePattern pattern, Cry cry, char symbol){
+        super(hp,dmg,speed, pattern, symbol);
+        this.cry = cry;
     }
 
     public void getBattleCry(){
@@ -24,6 +23,8 @@ public abstract class Friend extends Character {
     public void getFriendlyCry(){
         this.cry.friendlyShout();
     }
+
+    public Cry getCry(){ return this.cry;}
 
     public void setCry(Cry cry) {
         this.cry = cry;

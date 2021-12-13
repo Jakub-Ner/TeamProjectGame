@@ -2,9 +2,9 @@ package game.TeamProjectGame;
 
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.Characters.Character;
-import game.TeamProjectGame.Characters.CharacterFactory;
+import game.TeamProjectGame.Characters.NPCFactory;
+import game.TeamProjectGame.Characters.Player;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
@@ -14,10 +14,9 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
 
         Menu.start();
-        Character player = Menu.chooseCharacterMenu();
+        Player player = new Player(Menu.chooseCharacterMenu());
 
         boolean run = true;
-        player = CharacterFactory.getCharacters().lastElement();
 
         Board board = new Board(player);
 

@@ -3,30 +3,36 @@ package game.TeamProjectGame.Characters;
 import game.TeamProjectGame.Characters.Friends.*;
 import game.TeamProjectGame.Characters.Villains.*;
 import game.TeamProjectGame.Characters.Villains.Orc;
+import game.TeamProjectGame.MovePattern.*;
 
+import java.util.Random;
 import java.util.Vector;
 
-public enum CharacterFactory {
+public enum NPCFactory {
 	HUMAN, DWARF, ELF, ORC, PHANTOM, DRAGON;
 
-	private static Vector<Character> characters = new Vector<>();
+	private static MovePattern[] movePatterns = {
+			new LPattern(),
+			new PlusPattern(),
+			new UPattern(),
+			new RandomPattern(),
+			new SPattern(),
+			new SquarePattern()
+	};
+	private static Vector<Npc> characters = new Vector<>();
 
 	//returns pointer to a newly created character
-	private static Character createNew(CharacterFactory type){
+	private static Npc createNew(NPCFactory type){
+		Random random = new Random();
 		switch (type) {
-			case HUMAN: return new Human();
-			case DWARF: return new Dwarf();
-			case ELF: return new Elf();
-			case ORC: return new Orc();
-			case PHANTOM: return new Phantom();
-			case DRAGON: return new Dragon();
+			case HUMAN: return new Human(movePatterns[random.nextInt(movePatterns.length)]);
+			case DWARF: return new Dwarf(movePatterns[random.nextInt(movePatterns.length)]);
+			case ELF: return new Elf(movePatterns[random.nextInt(movePatterns.length)]);
+			case ORC: return new Orc(movePatterns[random.nextInt(movePatterns.length)]);
+			case PHANTOM: return new Phantom(movePatterns[random.nextInt(movePatterns.length)]);
+			case DRAGON: return new Dragon(movePatterns[random.nextInt(movePatterns.length)]);
 		}
 		return null;
-	}
-
-	//returns pointer to a newly created character
-	private static Character createNew(int type){
-		return CharacterFactory.createNew(toCharacterType(type));
 	}
 
 	/**
@@ -42,38 +48,38 @@ public enum CharacterFactory {
 	 * @param	type	number to be interpreted
 	 * @return	returns int as a type of character
 	 */
-	public static CharacterFactory toCharacterType(int type){
-		return CharacterFactory.values()[type];
+	public static NPCFactory toCharacterType(int type){
+		return NPCFactory.values()[type];
 	}
 
 	/**
 	 * Inteface to work with character list
 	 *
-	 * @return	pointer to vector agregating all the characters
+	 * @return	pointer to vector aggregating all the characters
 	 */
-	public static Vector<Character> getCharacters(){
+	public static Vector<Npc> getCharacters(){
 		return characters;
 	}
 
 	/**
 	 * Adds new character to the list
 	 *
-	 * @param type	enum type of a character to be created
+	 * @param type	enum type of character to be created
 	 * @return returns newly created character
 	 */
-	public static Character addCharacter(CharacterFactory type){
+	public static Npc addCharacter(NPCFactory type){
 		characters.add(createNew(type));
 		return characters.lastElement();
 	}
 
 	/**
-	 * Adds new character to the list
+	 * Adds new npc to the list
 	 *
 	 * @param type	is promoted to an enum type required for internal work
 	 * @return returns newly created character
 	 */
-	public static Character addCharacter(int type){
-		characters.add(createNew(type));
+	public static Npc addCharacter(int type){
+		characters.add(createNew(toCharacterType(type)));
 		return characters.lastElement();
 	}
 

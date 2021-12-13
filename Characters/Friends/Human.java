@@ -1,10 +1,13 @@
 package game.TeamProjectGame.Characters.Friends;
 
 
+import game.TeamProjectGame.Cries.HumanCries;
+import game.TeamProjectGame.MovePattern.MovePattern;
+
 public class Human extends Friend {
 
-    public Human(){
-        super(80,9,5,"Talwyn");
+    public Human(MovePattern movePattern){
+        super(80,9,5,"Talwyn", movePattern, new HumanCries(), 'h');
     }
 
 }

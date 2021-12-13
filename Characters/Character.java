@@ -3,9 +3,6 @@ package game.TeamProjectGame.Characters;
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.MeetingAndFight.MeetingAndFight;
 
-import javax.swing.*;
-import java.util.Base64;
-
 
 public abstract class Character {
 
@@ -15,7 +12,9 @@ public abstract class Character {
 
     private int hp;
     private int dmg;
-    private int speed;
+    protected int speed;
+
+    protected char symbol;
 
     //constructor
 
@@ -26,21 +25,21 @@ public abstract class Character {
 
     }
 
-    public Character(int hp, int dmg, int speed) {
+    public Character(int hp, int dmg, int speed, char symbol) {
 
         this.hp = hp;
         this.dmg = dmg;
         this.speed = speed;
-
+        this.symbol = symbol;
     }
 
     //methods
 
-    private void meet(int x, int y, Board board) {
+    private void meet(int y, int x, Board board) {
 
-        for (int i = 0; i < CharacterFactory.getCharacters().size(); i++) {
-            if ( (CharacterFactory.getCharacters().elementAt(i).getX() == x) && (CharacterFactory.getCharacters().elementAt(i).getY() == y)) {
-                MeetingAndFight.Meeting(this, CharacterFactory.getCharacters().elementAt(i), board);
+        for (int i = 0; i < NPCFactory.getCharacters().size(); i++) {
+            if ( (NPCFactory.getCharacters().elementAt(i).getX() == x) && (NPCFactory.getCharacters().elementAt(i).getY() == y)) {
+                MeetingAndFight.Meeting(this, NPCFactory.getCharacters().elementAt(i), board);
                 break;
             }
         }
@@ -49,7 +48,7 @@ public abstract class Character {
     private void surroundings(Board board) {
         String npc = "hdeDOP";
 
-        if ( ( y+1 <= board.HEIGHT) && (npc.indexOf( board.board[y+1][x] ) != -1) ) {
+        if ( ( y+1 < board.HEIGHT) && (npc.indexOf( board.board[y+1][x] ) != -1) ) {
             meet( (y+1), x, board);
         }
 
@@ -61,17 +60,18 @@ public abstract class Character {
             meet( y, (x-1), board );
         }
 
-        if ( ( x+1 <= board.WIDTH) && (npc.indexOf( board.board[y][x+1] ) != -1) ) {
+        if ( ( x+1 < board.WIDTH) && (npc.indexOf( board.board[y][x+1] ) != -1) ) {
             meet( y, (x+1), board );
         }
     }
 
     public void moveCharacter(int further, Board board) {
+        Board.board[getY()][getX()] = ' ';
 
         switch(further) {
             case 2:
             {
-                if ( y < board.HEIGHT ) {
+                if ( y + 1 < board.HEIGHT ) {
 
                     if ( Board.board[y+1][x] == ' ' ) {
                         y++;
@@ -98,7 +98,7 @@ public abstract class Character {
             }
             case 6:
             {
-                if ( x < board.WIDTH ) {
+                if ( x + 1 < board.WIDTH ) {
 
                     if ( Board.board[y][x+1] == ' ' ) {
                         x++;
@@ -129,6 +129,7 @@ public abstract class Character {
 
         }
 
+        Board.board[getY()][getX()] = symbol;
     }
 
     //geters

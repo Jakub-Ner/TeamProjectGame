@@ -1,11 +1,11 @@
 package game.TeamProjectGame;
 
-import game.TeamProjectGame.Characters.Character;
-import game.TeamProjectGame.Characters.CharacterFactory;
 import game.TeamProjectGame.Characters.Friends.Dwarf;
 import game.TeamProjectGame.Characters.Friends.Elf;
 import game.TeamProjectGame.Characters.Friends.Friend;
 import game.TeamProjectGame.Characters.Friends.Human;
+import game.TeamProjectGame.Characters.Player;
+import game.TeamProjectGame.MovePattern.SquarePattern;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -49,18 +49,17 @@ public class Menu {
 					n = choosingNumber(4);
 				}
                 switch (n){
-					case 1: return new Human();
-					case 2: return new Dwarf();
-					case 3: return new Elf();
+					default: return new Human(new SquarePattern());
+					case 2: return new Dwarf(new SquarePattern());
+					case 3: return new Elf(new SquarePattern());
                 }
-				return null;
         }
 
-        public static void printStats(){
-                        System.out.println(CharacterFactory.getCharacters().get(0).getClass().getSimpleName()
-                        + "\tHP: " + CharacterFactory.getCharacters().get(0).getHp()
-                        + "\tDmg: "+ CharacterFactory.getCharacters().get(0).getDmg()
-                        + "\tSpeed: " + CharacterFactory.getCharacters().get(0).getSpeed());
+        public static void printStats(Player player){
+                        System.out.println(player.getClass().getSimpleName()
+                        + "\tHP: " + player.getHp()
+                        + "\tDmg: "+ player.getDmg()
+                        + "\tSpeed: " + player.getSpeed());
         }
 
 }

@@ -1,6 +1,8 @@
 package game.TeamProjectGame.Board;
 
 import game.TeamProjectGame.Characters.Character;
+import game.TeamProjectGame.Characters.NPCFactory;
+import game.TeamProjectGame.Characters.Npc;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -83,7 +85,7 @@ public class Board {
 
     public void initBoard() {
         drawBoard();
-        NPC_generator.generateNPC(board);
+        NPC_generator.generateNPC(this);
         updateBoard('w');
     }
 
@@ -100,14 +102,19 @@ public class Board {
     }
 
     public void updateBoard(int goFurther) {
-        board[character.getY()][character.getX()] = ' '; //erases previous location
+         //erases previous location
 
         character.moveCharacter(goFurther, this);
 
-        board[character.getY()][character.getX()] = 'B'; // sets new location
-
         space();
         drawScreen();
+		updateNPC();
+    }
+
+    private void updateNPC(){
+		for (Npc c: NPCFactory.getCharacters()) {
+			c.move(this);
+		}
     }
 }
 
