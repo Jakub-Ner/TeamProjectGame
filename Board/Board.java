@@ -1,7 +1,8 @@
 package game.TeamProjectGame.Board;
 
+import game.TeamProjectGame.API.BoardAPI;
 import game.TeamProjectGame.Characters.Character;
-import game.TeamProjectGame.Characters.CharacterFactory;
+import game.TeamProjectGame.Characters.NPCFactory;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -109,10 +110,12 @@ public class Board {
         updateNPC();
         space();
         drawScreen();
+
+        BoardAPI.SaveBoard(this);
     }
 
     private void updateNPC(){
-        Vector<Character> npc= CharacterFactory.getCharacters();
+        Vector<Character> npc= NPCFactory.getCharacters();
         for (int i=0; i<npc.size(); i++){
             npc.get(i).move(this);
         }
