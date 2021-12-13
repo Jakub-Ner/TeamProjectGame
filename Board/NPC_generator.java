@@ -15,8 +15,6 @@ public class NPC_generator {
             NPCFactory.addCharacter(type);
             Character npc= NPCFactory.getCharacters().lastElement();
             do {
-                System.out.println("tu?");
-
                 npc.setX(rand.nextInt(board.WIDTH));
                 npc.setY(rand.nextInt(board.HEIGHT));
             } while (Board.board[npc.getY()][npc.getX()]!=' ');
