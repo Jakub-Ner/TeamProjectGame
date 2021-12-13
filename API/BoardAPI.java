@@ -34,7 +34,7 @@ public class BoardAPI {
         }
     }
 
-    public  static void LoadBoard(Board board){
+    public static void LoadBoard(Board board){
         char[][] tmpboard = new char[board.HEIGHT][board.WIDTH];
         File plik = new File("board.txt");
         try (Scanner scan = new Scanner(new BufferedReader(new FileReader(plik)))) {

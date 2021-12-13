@@ -1,20 +1,23 @@
 package game.TeamProjectGame;
 
+import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.Friends.Friend;
 import game.TeamProjectGame.Characters.NPCFactory;
 import game.TeamProjectGame.Characters.Player;
-i
+
 import java.io.File;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static game.TeamProjectGame.API.PlayerAPI.loadPlayer;
+import static game.TeamProjectGame.API.BoardAPI.LoadBoard;
 public class Menu {
 
 
-        public static void start(){
+        public static void start(Player player, Board board){
                 System.out.println("Welcome to our game!");
-                load();
+                load(player,board);
         }
         public static int choosingNumber(int options){ //sprawdza czy uzytkownik podaje dobrą liczbe
 
@@ -49,13 +52,12 @@ public class Menu {
                 return new Player((Friend) NPCFactory.addCharacter(n-1));
         }
 
-        public static void load(){
+        public static void load(Player player, Board board){
+
                 Scanner scanner = new Scanner(System.in);
-                Player player = new Player();
 
 
-
-                if(loadPlayer(player)){
+                if(loadPlayer(player)){ //load player tworzy Playera z danych z pliku oraz zwraca true jesli plik jest pusty(wtedy player pozostaje domyslny)
                         player = chooseCharacterMenu();
                 }
                 else{
@@ -63,7 +65,10 @@ public class Menu {
                                 "1 - if you want to use data from previous game\n" +
                                 "2 - if you want to start from the beginning\n");
                         int n = scanner.nextInt();
-                        if(n == 2) {
+                        if(n == 1){
+                                LoadBoard(board);
+                        }
+                        else{
                                 player = chooseCharacterMenu();
                         }
                 }
