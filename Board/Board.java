@@ -1,5 +1,6 @@
 package game.TeamProjectGame.Board;
 
+import game.TeamProjectGame.API.BoardAPI;
 import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.NPCFactory;
 import game.TeamProjectGame.Characters.Npc;
@@ -110,6 +111,8 @@ public class Board {
         updateNPC();
         space();
         drawScreen();
+
+        BoardAPI.SaveBoard(this);
     }
 
     private void updateNPC(){
