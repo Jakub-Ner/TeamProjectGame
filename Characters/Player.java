@@ -3,8 +3,13 @@ package game.TeamProjectGame.Characters;
 import game.TeamProjectGame.Characters.Friends.Friend;
 import game.TeamProjectGame.Cries.Cry;
 
+import java.io.Serial;
+
 public class Player extends Character {
 	private Cry cry;
+
+	@Serial
+	private static final long serialVersionUID = 1553400894846351235L;
 
 	/**
 	 * Initializes players with stats of said Friend.
