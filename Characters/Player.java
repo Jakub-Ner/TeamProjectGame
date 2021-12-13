@@ -2,6 +2,8 @@ package game.TeamProjectGame.Characters;
 
 import game.TeamProjectGame.Characters.Friends.Friend;
 
+
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Player extends Character implements Serializable {

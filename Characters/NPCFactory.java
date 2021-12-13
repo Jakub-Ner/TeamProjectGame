@@ -19,20 +19,24 @@ public enum NPCFactory {
 			new SPattern(),
 			new SquarePattern()
 	};
-	private static Vector<Character> characters = new Vector<>();
+	private static Vector<Npc> characters = new Vector<>();
 
 	//returns pointer to a newly created character
-	private static Character createNew(NPCFactory type){
-		Random random = new Random();
+	private static Npc createNew(NPCFactory type){
 		switch (type) {
-			case HUMAN: return new Human(movePatterns[random.nextInt(movePatterns.length)]);
-			case DWARF: return new Dwarf(movePatterns[random.nextInt(movePatterns.length)]);
-			case ELF: return new Elf(movePatterns[random.nextInt(movePatterns.length)]);
-			case ORC: return new Orc(movePatterns[random.nextInt(movePatterns.length)]);
-			case PHANTOM: return new Phantom(movePatterns[random.nextInt(movePatterns.length)]);
-			case DRAGON: return new Dragon(movePatterns[random.nextInt(movePatterns.length)]);
+			case HUMAN:		return new Human(generateMovePattern());
+			case DWARF:		return new Dwarf(generateMovePattern());
+			case ELF:		return new Elf(generateMovePattern());
+			case ORC:		return new Orc(generateMovePattern());
+			case PHANTOM:	return new Phantom(generateMovePattern());
+			case DRAGON:	return new Dragon(generateMovePattern());
 		}
 		return null;
+	}
+
+	private static MovePattern generateMovePattern(){
+		Random random = new Random();
+		return movePatterns[random.nextInt(movePatterns.length)];
 	}
 
 	/**
@@ -57,7 +61,7 @@ public enum NPCFactory {
 	 *
 	 * @return	pointer to vector aggregating all the characters
 	 */
-	public static Vector<Character> getCharacters(){
+	public static Vector<Npc> getCharacters(){
 		return characters;
 	}
 
