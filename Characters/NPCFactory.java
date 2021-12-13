@@ -87,6 +87,12 @@ public enum NPCFactory {
 		return characters.lastElement();
 	}
 
+	//method for loading characters from save file (na potrzeby funkcji LoadNPC)
+
+	public static void addCharacter(Npc npc) {
+		characters.add(npc);
+	}
+
 	@Override
 	public String toString(){
 		return super.toString().charAt(0) + super.toString().substring(1).toLowerCase();
