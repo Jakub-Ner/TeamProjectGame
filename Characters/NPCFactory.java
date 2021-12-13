@@ -23,16 +23,20 @@ public enum NPCFactory {
 
 	//returns pointer to a newly created character
 	private static Npc createNew(NPCFactory type){
-		Random random = new Random();
 		switch (type) {
-			case HUMAN: return new Human(movePatterns[random.nextInt(movePatterns.length)]);
-			case DWARF: return new Dwarf(movePatterns[random.nextInt(movePatterns.length)]);
-			case ELF: return new Elf(movePatterns[random.nextInt(movePatterns.length)]);
-			case ORC: return new Orc(movePatterns[random.nextInt(movePatterns.length)]);
-			case PHANTOM: return new Phantom(movePatterns[random.nextInt(movePatterns.length)]);
-			case DRAGON: return new Dragon(movePatterns[random.nextInt(movePatterns.length)]);
+			case HUMAN:		return new Human(generateMovePattern());
+			case DWARF:		return new Dwarf(generateMovePattern());
+			case ELF:		return new Elf(generateMovePattern());
+			case ORC:		return new Orc(generateMovePattern());
+			case PHANTOM:	return new Phantom(generateMovePattern());
+			case DRAGON:	return new Dragon(generateMovePattern());
 		}
 		return null;
+	}
+
+	private static MovePattern generateMovePattern(){
+		Random random = new Random();
+		return movePatterns[random.nextInt(movePatterns.length)];
 	}
 
 	/**
@@ -67,26 +71,20 @@ public enum NPCFactory {
 	 * @param type	enum type of character to be created
 	 * @return returns newly created character
 	 */
-	public static Npc addCharacter(NPCFactory type){
+	public static Character addCharacter(NPCFactory type){
 		characters.add(createNew(type));
 		return characters.lastElement();
 	}
 
 	/**
-	 * Adds new npc to the list
+	 * Adds new character to the list
 	 *
 	 * @param type	is promoted to an enum type required for internal work
 	 * @return returns newly created character
 	 */
-	public static Npc addCharacter(int type){
+	public static Character addCharacter(int type){
 		characters.add(createNew(toCharacterType(type)));
 		return characters.lastElement();
-	}
-
-	//method for loading characters from save file (na potrzeby funkcji LoadNPC)
-
-	public static void addCharacter(Npc npc) {
-		characters.add(npc);
 	}
 
 	@Override

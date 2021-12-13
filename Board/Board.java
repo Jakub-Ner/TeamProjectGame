@@ -1,11 +1,13 @@
 package game.TeamProjectGame.Board;
 
+import game.TeamProjectGame.API.BoardAPI;
 import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.NPCFactory;
 import game.TeamProjectGame.Characters.Npc;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Vector;
 
 
 public class Board {

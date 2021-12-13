@@ -10,6 +10,9 @@ public abstract class Friend extends Npc {
 
     protected Cry cry;
     private String name;
+//
+//    public Friend(){ // w npc też musi byc konstruktor domyslny jesli chcemy go zrobic dla friend
+//    }
 
     public Friend(int hp, int dmg, int speed, String name, MovePattern pattern, Cry cry, char symbol){
         super(hp,dmg,speed, pattern, symbol);
