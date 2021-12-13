@@ -3,8 +3,10 @@ package game.TeamProjectGame.Characters;
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.MeetingAndFight.MeetingAndFight;
 
+import java.io.Serializable;
 
-public abstract class Character {
+
+public abstract class Character implements Serializable {
 
     //fields
     private int x = 0;

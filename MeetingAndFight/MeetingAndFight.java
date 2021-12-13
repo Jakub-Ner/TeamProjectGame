@@ -1,6 +1,9 @@
 package game.TeamProjectGame.MeetingAndFight;
 
 
+import game.TeamProjectGame.API.BoardAPI;
+import game.TeamProjectGame.API.NpcAPI;
+import game.TeamProjectGame.API.PlayerAPI;
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.Characters.*;
 import game.TeamProjectGame.Characters.Character;
@@ -8,6 +11,7 @@ import game.TeamProjectGame.Characters.Friends.Friend;
 
 
 import game.TeamProjectGame.Characters.Villains.Villain;
+import game.TeamProjectGame.Game;
 import game.TeamProjectGame.Menu;
 
 public class MeetingAndFight {
@@ -38,6 +42,10 @@ public class MeetingAndFight {
 			Menu.printStats(friend);
 		} else
 			System.out.println("You lost the fight!");
+
+		PlayerAPI.savePlayer(Game.player);
+		BoardAPI.SaveBoard(Game.board);
+		NpcAPI.SaveNPC();
 	}
 
 	private static void Fight(Character friend, Character enemy, Board board){

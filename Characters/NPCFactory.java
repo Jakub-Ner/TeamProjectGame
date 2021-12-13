@@ -19,7 +19,7 @@ public enum NPCFactory {
 			new SPattern(),
 			new SquarePattern()
 	};
-	private static Vector<Npc> characters = new Vector<>();
+	public static Vector<Npc> characters = new Vector<>();	//but dont touch
 
 	//returns pointer to a newly created character
 	private static Npc createNew(NPCFactory type){
@@ -81,12 +81,6 @@ public enum NPCFactory {
 	public static Npc addCharacter(int type){
 		characters.add(createNew(toCharacterType(type)));
 		return characters.lastElement();
-	}
-
-	//method for loading characters from save file (na potrzeby funkcji LoadNPC)
-
-	public static void addCharacter(Npc npc) {
-		characters.add(npc);
 	}
 
 	@Override

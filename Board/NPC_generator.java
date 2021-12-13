@@ -8,15 +8,19 @@ import java.util.Random;
 public class NPC_generator {
     final static int n = 30;
     public static void generateNPC (Board board){
+
         Random rand = new Random();
         for (int i=0; i<n; i++){
             int type=rand.nextInt(6);
             NPCFactory.addCharacter(type);
             Character npc= NPCFactory.getCharacters().lastElement();
             do {
+                System.out.println("tu?");
+
                 npc.setX(rand.nextInt(board.WIDTH));
                 npc.setY(rand.nextInt(board.HEIGHT));
             } while (Board.board[npc.getY()][npc.getX()]!=' ');
+
             switch(type){
                 case 0:
                     Board.board[npc.getY()][npc.getX()]='h';

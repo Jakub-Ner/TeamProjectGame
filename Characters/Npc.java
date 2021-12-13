@@ -3,7 +3,9 @@ package game.TeamProjectGame.Characters;
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.MovePattern.MovePattern;
 
-public abstract class Npc extends Character {
+import java.io.Serializable;
+
+public abstract class Npc extends Character implements Serializable {
 
 	//fields
 

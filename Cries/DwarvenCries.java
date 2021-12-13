@@ -1,6 +1,8 @@
 package game.TeamProjectGame.Cries;
 
-public class DwarvenCries implements Cry{
+import java.io.Serializable;
+
+public class DwarvenCries implements Cry, Serializable {
 	@Override
 	public void battleShout() { System.out.println("*Battle cry in Dwarven*"); }
 	@Override

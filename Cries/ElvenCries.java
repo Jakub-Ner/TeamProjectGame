@@ -1,6 +1,8 @@
 package game.TeamProjectGame.Cries;
 
-public class ElvenCries implements Cry{
+import java.io.Serializable;
+
+public class ElvenCries implements Cry, Serializable {
 	@Override
 	public void battleShout() { System.out.println("*Battle cry in Elvish*"); }
 

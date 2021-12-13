@@ -86,10 +86,12 @@ public class Board {
     public void initBoard() {
         drawBoard();
         NPC_generator.generateNPC(this);
-        updateBoard('w');
+        board[character.getY()][character.getY()] = 'B';
     }
 
     public void drawScreen() {
+        space();
+
         for (int i = 0; i < HEIGHT; i++) {
             System.out.print(Arrays.toString(board[i]));
             System.out.println(" ");
@@ -106,8 +108,6 @@ public class Board {
 
         character.moveCharacter(goFurther, this);
 
-        space();
-        drawScreen();
 		updateNPC();
     }
 

@@ -4,8 +4,9 @@ import game.TeamProjectGame.Characters.Friends.Friend;
 import game.TeamProjectGame.Cries.Cry;
 
 import java.io.Serial;
+import java.io.Serializable;
 
-public class Player extends Character {
+public class Player extends Character implements Serializable {
 	private Cry cry;
 
 	@Serial

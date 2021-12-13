@@ -1,6 +1,7 @@
 package game.TeamProjectGame.API;
 
 import game.TeamProjectGame.Characters.Player;
+import game.TeamProjectGame.Game;
 
 import java.io.IOException;
 import java.io.*;
@@ -19,8 +20,8 @@ public class PlayerAPI {
 	public static boolean loadPlayer(Player player){
 		try (ObjectInputStream is = new ObjectInputStream(new FileInputStream("Player.ser"))) {
 			Object obj1 = is.readObject();
-			player = null;
-			player = (Player) obj1;
+			Game.player = null;
+			Game.player = (Player) obj1;
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}

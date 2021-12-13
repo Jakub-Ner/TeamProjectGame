@@ -1,6 +1,7 @@
 package game.TeamProjectGame;
 
 import game.TeamProjectGame.API.BoardAPI;
+import game.TeamProjectGame.API.PlayerAPI;
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.NPCFactory;
@@ -10,19 +11,19 @@ import java.util.Scanner;
 
 public class Game {
 
+	public static Player player;
+	public static Board board;
+
     public void run(){
 
         Scanner scanner = new Scanner(System.in);
 
         Menu.start();
-        Player player = new Player(Menu.chooseCharacterMenu());
 
         boolean run = true;
 
-        Board board = new Board(player);
-//        BoardAPI.SaveBoard(board);
-        BoardAPI.LoadBoard(board);
         while (run) {
+			board.drawScreen();
             board.updateBoard( scanner.nextInt() );
 
             if (player.getHp() <= 0) {

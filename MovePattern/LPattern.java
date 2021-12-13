@@ -1,6 +1,8 @@
 package game.TeamProjectGame.MovePattern;
 
-public class LPattern implements MovePattern{
+import java.io.Serializable;
+
+public class LPattern implements MovePattern, Serializable {
 
     @Override
     public int[] pattern() {
