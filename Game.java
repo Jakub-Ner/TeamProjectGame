@@ -1,5 +1,6 @@
 package game.TeamProjectGame;
 
+import game.TeamProjectGame.API.BoardAPI;
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.NPCFactory;
@@ -19,8 +20,8 @@ public class Game {
         boolean run = true;
 
         Board board = new Board(player);
-
-
+//        BoardAPI.SaveBoard(board);
+        BoardAPI.LoadBoard(board);
         while (run) {
             board.updateBoard( scanner.nextInt() );
 
