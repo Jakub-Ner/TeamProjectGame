@@ -41,6 +41,7 @@ public class Menu {
 
                 return input;
         }
+        public static Friend chooseCharacterMenu(){ //obowiązkowo do wywołania na początku
         public static Player chooseCharacterMenu(){
                 System.out.println("Choose number of a character:\n" +
                         "1 - HUMAN\n" +
@@ -48,6 +49,23 @@ public class Menu {
                         "3 - ELF");
 
                 int n = choosingNumber(4);
+// <<<<<<< HEAD
+        //         while(n == 0){
+	// 				n = choosingNumber(4);
+	// 			}
+        //         switch (n){
+	// 				default: return new Human(new SquarePattern());
+	// 				case 2: return new Dwarf(new SquarePattern());
+	// 				case 3: return new Elf(new SquarePattern());
+        //         }
+        // }
+
+        // public static void printStats(Player player){
+        //                 System.out.println(player.getClass().getSimpleName()
+        //                 + "\tHP: " + player.getHp()
+        //                 + "\tDmg: "+ player.getDmg()
+        //                 + "\tSpeed: " + player.getSpeed());
+// =======
 
                 return new Player((Friend) NPCFactory.addCharacter(n-1));
         }

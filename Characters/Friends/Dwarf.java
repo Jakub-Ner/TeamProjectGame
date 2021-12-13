@@ -5,7 +5,7 @@ import game.TeamProjectGame.MovePattern.MovePattern;
 
 public class Dwarf extends Friend {
     public Dwarf(MovePattern pattern){
-        super(100,12,3,"Murdoch", pattern, new DwarvenCries());
+        super(100,12,3,"Murdoch", pattern, new DwarvenCries(), 'd');
     }
 
 }

@@ -1,5 +1,6 @@
 package game.TeamProjectGame;
 
+import game.TeamProjectGame.API.BoardAPI;
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.NPCFactory;

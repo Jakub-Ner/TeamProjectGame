@@ -87,7 +87,7 @@ public class Board {
 
     public void initBoard() {
         drawBoard();
-        NPC_generator.generateNPC(board);
+        NPC_generator.generateNPC(this);
         updateBoard('w');
     }
 
@@ -104,27 +104,19 @@ public class Board {
     }
 
     public void updateBoard(int goFurther) {
-        board[character.getY()][character.getX()] = ' '; //erases previous location
-        character.moveCharacter(goFurther, this);
-        board[character.getY()][character.getX()] = 'B'; // sets new location
+         //erases previous location
 
-        updateNPC();
+        character.moveCharacter(goFurther, this);
+
         space();
         drawScreen();
-
-        BoardAPI.SaveBoard(this);
+		updateNPC();
     }
 
     private void updateNPC(){
-        Vector<Npc> npc= NPCFactory.getCharacters();    //zbędne
-        for (int i=0; i<npc.size(); i++){               //
-            npc.get(i).move(this);                // wystarczyłoby samo NPCFactory.getCharacters().get(i).move(this), bo tablica npc jest statyczna
-        }
-        //for (Npc c: NPCFactory.getCharacters()) {
-        //    c.move(this);
-        //}
-        //a to jest alternatywne rozwiązanie
-
+		for (Npc c: NPCFactory.getCharacters()) {
+			c.move(this);
+		}
     }
 }
 
