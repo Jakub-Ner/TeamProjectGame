@@ -2,7 +2,11 @@ package game.TeamProjectGame.Characters;
 
 import game.TeamProjectGame.Characters.Friends.Friend;
 
-public class Player extends Character {
+public class Player extends Character implements Serializable{
+	
+	 @Serial
+   	 private static final long serialVersionUID = 1553400894846351235L;
+	
 	/**
 	 * Initializes players with stats of said Friend.
 	 * It MUST NOT use NPCFactory to initialize itself
