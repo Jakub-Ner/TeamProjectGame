@@ -2,7 +2,10 @@ package game.TeamProjectGame.Characters;
 
 import game.TeamProjectGame.Characters.Friends.Friend;
 
-public class Player extends Character implements Serializable{
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Player extends Character implements Serializable {
 	
 	 @Serial
    	 private static final long serialVersionUID = 1553400894846351235L;

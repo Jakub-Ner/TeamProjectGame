@@ -22,7 +22,6 @@ public abstract class Npc extends Character {
 
     //methods
 
-    @Override
     public void move(Board board) {
 
         turn -= speed;

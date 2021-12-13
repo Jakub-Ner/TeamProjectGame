@@ -3,6 +3,7 @@ package game.TeamProjectGame.Board;
 import game.TeamProjectGame.API.BoardAPI;
 import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.NPCFactory;
+import game.TeamProjectGame.Characters.Npc;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -115,10 +116,15 @@ public class Board {
     }
 
     private void updateNPC(){
-        Vector<Character> npc= NPCFactory.getCharacters();
-        for (int i=0; i<npc.size(); i++){
-            npc.get(i).move(this);
+        Vector<Npc> npc= NPCFactory.getCharacters();    //zbędne
+        for (int i=0; i<npc.size(); i++){               //
+            npc.get(i).move(this);                // wystarczyłoby samo NPCFactory.getCharacters().get(i).move(this), bo tablica npc jest statyczna
         }
+        //for (Npc c: NPCFactory.getCharacters()) {
+        //    c.move(this);
+        //}
+        //a to jest alternatywne rozwiązanie
+
     }
 }
 
