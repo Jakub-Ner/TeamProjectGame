@@ -98,6 +98,5 @@ public class Menu implements Serializable {
 
 			NPC_generator.generateNPC(Game.board);
 		}
-		System.out.println("hui");
 	}
 }
