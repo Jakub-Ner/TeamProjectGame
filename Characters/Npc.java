@@ -5,72 +5,68 @@ import game.TeamProjectGame.MovePattern.MovePattern;
 
 public abstract class Npc extends Character {
 
-    //fields
+	//fields
 
-    final private int wait = 10;
+	final private int wait = 10;
 
-    MovePattern pattern;
-    private int turn = wait;
-    private int nextMove = 0;
+	MovePattern pattern;
+	private int turn = wait;
+	private int nextMove = 0;
 
-    //constructor
+	//constructor
 
-    public Npc(int hp, int dmg, int speed, MovePattern pattern) {
-        super(hp, dmg, speed);
-        this.pattern = pattern;
-    }
+	public Npc(int hp, int dmg, int speed, MovePattern pattern, char symbol) {
+		super(hp, dmg, speed, symbol);
+		this.pattern = pattern;
+	}
 
-    //methods
+	//methods
 
-    public void move(Board board) {
+	public void move(Board board) {
+		if(getHp() <= 0) return;
 
-        turn -= speed;
+		turn -= speed;
 
-        if (turn <= 0) {
+		if (turn <= 0) {
 
-            moveCharacter(pattern.pattern()[nextMove], board);
+			moveCharacter(pattern.pattern()[nextMove % pattern.pattern().length], board);
 
-            if (nextMove >= pattern.pattern().length ) {
-                nextMove = 0;
-            }
-            else nextMove++;
+			nextMove++;
 
-            turn = wait;
-
-        }
-
-    }
+			turn = wait;
+		}
+	}
 
 
-    //getters
+	//getters
 
-    public int getNextMove() {
-        return nextMove;
-    }
+	public int getNextMove() {
+		return nextMove;
+	}
 
-    public int getTurn() {
-        return turn;
-    }
+	public int getTurn() {
+		return turn;
+	}
 
-    public int getWait() {
-        return wait;
-    }
+	public int getWait() {
+		return wait;
+	}
 
-    public MovePattern getPattern() {
-        return pattern;
-    }
+	public MovePattern getPattern() {
+		return pattern;
+	}
 
-    //setters
+	//setters
 
-    public void setNextMove(int nextMove) {
-        this.nextMove = nextMove;
-    }
+	public void setNextMove(int nextMove) {
+		this.nextMove = nextMove;
+	}
 
-    public void setPattern(MovePattern pattern) {
-        this.pattern = pattern;
-    }
+	public void setPattern(MovePattern pattern) {
+		this.pattern = pattern;
+	}
 
-    public void setTurn(int turn) {
-        this.turn = turn;
-    }
+	public void setTurn(int turn) {
+		this.turn = turn;
+	}
 }

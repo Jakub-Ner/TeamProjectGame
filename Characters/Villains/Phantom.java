@@ -5,7 +5,7 @@ import game.TeamProjectGame.MovePattern.MovePattern;
 
 public class Phantom extends Villain {
 
-    public Phantom(MovePattern pattern) {
-        super(25,13,5, pattern);
+    public Phantom(MovePattern movePattern) {
+        super(25,13,5, movePattern, 'P');
     }
 }

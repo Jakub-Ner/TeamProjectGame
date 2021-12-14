@@ -7,34 +7,34 @@ import java.util.Random;
 
 public class NPC_generator {
     final static int n = 30;
-    public static void generateNPC (char[][] board){
+    public static void generateNPC (Board board){
         Random rand = new Random();
         for (int i=0; i<n; i++){
             int type=rand.nextInt(6);
             NPCFactory.addCharacter(type);
             Character npc= NPCFactory.getCharacters().lastElement();
             do {
-                npc.setX(rand.nextInt(board.length));
-                npc.setY(rand.nextInt(board[0].length));
-            } while (board[npc.getX()][npc.getY()]!=' ');
+                npc.setX(rand.nextInt(board.WIDTH));
+                npc.setY(rand.nextInt(board.HEIGHT));
+            } while (Board.board[npc.getY()][npc.getX()]!=' ');
             switch(type){
                 case 0:
-                    board[npc.getX()][npc.getY()]='h';
+                    Board.board[npc.getY()][npc.getX()]='h';
                     break;
                 case 1:
-                    board[npc.getX()][npc.getY()]='d';
+                    Board.board[npc.getY()][npc.getX()]='d';
                     break;
                 case 2:
-                    board[npc.getX()][npc.getY()]='e';
+                    Board.board[npc.getY()][npc.getX()]='e';
                     break;
                 case 3:
-                    board[npc.getX()][npc.getY()]='O';
+                    Board.board[npc.getY()][npc.getX()]='O';
                     break;
                 case 4:
-                    board[npc.getX()][npc.getY()]='P';
+                    Board.board[npc.getY()][npc.getX()]='P';
                     break;
                 case 5:
-                    board[npc.getX()][npc.getY()]='D';
+                    Board.board[npc.getY()][npc.getX()]='D';
                     break;
             }
         }
