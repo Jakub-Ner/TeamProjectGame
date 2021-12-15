@@ -38,6 +38,8 @@ public class NPC_generator_NEW {
 			//ustawiam pozycję NPC na tą wylosowaną
 			NPCFactory.getCharacters().lastElement().setX(counter % board.WIDTH);
 			NPCFactory.getCharacters().lastElement().setY(counter / board.WIDTH);
+			//wypełniam mapę
+			Board.board[counter / board.WIDTH][counter % board.WIDTH] = NPCFactory.getCharacters().lastElement().getSymbol();
 		}
 	}
 }
