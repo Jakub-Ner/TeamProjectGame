@@ -5,7 +5,6 @@ import game.TeamProjectGame.MeetingAndFight.MeetingAndFight;
 
 import java.io.Serializable;
 
-
 public abstract class Character implements Serializable {
 
     //fields

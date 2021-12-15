@@ -1,6 +1,5 @@
 package game.TeamProjectGame.Characters.Friends;
 
-import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.Npc;
 import game.TeamProjectGame.Cries.Cry;
 import game.TeamProjectGame.MovePattern.MovePattern;

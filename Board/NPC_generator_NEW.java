@@ -1,6 +1,7 @@
 package game.TeamProjectGame.Board;
 
 import game.TeamProjectGame.Characters.NPCFactory;
+import game.TeamProjectGame.Characters.NPCTypes;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,16 +21,14 @@ public class NPC_generator_NEW {
 		 * y = ID / board.WIDTH
 		 * działa, testowane niejednokrotnie
 		 */
-		for (int y = 0; y < board.HEIGHT; y++) {
-			for (int x = 0; x < board.WIDTH; x++) {
+		for (int y = 0; y < board.HEIGHT; y++)
+			for (int x = 0; x < board.WIDTH; x++)
 				if(Board.board[y][x] == ' ') data.put(data.size(), x + y * board.WIDTH);
-			}
-		}
 
 		//tu dopiero tworzę NPC
 		for (int i = 0; i < n; i++) {
 			//dodaję nowego npc
-			NPCFactory.addCharacter(rand.nextInt(NPCFactory.values().length));
+			NPCFactory.addCharacter(rand.nextInt(NPCTypes.values().length));
 
 			//counter = ID, czyli zakodowanej pozycji
 			counter = data.put(rand.nextInt(data.size() - 1), data.get(data.size() - 1));

@@ -1,13 +1,8 @@
 package game.TeamProjectGame;
 
-import game.TeamProjectGame.API.NpcAPI;
-import game.TeamProjectGame.API.PlayerAPI;
-import game.TeamProjectGame.Board.Board;
-import game.TeamProjectGame.Board.NPC_generator_NEW;
-import game.TeamProjectGame.Characters.Friends.Dwarf;
-import game.TeamProjectGame.Characters.Friends.Elf;
-import game.TeamProjectGame.Characters.Friends.Friend;
-import game.TeamProjectGame.Characters.Friends.Human;
+import game.TeamProjectGame.API.*;
+import game.TeamProjectGame.Board.*;
+import game.TeamProjectGame.Characters.Friends.*;
 import game.TeamProjectGame.Characters.Player;
 import game.TeamProjectGame.MovePattern.SquarePattern;
 
