@@ -177,4 +177,8 @@ public abstract class Character implements Serializable {
     public int getSpeed() {
         return speed;
     }
+
+    public char getSymbol() {
+        return symbol;
+    }
 }

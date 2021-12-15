@@ -85,7 +85,7 @@ public class Board {
 
     public void initBoard() {
         drawBoard();
-        NPC_generator.generateNPC(this);
+        NPC_generator_OLD.generateNPC(this);
         board[character.getY()][character.getY()] = 'B';
     }
 
