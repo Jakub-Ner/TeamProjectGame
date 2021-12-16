@@ -16,94 +16,90 @@ import static game.TeamProjectGame.API.BoardAPI.LoadBoard;
 public class Menu implements Serializable {
 
 
-	public static void start() {
-		System.out.println("Welcome to our game!");
+    public static void start() {
+        System.out.println("Welcome to our game!");
 
-		load();
-	}
+        load();
+    }
 
-	public static int choosingNumber(int options) { //sprawdza czy uzytkownik podaje dobrą liczbe
+    public static int choosingNumber(int options) { //checks if user gives a proper number
 
-		Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-		int input;
+        int input;
 
-		try {
-			input = scanner.nextInt();
-		} catch (InputMismatchException e) {
-			scanner.nextLine();
-			input = -1;
-		}
+        try {
+            input = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            scanner.nextLine();
+            input = -1;
+        }
 
-		while (1 > input || options <= input) {
-			System.out.print("Answer out of reach! Try again.\n>");
+        while (1 > input || options <= input) {
+            System.out.print("Answer out of reach! Try again.\n>");
 
-			try {
-				input = scanner.nextInt();
-			} catch (InputMismatchException e) {
-				scanner.nextLine();
-				input = -1;
-			}
-		}
+            try {
+                input = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                scanner.nextLine();
+                input = -1;
+            }
+        }
 
-		return input;
-	}
+        return input;
+    }
 
-	public static Friend chooseCharacterMenu() { //obowiązkowo do wywołania na początku
-		System.out.println("Choose number of a character:\n" +
-				"1 - HUMAN\n" +
-				"2 - DWARF\n" +
-				"3 - ELF\n");
+    public static Friend chooseCharacterMenu() {
+        System.out.println("Choose number of a character:\n" +
+                "1 - HUMAN\n" +
+                "2 - DWARF\n" +
+                "3 - ELF\n");
 
-		int n = choosingNumber(4);
-		switch (n) {
-			default:
-				return new Human(new SquarePattern());
-			case 2:
-				return new Dwarf(new SquarePattern());
-			case 3:
-				return new Elf(new SquarePattern());
-		}
-	}
+        int n = choosingNumber(4);
+        switch (n) {
+            default:
+                return new Human(new SquarePattern());
+            case 2:
+                return new Dwarf(new SquarePattern());
+            case 3:
+                return new Elf(new SquarePattern());
+        }
+    }
 
-	public static void printStats(Player player) {
-		System.out.println(player.getClass().getSimpleName()
-				+ "\tHP: " + player.getHp()
-				+ "\tDmg: " + player.getDmg()
-				+ "\tSpeed: " + player.getSpeed());
-	}
+    public static void printStats(Player player) {
+        System.out.println(player.getClass().getSimpleName()
+                + "\tHP: " + player.getHp()
+                + "\tDmg: " + player.getDmg()
+                + "\tSpeed: " + player.getSpeed());
+    }
 
-	public static void load() {
+    public static void load() {
 
-		Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        File file = new File("Player.ser");
 
-		System.out.println("Choose:\n" +
-				"1 - if you want to use data from previous game\n" +
-				"2 - if you want to start from the beginning\n");
-		int n = choosingNumber(3);
+        if (PlayerAPI.checkFile(file)) { //returns true if file is not empty
+            System.out.println("Choose:\n" +
+                    "1 - if you want to use data from previous game\n" +
+                    "2 - if you want to start from the beginning\n");
+            int n = choosingNumber(3);
 
+            if (n == 1) {
+                Game.player = PlayerAPI.loadPlayer();
+                Game.board = new Board(Game.player);
+                LoadBoard(Game.board);
+                NpcAPI.LoadNPC();
+            } else {
+                startGame();
+            }
+        } else {
+            startGame();
+        }
+    }
 
-		if (n == 1) {
-			File file = new File("Player.ser");
-			if (PlayerAPI.checkFile(file)) {
-				Game.player = PlayerAPI.loadPlayer();
-				Game.board = new Board(Game.player);
-				LoadBoard(Game.board);
-				NpcAPI.LoadNPC();
-			}
-			else{
-				System.out.println("You have to start game from the beggining");
-				startGame();
-			}
-		}
-		else {
-			startGame();
-		}
-	}
-
-	public static void startGame(){
-		Game.player = new Player(chooseCharacterMenu());
-		Game.board = new Board(Game.player);
-		NPC_generator_NEW.generateNPC(Game.board);
-	}
+    public static void startGame() { //from the beginning
+        Game.player = new Player(chooseCharacterMenu());
+        Game.board = new Board(Game.player);
+        NPC_generator_NEW.generateNPC(Game.board);
+    }
 }

@@ -34,8 +34,9 @@ public class PlayerAPI {
 
 
 	public static boolean checkFile(File file){
-		if (file==null)
+		if (file.length() == 0)
 			return false;
-		return file.length() == 0;
+		else
+			return true;
 	}
 }
