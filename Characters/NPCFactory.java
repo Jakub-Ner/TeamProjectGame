@@ -18,7 +18,7 @@ public class NPCFactory {
 	};
 	private static Random random = new Random();
 
-	public static Vector<Npc> characters = new Vector<>();	//but dont touch
+	private static Vector<Npc> characters = new Vector<>();	//but dont touch
 
 	//returns pointer to a newly created character
 	private static Npc createNew(NPCTypes type){
@@ -61,6 +61,11 @@ public class NPCFactory {
 	 */
 	public static Vector<Npc> getCharacters(){
 		return characters;
+	}
+
+	//setter for characters
+	public static void setCharacters(Vector<Npc> newCharacters){
+		characters = newCharacters;
 	}
 
 	/**

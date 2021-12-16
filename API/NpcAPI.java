@@ -28,7 +28,7 @@ public class NpcAPI implements Serializable {
 
 			Object addedNPCS = is.readObject();
 
-			NPCFactory.characters = (Vector<Npc>) addedNPCS;
+			NPCFactory.setCharacters((Vector<Npc>) addedNPCS);
 
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
