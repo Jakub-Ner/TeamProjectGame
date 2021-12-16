@@ -35,8 +35,9 @@ public class PlayerAPI {
 	//true if "Player.ser" file exists and isn't empty
 	//false if "PLayer.ser" file hasn't been created or is empty
 	public static boolean checkFile(File file){
-		if (file==null)
+		if (file.length() == 0)
 			return false;
-		return file.length() != 0;
+		else
+			return true;
 	}
 }
