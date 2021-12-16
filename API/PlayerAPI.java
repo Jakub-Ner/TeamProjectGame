@@ -7,7 +7,7 @@ import java.io.*;
 
 public class PlayerAPI {
 
-
+	//Saves a player we were playing
 	public static void savePlayer(Player player) {
 		try (ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream("Player.ser")))
 		{
@@ -36,6 +36,6 @@ public class PlayerAPI {
 	public static boolean checkFile(File file){
 		if (file==null)
 			return false;
-		return file.length() == 0;
+		return file.length() != 0;
 	}
 }
