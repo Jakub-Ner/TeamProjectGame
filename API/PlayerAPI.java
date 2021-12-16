@@ -17,9 +17,8 @@ public class PlayerAPI {
 		}
 	}
 
-	//Loads a chosen player from "Player.ser" file and returns:
-	//true if "Player.ser" file exists and isn't empty
-	//false if "PLayer.ser" file hasn't been created or is empty
+	//Loads a chosen player from "Player.ser" file and returns it
+	//Returns null if Exception has been thrown
 	public static Player loadPlayer(){
 		Player player;
 		try (ObjectInputStream is = new ObjectInputStream(new FileInputStream("Player.ser"))) {
@@ -32,7 +31,9 @@ public class PlayerAPI {
 		return player;
 	}
 
-
+	//Returns
+	//true if "Player.ser" file exists and isn't empty
+	//false if "PLayer.ser" file hasn't been created or is empty
 	public static boolean checkFile(File file){
 		if (file==null)
 			return false;
