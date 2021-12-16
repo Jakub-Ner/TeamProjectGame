@@ -6,6 +6,7 @@ import game.TeamProjectGame.Characters.Friends.*;
 import game.TeamProjectGame.Characters.Player;
 import game.TeamProjectGame.MovePattern.SquarePattern;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -83,15 +84,26 @@ public class Menu implements Serializable {
 
 
 		if (n == 1) {
-			PlayerAPI.loadPlayer(Game.player);
-			Game.board = new Board(Game.player);
-			LoadBoard(Game.board);
-			NpcAPI.LoadNPC();
-		} else {
-			Game.player = new Player(chooseCharacterMenu());
-			Game.board = new Board(Game.player);
-
-			NPC_generator_NEW.generateNPC(Game.board);
+			File file = new File("Player.ser");
+			if (PlayerAPI.checkFile(file)) {
+				Game.player = PlayerAPI.loadPlayer();
+				Game.board = new Board(Game.player);
+				LoadBoard(Game.board);
+				NpcAPI.LoadNPC();
+			}
+			else{
+				System.out.println("You have to start game from the beggining");
+				startGame();
+			}
 		}
+		else {
+			startGame();
+		}
+	}
+
+	public static void startGame(){
+		Game.player = new Player(chooseCharacterMenu());
+		Game.board = new Board(Game.player);
+		NPC_generator_NEW.generateNPC(Game.board);
 	}
 }

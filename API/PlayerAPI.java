@@ -1,12 +1,13 @@
 package game.TeamProjectGame.API;
 
 import game.TeamProjectGame.Characters.Player;
-import game.TeamProjectGame.Game;
 
 import java.io.IOException;
 import java.io.*;
 
 public class PlayerAPI {
+
+
 	public static void savePlayer(Player player) {
 		try (ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream("Player.ser")))
 		{
@@ -14,25 +15,27 @@ public class PlayerAPI {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	public static boolean loadPlayer(Player player){
+	//Loads a chosen player from "Player.ser" file and returns:
+	//true if "Player.ser" file exists and isn't empty
+	//false if "PLayer.ser" file hasn't been created or is empty
+	public static Player loadPlayer(){
+		Player player;
 		try (ObjectInputStream is = new ObjectInputStream(new FileInputStream("Player.ser"))) {
 			Object obj1 = is.readObject();
-			Game.player = null;
-			Game.player = (Player) obj1;
+			player = (Player) obj1;
 		} catch (IOException | ClassNotFoundException e) {
+			player=null;
 			e.printStackTrace();
 		}
-		File file = new File ("Player.ser");
-		return checkFileEmpty(file);
+		return player;
 	}
 
-	public static boolean checkFileEmpty(File file){
-		if(file.length()==0)
-			return true;
-		else
+
+	public static boolean checkFile(File file){
+		if (file==null)
 			return false;
+		return file.length() == 0;
 	}
 }
