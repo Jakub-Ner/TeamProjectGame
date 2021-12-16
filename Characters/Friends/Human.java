@@ -7,7 +7,7 @@ import game.TeamProjectGame.MovePattern.MovePattern;
 public class Human extends Friend {
 
     public Human(MovePattern movePattern){
-        super(80,9,5,"Talwyn", movePattern, new HumanCries(), 'h');
+        super(80,9,5, movePattern, new HumanCries(), 'h');
     }
 
 }
