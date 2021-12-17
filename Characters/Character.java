@@ -19,13 +19,6 @@ public abstract class Character implements Serializable {
 
     //constructor
 
-    public Character() {
-        hp = 1;
-        dmg = 1;
-        speed = 1;
-
-    }
-
     public Character(int hp, int dmg, int speed, char symbol) {
 
         this.hp = hp;
@@ -36,6 +29,7 @@ public abstract class Character implements Serializable {
 
     //methods
 
+    //finds the NPC standing at given coordinates and initiates meeting
     private void meet(int y, int x, Board board) {
 
         for (int i = 0; i < NPCFactory.getCharacters().size(); i++) {
@@ -46,6 +40,7 @@ public abstract class Character implements Serializable {
         }
     }
 
+    //checks nearby squares for NPCs
     private void surroundings(Board board) {
         String npc = "hdeDOP";
 
@@ -66,71 +61,56 @@ public abstract class Character implements Serializable {
         }
     }
 
+    //moves position on map and changes coordinates if we're able to
     public void moveCharacter(int further, Board board) {
+
         Board.board[getY()][getX()] = ' ';
 
         switch(further) {
             case 2:
             {
                 if ( y + 1 < board.HEIGHT ) {
-
                     if ( Board.board[y+1][x] == ' ' ) {
                         y++;
                     }
-
                 }
-
-                surroundings(board);
                 break;
-
             }
             case 8:
             {
                 if ( y > 0 ) {
-
                     if ( Board.board[y-1][x] == ' ' ) {
                         y--;
                     }
                 }
-
-                surroundings(board);
                 break;
-
             }
             case 6:
             {
                 if ( x + 1 < board.WIDTH ) {
-
                     if ( Board.board[y][x+1] == ' ' ) {
                         x++;
                     }
                 }
-
-                surroundings(board);
                 break;
-
             }
             case 4:
             {
                 if ( x > 0 ) {
-
                     if ( Board.board[y][x-1] == ' ' ) {
                         x--;
                     }
                 }
-
-                surroundings(board);
                 break;
-
             }
             default: {
                 System.out.println("Please use NumPad to move");
                 break;
             }
-
         }
 
         Board.board[getY()][getX()] = symbol;
+        surroundings(board);
     }
 
     //geters

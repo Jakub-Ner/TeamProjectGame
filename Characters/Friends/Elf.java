@@ -6,7 +6,7 @@ import game.TeamProjectGame.MovePattern.MovePattern;
 public class Elf extends Friend {
 
     public Elf(MovePattern movePattern){
-        super(60,6,8,"Laurion", movePattern, new ElvenCries(), 'e');
+        super(60,6,8, movePattern, new ElvenCries(), 'e');
     }
 
 }
