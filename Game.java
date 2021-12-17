@@ -7,6 +7,7 @@ import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.NPCFactory;
 import game.TeamProjectGame.Characters.Player;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
@@ -24,7 +25,17 @@ public class Game {
 
         while (run) {
 			board.drawScreen();
-            board.updateBoard( scanner.nextInt() );
+			int input = -1;
+			while(input == -1) {
+				try {
+					input = scanner.nextInt();
+				} catch (InputMismatchException e) {
+					scanner.nextLine();
+					input = -1;
+					System.out.println("Wrong input! write numbers, not strings");
+				}
+			}
+            board.updateBoard( input );
 
             if (player.getHp() <= 0) {
                 System.out.println("" +
