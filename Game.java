@@ -14,27 +14,12 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import game.TeamProjectGame.GUI;
 import javax.swing.*;
 
 public class Game implements ActionListener{
 
 	public static Player player;
 	public static Board board;
-
-	public void printStatsGUI ()
-	{
-		playerstats.setText(null);
-
-		int PlayerHp = player.getHp();
-		int PlayerDmg = player.getDmg();
-		int PlayerSpeed = player.getSpeed();
-
-		playerstats.append("PLAYER STATS" + "\n");
-		playerstats.append(" HP: " + PlayerHp + "\n");
-		playerstats.append(" Damage: " + PlayerDmg + "\n");
-		playerstats.append(" Speed: " + PlayerSpeed + "\n");
-	}
 
 	private JButton W;
 	private JButton S;
@@ -93,156 +78,132 @@ public class Game implements ActionListener{
     }
 	public void UpdateBoardGUI2 ()
 	{
-		char Sboard[][] = board.rewriteBoard2();
+		char newboard[][] = board.rewriteBoard2();
 
 		//clear textarea
 		BoardArea.setText("");
 
-			/*for (int i = 0; i < board.HEIGHT; i++) {
-				Sboard[i]=(Arrays.toString(board[i]));
-				System.out.println(" ");
-			}
-
-			//fill Sboard with current board
-			String[] temp = board.rewriteBoard();
-
-			for (int i = 0; i < Sboard.length; i++) {
-				Sboard[i] = "[";
-				for (int j = 0; j < temp[i].length; j++)
-				{
-					Sboard[i] += temp[i][j];
-					Sboard[i] += ", ";
-				}
-				Sboard[i]+="]";
-			}*/
-
 		//add new board to cleared textarea
-		for (int i = 0; i < Sboard.length; i++) {
-			BoardArea.append(Arrays.toString(Sboard[i]));
+		for (int i = 0; i < newboard.length; i++) {
+			BoardArea.append(Arrays.toString(newboard[i]));
 			BoardArea.append(" \n");
 		}
 	}
 
 
-		public void UpdateBoardGUI ()
-		{
-			String Sboard[] = board.rewriteBoard();
+	public void UpdateBoardGUI ()
+	{
+		String Sboard[] = board.rewriteBoard();
 
-			//clear textarea
-			BoardArea.setText("");
+		//clear textarea
+		BoardArea.setText("");
 
-			/*for (int i = 0; i < board.HEIGHT; i++) {
-				Sboard[i]=(Arrays.toString(board[i]));
-				System.out.println(" ");
-			}
-
-			//fill Sboard with current board
-			String[] temp = board.rewriteBoard();
-
-			for (int i = 0; i < Sboard.length; i++) {
-				Sboard[i] = "[";
-				for (int j = 0; j < temp[i].length; j++)
-				{
-					Sboard[i] += temp[i][j];
-					Sboard[i] += ", ";
-				}
-				Sboard[i]+="]";
-			}*/
-
-			//add new board to cleared textarea
-			for (int i = 0; i < Sboard.length; i++) {
-				BoardArea.append(Sboard[i]);
-				BoardArea.append("\n");
-			}
+		//add new board to cleared textarea
+		for (int i = 0; i < Sboard.length; i++) {
+			BoardArea.append(Sboard[i]);
+			BoardArea.append("\n");
 		}
+	}
 
-		public void DrawGUI() {
+	public void DrawGUI() {
 
-			W = new JButton("W");
-			S = new JButton("S");
-			A = new JButton("A");
-			D = new JButton("D");
-			BoardArea = new JTextArea();
-			playerstats = new JTextArea();
-			JTextField Title = new JTextField("Welcome to the game!");
+		JFrame mainframe = new JFrame("TeamProjectGame.exe");
+		W = new JButton("W");
+		S = new JButton("S");
+		A = new JButton("A");
+		D = new JButton("D");
+		BoardArea = new JTextArea();
+		playerstats = new JTextArea();
+		JTextField Title = new JTextField("Welcome to the game!");
+		JTextField WSADtitle = new JTextField("Use WSAD buttons to move your character");
 
-			//user can't change the text in textfields and textareas
-			playerstats.setEditable(false);
-			BoardArea.setEditable(false);
-			Title.setEditable(false);
+		//user can't change the text in textfields and textareas
+		playerstats.setEditable(false);
+		BoardArea.setEditable(false);
+		Title.setEditable(false);
+		WSADtitle.setEditable(false);
 
-			W.addActionListener(this);
-			S.addActionListener(this);
-			A.addActionListener(this);
-			D.addActionListener(this);
-
-			JFrame mainframe = new JFrame("TeamProjectGame.exe");
-			mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-			//panels declaration
-			JPanel BoardPanel = new JPanel();
-			JPanel MovePanel = new JPanel();
-			JPanel StatsPanel = new JPanel();
-
-			mainframe.getContentPane().add(BorderLayout.NORTH, Title);
-			mainframe.getContentPane().add(BorderLayout.CENTER, BoardPanel);
-			mainframe.getContentPane().add(BorderLayout.EAST, MovePanel);
-			mainframe.getContentPane().add(BorderLayout.WEST, StatsPanel);
-
-			MovePanel.setLayout(new GridBagLayout());
-			BoardPanel.setLayout(new GridBagLayout());
-			StatsPanel.setLayout(new BoxLayout(StatsPanel, BoxLayout.Y_AXIS));
-			//StatsPanel.setSize(100, 100);
-			StatsPanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
-			MovePanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
-
-			GridBagConstraints coordinates = new GridBagConstraints();
-
-			StatsPanel.add(playerstats);
-			coordinates.fill = GridBagConstraints.BOTH;
-			BoardPanel.add(BoardArea);
-			UpdateBoardGUI2(); //we have to do it for the first time to display the board
-			printStatsGUI(); //we have to do it for the first time to display player stats
-
-			JTextField WSADtitle = new JTextField("Use WSAD buttons to move your character");
-			WSADtitle.setEditable(false);
-
-			coordinates.fill = GridBagConstraints.HORIZONTAL;
-			coordinates.gridx = 0;
-			coordinates.gridy = 0;
-			coordinates.gridwidth = 4;
-			MovePanel.add(WSADtitle, coordinates);
-
-			coordinates.ipadx = 8;
-			coordinates.ipady = 16;
-			coordinates.gridwidth = 1;
-			coordinates.gridx = 1;
-			coordinates.gridy = 1;
-			MovePanel.add(W, coordinates);
-
-			coordinates.anchor = GridBagConstraints.PAGE_END;
-			coordinates.gridx = 1;
-			coordinates.gridy = 2;
-			MovePanel.add(S, coordinates);
-
-			coordinates.gridx = 0;
-			coordinates.gridy = 2;
-			MovePanel.add(A, coordinates);
-
-			coordinates.gridx = 2;
-			coordinates.gridy = 2;
-			MovePanel.add(D, coordinates);
+		W.addActionListener(this);
+		S.addActionListener(this);
+		A.addActionListener(this);
+		D.addActionListener(this);
 
 
-			mainframe.pack();
-			mainframe.setSize(1400, 500);
-			mainframe.setVisible(true);
-		}
+		//panels declaration
+		JPanel BoardPanel = new JPanel();
+		JPanel MovePanel = new JPanel();
+		JPanel StatsPanel = new JPanel();
 
-		public void GameOverMan ()
-		{
-			BoardArea.setText(null);
-			BoardArea.append("" +
+		//filling mainframe with panels
+		mainframe.getContentPane().add(BorderLayout.NORTH, Title);
+		mainframe.getContentPane().add(BorderLayout.CENTER, BoardPanel);
+		mainframe.getContentPane().add(BorderLayout.EAST, MovePanel);
+		mainframe.getContentPane().add(BorderLayout.WEST, StatsPanel);
+
+		//setting panels
+		MovePanel.setLayout(new GridBagLayout());
+		BoardPanel.setLayout(new GridBagLayout());
+		StatsPanel.setLayout(new BoxLayout(StatsPanel, BoxLayout.Y_AXIS));
+		StatsPanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
+		MovePanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
+
+		//setting text fonts
+		Title.setFont(new Font("Calibri", Font.ITALIC, 16));
+		WSADtitle.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+		playerstats.setFont(new Font("Calibri", Font.BOLD, 14));
+		//BoardArea.setFont(new Font("Console Font", Font.PLAIN, 13));
+
+
+
+		GridBagConstraints coordinates = new GridBagConstraints();
+
+		StatsPanel.add(playerstats);
+		coordinates.fill = GridBagConstraints.BOTH;
+		BoardPanel.add(BoardArea);
+
+		UpdateBoardGUI2(); //we have to do it for the first time to display the board
+		printStatsGUI(); //we have to do it for the first time to display player stats
+
+		//setting MovePanel
+		coordinates.fill = GridBagConstraints.HORIZONTAL;
+		coordinates.gridx = 0;
+		coordinates.gridy = 0;
+		coordinates.gridwidth = 4;
+		MovePanel.add(WSADtitle, coordinates);
+
+		coordinates.ipadx = 8;
+		coordinates.ipady = 16;
+		coordinates.gridwidth = 1;
+		coordinates.gridx = 1;
+		coordinates.gridy = 1;
+		MovePanel.add(W, coordinates);
+
+		coordinates.anchor = GridBagConstraints.PAGE_END;
+		coordinates.gridx = 1;
+		coordinates.gridy = 2;
+		MovePanel.add(S, coordinates);
+
+		coordinates.gridx = 0;
+		coordinates.gridy = 2;
+		MovePanel.add(A, coordinates);
+
+		coordinates.gridx = 2;
+		coordinates.gridy = 2;
+		MovePanel.add(D, coordinates);
+
+
+		//mainframe settings
+		mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainframe.pack();
+		mainframe.setSize(1400, 500);
+		mainframe.setVisible(true);
+	}
+
+	//method used to finish the game in GUI
+	public void GameOverMan ()
+	{
+		BoardArea.setText(null);
+		BoardArea.append("" +
 					"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  \n" +
 					" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒\n" +
 					"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒\n" +
@@ -255,15 +216,29 @@ public class Game implements ActionListener{
 					"                                                     ░                   \n" +
 					"																		  \n" +
 					"             Please use the X Windows button to close the game             ");
-			W.setEnabled(false);
-			S.setEnabled(false);
-			A.setEnabled(false);
-			D.setEnabled(false);
-			player.setHp(0);
-			printStatsGUI();
+		W.setEnabled(false);
+		S.setEnabled(false);
+		A.setEnabled(false);
+		D.setEnabled(false);
+		player.setHp(0);
+		printStatsGUI();
 
 
-		}
+	}
+
+	public void printStatsGUI ()
+	{
+		playerstats.setText(null);
+
+		int PlayerHp = player.getHp();
+		int PlayerDmg = player.getDmg();
+		int PlayerSpeed = player.getSpeed();
+
+		playerstats.append("PLAYER STATS" + "\n");
+		playerstats.append(" HP: " + PlayerHp + "\n");
+		playerstats.append(" Damage: " + PlayerDmg + "\n");
+		playerstats.append(" Speed: " + PlayerSpeed + "\n");
+	}
 
 
 	public void actionPerformed (ActionEvent e) {
