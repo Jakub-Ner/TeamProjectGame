@@ -103,6 +103,34 @@ public class Board {
 
     }
 
+    public String [] rewriteBoard ()
+    {
+        String [] temp = new String[board.length];
+
+        for (int i=0; i< board.length; i++)
+        {
+            temp[i]=Arrays.toString(board[i]);
+            temp[i]+=" ";
+        }
+
+        return temp;
+    }
+
+    public char [][] rewriteBoard2 ()
+    {
+        char [][] temp = new char[board.length][board[0].length];
+
+        for (int i=0; i< temp.length; i++)
+        {
+            for (int j=0; j<temp[i].length; j++)
+            {
+                temp[i][j]=board[i][j];
+            }
+        }
+
+        return temp;
+    }
+
     public void space() {
         for (int i = 0; i < 10; i++) System.out.println("");
     }
