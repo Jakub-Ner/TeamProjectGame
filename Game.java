@@ -40,10 +40,10 @@ public class Game implements ActionListener{
 	private JButton S;
 	private JButton A;
 	private JButton D;
-	private JTextArea textarea;
+	private JTextArea BoardArea;
 	private JTextArea playerstats;
 	private int input=-1;
-	private boolean run = true;
+	//private boolean run = true;
 
     public void run(){
 
@@ -96,7 +96,7 @@ public class Game implements ActionListener{
 		char Sboard[][] = board.rewriteBoard2();
 
 		//clear textarea
-		textarea.setText("");
+		BoardArea.setText("");
 
 			/*for (int i = 0; i < board.HEIGHT; i++) {
 				Sboard[i]=(Arrays.toString(board[i]));
@@ -118,8 +118,8 @@ public class Game implements ActionListener{
 
 		//add new board to cleared textarea
 		for (int i = 0; i < Sboard.length; i++) {
-			textarea.append(Arrays.toString(Sboard[i]));
-			textarea.append(" \n");
+			BoardArea.append(Arrays.toString(Sboard[i]));
+			BoardArea.append(" \n");
 		}
 	}
 
@@ -129,7 +129,7 @@ public class Game implements ActionListener{
 			String Sboard[] = board.rewriteBoard();
 
 			//clear textarea
-			textarea.setText("");
+			BoardArea.setText("");
 
 			/*for (int i = 0; i < board.HEIGHT; i++) {
 				Sboard[i]=(Arrays.toString(board[i]));
@@ -151,8 +151,8 @@ public class Game implements ActionListener{
 
 			//add new board to cleared textarea
 			for (int i = 0; i < Sboard.length; i++) {
-				textarea.append(Sboard[i]);
-				textarea.append("\n");
+				BoardArea.append(Sboard[i]);
+				BoardArea.append("\n");
 			}
 		}
 
@@ -162,12 +162,13 @@ public class Game implements ActionListener{
 			S = new JButton("S");
 			A = new JButton("A");
 			D = new JButton("D");
-			textarea = new JTextArea();
+			BoardArea = new JTextArea();
 			playerstats = new JTextArea();
 			JTextField Title = new JTextField("Welcome to the game!");
 
+			//user can't change the text in textfields and textareas
 			playerstats.setEditable(false);
-			textarea.setEditable(false);
+			BoardArea.setEditable(false);
 			Title.setEditable(false);
 
 			W.addActionListener(this);
@@ -178,6 +179,7 @@ public class Game implements ActionListener{
 			JFrame mainframe = new JFrame("TeamProjectGame.exe");
 			mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+			//panels declaration
 			JPanel BoardPanel = new JPanel();
 			JPanel MovePanel = new JPanel();
 			JPanel StatsPanel = new JPanel();
@@ -198,8 +200,7 @@ public class Game implements ActionListener{
 
 			StatsPanel.add(playerstats);
 			coordinates.fill = GridBagConstraints.BOTH;
-			//JTextArea textarea = new JTextArea();
-			BoardPanel.add(textarea);
+			BoardPanel.add(BoardArea);
 			UpdateBoardGUI2(); //we have to do it for the first time to display the board
 			printStatsGUI(); //we have to do it for the first time to display player stats
 
@@ -232,36 +233,6 @@ public class Game implements ActionListener{
 			coordinates.gridy = 2;
 			MovePanel.add(D, coordinates);
 
-			/*textarea.setText(null);
-
-			char tablica[][] = new char[25][61];
-
-			char znak = 'a';
-
-			for (int i = 0; i < tablica.length; i++) {
-				for (int j = 0; j < tablica[i].length; j++) {
-					tablica[i][j] = znak;
-					znak++;
-					if (znak > 120)
-						znak = 'a';
-				}
-			}
-
-			String newtab[] = new String[tablica.length];
-
-			for (int i = 0; i < newtab.length; i++) {
-				newtab[i] = "";
-				for (int j = 0; j < tablica[i].length; j++) {
-					newtab[i] += tablica[i][j];
-					newtab[i] += " ";
-				}
-			}
-
-
-			for (int i = 0; i < newtab.length; i++) {
-				textarea.append(newtab[i]);
-				textarea.append("\n");
-			}*/
 
 			mainframe.pack();
 			mainframe.setSize(1400, 500);
@@ -270,8 +241,8 @@ public class Game implements ActionListener{
 
 		public void GameOverMan ()
 		{
-			textarea.setText(null);
-			textarea.append("" +
+			BoardArea.setText(null);
+			BoardArea.append("" +
 					"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  \n" +
 					" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒\n" +
 					"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒\n" +
