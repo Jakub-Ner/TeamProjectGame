@@ -103,6 +103,7 @@ public class Board {
 
     }
 
+    //added method for GUI
     public String [] rewriteBoard ()
     {
         String [] temp = new String[board.length];
@@ -116,6 +117,7 @@ public class Board {
         return temp;
     }
 
+    //added method for GUI
     public char [][] rewriteBoard2 ()
     {
         char [][] temp = new char[board.length][board[0].length];

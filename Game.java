@@ -76,6 +76,8 @@ public class Game implements ActionListener{
 
 
     }
+
+	//updating board in gui after a move
 	public void UpdateBoardGUI2 ()
 	{
 		char newboard[][] = board.rewriteBoard2();
@@ -226,6 +228,7 @@ public class Game implements ActionListener{
 
 	}
 
+	//updating player stats
 	public void printStatsGUI ()
 	{
 		playerstats.setText(null);
