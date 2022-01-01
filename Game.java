@@ -29,12 +29,13 @@ public class Game implements ActionListener{
 	private JTextArea playerstats;
 	private int input=-1;
 	//private boolean run = true;
+	public static Menu menu = new Menu();
 
     public void run(){
 
         //Scanner scanner = new Scanner(System.in);
-
-        Menu.start();
+		menu.drawMenu();
+        menu.start();
 
 		Game GUIWindow = new Game();
 		GUIWindow.DrawGUI();

@@ -5,7 +5,12 @@ import game.TeamProjectGame.Board.*;
 import game.TeamProjectGame.Characters.Friends.*;
 import game.TeamProjectGame.Characters.Player;
 import game.TeamProjectGame.MovePattern.SquarePattern;
+import game.TeamProjectGame.Game;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.Serializable;
 import java.util.InputMismatchException;
@@ -15,48 +20,138 @@ import static game.TeamProjectGame.API.BoardAPI.LoadBoard;
 
 public class Menu implements Serializable {
 
+    private int framesize_X = 450;
+    private int framesize_Y = 200;
 
-    public static void start() {
-        System.out.println("Welcome to our game!");
+    private JDialog frame = new JDialog();
 
-        load();
+    private JLabel welcome = new JLabel("Welcome to our game!");
+
+    private JRadioButton loadButton1 = new JRadioButton("New game");
+    private JRadioButton loadButton2 = new JRadioButton("Load game from file");
+    private ButtonGroup loadGroup = new ButtonGroup();
+
+    private JLabel charLabel = new JLabel("Choose your character:");
+    private JRadioButton charButton1 = new JRadioButton("Human");
+    private JRadioButton charButton2 = new JRadioButton("Elf");
+    private JRadioButton charButton3 = new JRadioButton("Dwarf");
+    private ButtonGroup charGroup = new ButtonGroup();
+
+    private JButton startButton = new JButton("Play!");
+
+    private JPanel panel1 = new JPanel();
+    private JPanel panel2 = new JPanel();
+    private JPanel panel3 = new JPanel();
+    private JPanel panel4 = new JPanel();
+    private JPanel panel5 = new JPanel();
+
+    private static boolean startNewGame = true;
+
+    private static int chosenCharacter;
+
+    private boolean menuON = true;
+
+    public boolean isMenuON() {
+        return menuON;
     }
 
-    public static int choosingNumber(int options) { //checks if user gives a proper number
+    public void drawMenu() {
 
-        Scanner scanner = new Scanner(System.in);
+        frame.getContentPane().add(BorderLayout.NORTH, panel1);
+        frame.getContentPane().add(BorderLayout.WEST, panel2);
+        frame.getContentPane().add(BorderLayout.CENTER, panel3);
+        frame.getContentPane().add(BorderLayout.EAST, panel4);
 
-        int input;
+        panel1.add(welcome);
 
-        try {
-            input = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            scanner.nextLine();
-            input = -1;
-        }
+        loadGroup.add(loadButton1);
+        loadGroup.add(loadButton2);
 
-        while (1 > input || options <= input) {
-            System.out.print("Answer out of reach! Try again.\n>");
+        panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+        panel2.add(loadButton1);
+        panel2.add(loadButton2);
 
-            try {
-                input = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                scanner.nextLine();
-                input = -1;
+        loadButton1.addActionListener(new loadButtonReaction());
+        loadButton2.addActionListener(new loadButtonReaction());
+
+        charGroup.add(charButton1);
+        charGroup.add(charButton2);
+        charGroup.add(charButton3);
+
+        panel3.setLayout(new BoxLayout(panel3, BoxLayout.Y_AXIS));
+        panel3.add(charLabel);
+        panel3.add(charButton1);
+        panel3.add(charButton2);
+        panel3.add(charButton3);
+
+        charButton1.addActionListener(new charButtonReaction());
+        charButton2.addActionListener(new charButtonReaction());
+        charButton3.addActionListener(new charButtonReaction());
+
+        panel4.add(startButton);
+
+        startButton.addActionListener(new startButtonReaction());
+
+
+
+        loadButton1.setSelected(true);
+        charButton1.setSelected(true);
+
+        frame.setModal(true);
+
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+        frame.setSize(framesize_X,framesize_Y);
+
+        frame.setVisible(true);
+
+    }
+
+    public class loadButtonReaction implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if (e.getSource() == loadButton1) {
+
+                startNewGame = true;
+            }
+            if(e.getSource() == loadButton2) {
+
+                startNewGame = false;
             }
         }
-
-        return input;
     }
 
-    public static Friend chooseCharacterMenu() {
-        System.out.println("Choose number of a character:\n" +
-                "1 - HUMAN\n" +
-                "2 - DWARF\n" +
-                "3 - ELF\n");
+    public class charButtonReaction implements ActionListener {
 
-        int n = choosingNumber(4);
-        switch (n) {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if(e.getSource() == charButton1) {
+
+                chosenCharacter = 1;
+            }else if(e.getSource() == charButton2) {
+
+                chosenCharacter = 2;
+            }else if(e.getSource() == charButton3) {
+
+                chosenCharacter = 3;
+            }
+        }
+    }
+
+    public class startButtonReaction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            frame.dispose();
+        }
+    }
+
+    public static Friend GUI_chooseCharacter () {
+
+        switch (chosenCharacter) {
             default:
                 return new Human(new SquarePattern());
             case 2:
@@ -64,6 +159,12 @@ public class Menu implements Serializable {
             case 3:
                 return new Elf(new SquarePattern());
         }
+    }
+
+
+    public static void start() {
+
+        load();
     }
 
     public static void printStats(Player player) {
@@ -78,13 +179,9 @@ public class Menu implements Serializable {
         Scanner scanner = new Scanner(System.in);
         File file = new File("Player.ser");
 
-        if (PlayerAPI.checkFile(file)) { //returns true if file is not empty
-            System.out.println("Choose:\n" +
-                    "1 - if you want to use data from previous game\n" +
-                    "2 - if you want to start from the beginning\n");
-            int n = choosingNumber(3);
+        if (PlayerAPI.checkFile(file)) {
 
-            if (n == 1) {
+            if (!startNewGame) {
                 Game.player = PlayerAPI.loadPlayer();
                 Game.board = new Board(Game.player);
                 LoadBoard(Game.board);
@@ -98,7 +195,7 @@ public class Menu implements Serializable {
     }
 
     public static void startGame() { //from the beginning
-        Game.player = new Player(chooseCharacterMenu());
+        Game.player = new Player(GUI_chooseCharacter());
         Game.board = new Board(Game.player);
         NPC_generator_NEW.generateNPC(Game.board);
     }
