@@ -154,7 +154,7 @@ public class Game implements ActionListener{
 		Title.setFont(new Font("Calibri", Font.ITALIC, 16));
 		WSADtitle.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 		playerstats.setFont(new Font("Calibri", Font.BOLD, 14));
-		//BoardArea.setFont(new Font("Console Font", Font.PLAIN, 13));
+		BoardArea.setFont(new Font("Courier New", Font.PLAIN, 13));
 
 
 
@@ -198,7 +198,7 @@ public class Game implements ActionListener{
 		//mainframe settings
 		mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainframe.pack();
-		mainframe.setSize(1400, 500);
+		mainframe.setSize(1920, 500);
 		mainframe.setVisible(true);
 	}
 
