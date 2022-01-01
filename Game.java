@@ -82,13 +82,12 @@ public class Game implements ActionListener{
 	public void UpdateBoardGUI2 ()
 	{
 		char newboard[][] = board.rewriteBoard2();
-
 		//clear textarea
 		BoardArea.setText("");
 
 		//add new board to cleared textarea
 		for (int i = 0; i < newboard.length; i++) {
-			BoardArea.append(Arrays.toString(newboard[i]));
+			BoardArea.append(String.copyValueOf(newboard[i]));
 			BoardArea.append(" \n");
 		}
 	}
@@ -198,7 +197,7 @@ public class Game implements ActionListener{
 		//mainframe settings
 		mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainframe.pack();
-		mainframe.setSize(1920, 500);
+		mainframe.setSize(1000, 500);
 		mainframe.setVisible(true);
 	}
 

@@ -121,7 +121,6 @@ public class Board {
     public char [][] rewriteBoard2 ()
     {
         char [][] temp = new char[board.length][board[0].length];
-
         for (int i=0; i< temp.length; i++)
         {
             for (int j=0; j<temp[i].length; j++)
@@ -129,7 +128,6 @@ public class Board {
                 temp[i][j]=board[i][j];
             }
         }
-
         return temp;
     }
 
