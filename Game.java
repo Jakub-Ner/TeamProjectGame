@@ -33,47 +33,11 @@ public class Game implements ActionListener{
 
     public void run(){
 
-        //Scanner scanner = new Scanner(System.in);
 		menu.drawMenu();
         menu.start();
 
 		Game GUIWindow = new Game();
 		GUIWindow.DrawGUI();
-		//board.drawScreen();
-
-
-        /*while (run) {
-			//board.drawScreen();
-			//input = -1;
-			while(input == -1) {
-				try {
-					input = scanner.nextInt();
-				} catch (InputMismatchException e) {
-					scanner.nextLine();
-					input = -1;
-					System.out.println("Wrong input! write numbers, not strings");
-				}
-			}
-            //board.updateBoard( input );
-
-            if (player.getHp() <= 0) {
-                System.out.println("" +
-						"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  \n" +
-						" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒\n" +
-						"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒\n" +
-						"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  \n" +
-						"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒\n" +
-						" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░\n" +
-						"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░\n" +
-						"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ \n" +
-						"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     \n" +
-						"                                                     ░                   ");
-                run = false;
-
-            }
-
-
-        }*/
 
 
     }
@@ -249,7 +213,7 @@ public class Game implements ActionListener{
 		if (player.getHp()<=0)
 			GameOverMan();
 		else {
-
+			//zamienia wybrana litere na liczbe, ktora jest wykorzystywana w moveCharacter do poruszenia postaci w zadanym kierunku
 			if (e.getSource() == W) {
 				input = 8;
 			} else if (e.getSource() == S) {

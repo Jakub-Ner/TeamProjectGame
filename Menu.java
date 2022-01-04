@@ -19,7 +19,7 @@ import java.util.Scanner;
 import static game.TeamProjectGame.API.BoardAPI.LoadBoard;
 
 public class Menu implements Serializable {
-
+    //creates GUI (menu where one can choose a player character and decide if to play a new game or the already existing one)
     private int framesize_X = 450;
     private int framesize_Y = 200;
 
@@ -108,6 +108,7 @@ public class Menu implements Serializable {
     }
 
     public class loadButtonReaction implements ActionListener {
+        //starts new game or loads the previous one depending on players choice
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -123,7 +124,7 @@ public class Menu implements Serializable {
     }
 
     public class charButtonReaction implements ActionListener {
-
+        //creates our player depending on the choice of character in the menu
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -141,7 +142,7 @@ public class Menu implements Serializable {
     }
 
     public class startButtonReaction implements ActionListener {
-
+        //clears the menu window
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -178,9 +179,8 @@ public class Menu implements Serializable {
 
         Scanner scanner = new Scanner(System.in);
         File file = new File("Player.ser");
-
+        //checks if there's an already existing game (if yes, it loads data from it)
         if (PlayerAPI.checkFile(file)) {
-
             if (!startNewGame) {
                 Game.player = PlayerAPI.loadPlayer();
                 Game.board = new Board(Game.player);
