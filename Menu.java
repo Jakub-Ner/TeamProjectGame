@@ -103,6 +103,8 @@ public class Menu implements Serializable {
 
         frame.setSize(framesize_X,framesize_Y);
 
+        frame.setLocationRelativeTo(null);
+
         frame.setVisible(true);
 
     }
