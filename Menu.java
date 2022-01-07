@@ -175,8 +175,6 @@ public class Menu implements Serializable {
     }
 
     public static void load() {
-
-        Scanner scanner = new Scanner(System.in);
         File file = new File("Player.ser");
 
         if (PlayerAPI.checkFile(file)) {

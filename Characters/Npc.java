@@ -13,7 +13,7 @@ public abstract class Npc extends Character implements Serializable {
 
 	MovePattern pattern;
 	private int turn = wait;
-	private int nextMove = 0;
+	private int nextMove = -1;
 
 	//constructor
 
@@ -30,10 +30,9 @@ public abstract class Npc extends Character implements Serializable {
 		turn -= speed;
 
 		if (turn <= 0) {
+			nextMove++;
 
 			moveCharacter(pattern.pattern()[nextMove % pattern.pattern().length], board);
-
-			nextMove++;
 
 			turn = wait;
 		}

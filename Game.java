@@ -16,7 +16,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.*;
 
-public class Game implements ActionListener{
+public class Game implements ActionListener {
 
 	public static Player player;
 	public static Board board;
@@ -27,84 +27,28 @@ public class Game implements ActionListener{
 	private JButton D;
 	private JTextArea BoardArea;
 	private JTextArea playerstats;
-	private int input=-1;
+	private int input = -1;
 	//private boolean run = true;
 	public static Menu menu = new Menu();
 
-    public void run(){
-
-        //Scanner scanner = new Scanner(System.in);
+	public void run() {
+		//Scanner scanner = new Scanner(System.in);
 		menu.drawMenu();
-        menu.start();
+		menu.load();
 
 		Game GUIWindow = new Game();
 		GUIWindow.DrawGUI();
-		//board.drawScreen();
-
-
-        /*while (run) {
-			//board.drawScreen();
-			//input = -1;
-			while(input == -1) {
-				try {
-					input = scanner.nextInt();
-				} catch (InputMismatchException e) {
-					scanner.nextLine();
-					input = -1;
-					System.out.println("Wrong input! write numbers, not strings");
-				}
-			}
-            //board.updateBoard( input );
-
-            if (player.getHp() <= 0) {
-                System.out.println("" +
-						"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  \n" +
-						" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒\n" +
-						"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒\n" +
-						"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  \n" +
-						"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒\n" +
-						" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░\n" +
-						"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░\n" +
-						"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ \n" +
-						"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     \n" +
-						"                                                     ░                   ");
-                run = false;
-
-            }
-
-
-        }*/
-
-
-    }
-
-	//updating board in gui after a move
-	public void UpdateBoardGUI2 ()
-	{
-		char newboard[][] = board.rewriteBoard2();
-
-		//clear textarea
-		BoardArea.setText("");
-
-		//add new board to cleared textarea
-		for (int i = 0; i < newboard.length; i++) {
-			BoardArea.append(Arrays.toString(newboard[i]));
-			BoardArea.append(" \n");
-		}
 	}
 
-
-	public void UpdateBoardGUI ()
-	{
-		String Sboard[] = board.rewriteBoard();
-
+	//updating board in gui after a move
+	public void UpdateBoardGUI2() {
 		//clear textarea
 		BoardArea.setText("");
 
 		//add new board to cleared textarea
-		for (int i = 0; i < Sboard.length; i++) {
-			BoardArea.append(Sboard[i]);
-			BoardArea.append("\n");
+		for (int i = 0; i < Board.board.length; i++) {
+			BoardArea.append(Arrays.toString(Board.board[i]));
+			BoardArea.append(" \n");
 		}
 	}
 
@@ -157,7 +101,6 @@ public class Game implements ActionListener{
 		//BoardArea.setFont(new Font("Console Font", Font.PLAIN, 13));
 
 
-
 		GridBagConstraints coordinates = new GridBagConstraints();
 
 		StatsPanel.add(playerstats);
@@ -203,22 +146,21 @@ public class Game implements ActionListener{
 	}
 
 	//method used to finish the game in GUI
-	public void GameOverMan ()
-	{
+	public void GameOverMan() {
 		BoardArea.setText(null);
 		BoardArea.append("" +
-					"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  \n" +
-					" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒\n" +
-					"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒\n" +
-					"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  \n" +
-					"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒\n" +
-					" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░\n" +
-					"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░\n" +
-					"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ \n" +
-					"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     \n" +
-					"                                                     ░                   \n" +
-					"																		  \n" +
-					"             Please use the X Windows button to close the game             ");
+				"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  \n" +
+				" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒\n" +
+				"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒\n" +
+				"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  \n" +
+				"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒\n" +
+				" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░\n" +
+				"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░\n" +
+				"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ \n" +
+				"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     \n" +
+				"                                                     ░                   \n" +
+				"																		  \n" +
+				"             Please use the X Windows button to close the game             ");
 		W.setEnabled(false);
 		S.setEnabled(false);
 		A.setEnabled(false);
@@ -230,8 +172,7 @@ public class Game implements ActionListener{
 	}
 
 	//updating player stats
-	public void printStatsGUI ()
-	{
+	public void printStatsGUI() {
 		playerstats.setText(null);
 
 		int PlayerHp = player.getHp();
@@ -245,9 +186,9 @@ public class Game implements ActionListener{
 	}
 
 
-	public void actionPerformed (ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {
 
-		if (player.getHp()<=0)
+		if (player.getHp() <= 0)
 			GameOverMan();
 		else {
 
