@@ -197,8 +197,6 @@ public class Menu implements Serializable {
     //}
 
     public static void load() {
-
-        Scanner scanner = new Scanner(System.in);
         File file = new File("Player.ser");
         //checks if there's an already existing game (if yes, it loads data from it)
         if (PlayerAPI.checkFile(file)) {
