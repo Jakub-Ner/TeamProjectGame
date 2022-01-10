@@ -18,16 +18,17 @@ public class Player extends Character implements Serializable {
 	 *
 	 * @param type takes Friend which represents player's race
 	 */
-	public Player(Friend type) {
+	public Player(Friend type){
 		super(type.getHp(), type.getDmg(), type.getSpeed(), 'B');
-		firstCoordinates(0, 0);
+		this.cry = type.getCry();
 	}
 
-	public Cry getCry() {
+	public Cry getCry(){
 		return this.cry;
 	}
 
-	public void setCry(Cry cry) {
-		this.cry = cry;
+	public int[] oldCoordinates(int lastMove) {
+		return uncodeCoordinates(lastMove);
 	}
+
 }
