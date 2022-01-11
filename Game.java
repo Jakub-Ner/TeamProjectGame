@@ -33,8 +33,7 @@ public class Game implements ActionListener {
 
 	public void run() {
 		//Scanner scanner = new Scanner(System.in);
-		menu.drawMenu();
-		menu.load();
+		menu.startMenu();
 
 		Game GUIWindow = new Game();
 		GUIWindow.DrawGUI();
