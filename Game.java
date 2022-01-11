@@ -1,10 +1,9 @@
 package game.TeamProjectGame;
 
-import game.TeamProjectGame.API.BoardAPI;
-import game.TeamProjectGame.API.PlayerAPI;
+
 import game.TeamProjectGame.Board.Board;
-import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.NPCFactory;
+import game.TeamProjectGame.Characters.Npc;
 import game.TeamProjectGame.Characters.Player;
 import game.TeamProjectGame.GUI.GUIGame;
 
@@ -56,7 +55,7 @@ public class Game implements ActionListener{
 		//add new board to cleared textarea
 		for (int i = 0; i < newboard.length; i++) {
 			BoardArea.append(String.copyValueOf(newboard[i]));
-			BoardArea.append(" \n");
+			BoardArea.append("\n");
 		}
 	}
 
@@ -104,6 +103,44 @@ public class Game implements ActionListener{
 		GUIWindow.getPlayerstats().append(" Speed: " + PlayerSpeed + "\n");
 	}
 
+	public void UpdateBoardGUI ()
+	{
+		int [] coordinates = new int[2];
+		String symbol;
+
+		//System.out.println(input);
+
+		//update npc (not working D:)
+		//for (Npc c: NPCFactory.getCharacters())
+		for (int i=0; i<NPCFactory.getCharacters().size(); i++)
+		{
+			Npc c=NPCFactory.getCharacters().get(i);
+			coordinates=c.oldCoordinates();
+			symbol="";
+			symbol+=c.getSymbol();
+			//System.out.println((board.WIDTH+1)*coordinates[0]+coordinates[1] + " " + (board.WIDTH+1)*coordinates[0]+coordinates[1]+1);
+
+			GUIWindow.getBoardArea().replaceRange(" ", ((board.WIDTH+1)*coordinates[0])+coordinates[1], ((board.WIDTH+1)*coordinates[0])+coordinates[1]+1);
+			GUIWindow.getBoardArea().replaceRange(symbol, ((board.WIDTH+1)*c.getY())+c.getX(), ((board.WIDTH+1)*c.getY())+c.getX()+1);
+		}
+
+		//update player (working (i hope))
+		coordinates = player.uncodeCoordinates(input);
+		symbol="";
+		symbol+=player.getSymbol();
+
+		//System.out.println("previous coordinates: " + coordinates[0] + " " + coordinates[1]);
+		//System.out.println("player's coordinates: " + player.getY() + " " + player.getX());
+		//System.out.println(board.WIDTH+1);
+
+		int temp = ((board.WIDTH+1)*coordinates[0])+coordinates[1];
+
+		//System.out.println((board.WIDTH+1)*coordinates[0]+coordinates[1] + " " + (board.WIDTH+1)*coordinates[0]+coordinates[1]+1);
+		//GUIWindow.getBoardArea().insert(" ", ((board.WIDTH+1)*coordinates[0])+coordinates[1]);
+		//GUIWindow.getBoardArea().insert(symbol,((board.WIDTH+1)*player.getY())+player.getX());
+		GUIWindow.getBoardArea().replaceRange(" ",temp, temp+1);
+		GUIWindow.getBoardArea().replaceRange(symbol, ((board.WIDTH+1)*player.getY())+player.getX(), ((board.WIDTH+1)*player.getY())+player.getX()+1);
+	}
 
 	public void actionPerformed (ActionEvent e) {
 
@@ -122,7 +159,8 @@ public class Game implements ActionListener{
 			}
 
 			board.updateBoard(input);
-			UpdateBoardGUI2(GUIWindow.getBoardArea());
+			//UpdateBoardGUI2(GUIWindow.getBoardArea());
+			UpdateBoardGUI();
 			printStatsGUI();
 		}
 	}

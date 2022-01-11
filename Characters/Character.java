@@ -118,17 +118,21 @@ public abstract class Character implements Serializable {
 
         switch(lastMove) {
             case 8:
-                c[0] = getY()+1;
+                c[0] = getY() + 1;
                 c[1] = getX();
+                break;
             case 2:
                 c[0] = getY()-1;
                 c[1] = getX();
+                break;
             case 4:
                 c[0] = getY();
                 c[1] = getX()+1;
+                break;
             case 6:
                 c[0] = getY();
                 c[1] = getX()-1;
+                break;
         }
 
         return c;
