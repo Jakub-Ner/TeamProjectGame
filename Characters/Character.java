@@ -113,6 +113,27 @@ public abstract class Character implements Serializable {
         surroundings(board);
     }
 
+    public int [] uncodeCoordinates(int lastMove) {
+        int[] c = new int[2];
+
+        switch(lastMove) {
+            case 8:
+                c[0] = getY()+1;
+                c[1] = getX();
+            case 2:
+                c[0] = getY()-1;
+                c[1] = getX();
+            case 4:
+                c[0] = getY();
+                c[1] = getX()+1;
+            case 6:
+                c[0] = getY();
+                c[1] = getX()-1;
+        }
+
+        return c;
+    }
+
     //geters
 
     public int getY() {

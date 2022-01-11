@@ -13,7 +13,7 @@ public abstract class Npc extends Character implements Serializable {
 
 	MovePattern pattern;
 	private int turn = wait;
-	private int nextMove = 0;
+	private int lastMove = -1;
 
 	//constructor
 
@@ -31,19 +31,23 @@ public abstract class Npc extends Character implements Serializable {
 
 		if (turn <= 0) {
 
-			moveCharacter(pattern.pattern()[nextMove % pattern.pattern().length], board);
+			lastMove++;
 
-			nextMove++;
+			moveCharacter(pattern.pattern()[lastMove % pattern.pattern().length], board);
 
 			turn = wait;
 		}
 	}
 
+	public int[] oldCoordinates() {
+		return uncodeCoordinates(pattern.pattern()[lastMove % pattern.pattern().length]);
+	}
+
 
 	//getters
 
-	public int getNextMove() {
-		return nextMove;
+	public int getLastMove() {
+		return lastMove;
 	}
 
 	public int getTurn() {
@@ -60,8 +64,8 @@ public abstract class Npc extends Character implements Serializable {
 
 	//setters
 
-	public void setNextMove(int nextMove) {
-		this.nextMove = nextMove;
+	public void setLastMove(int lastMove) {
+		this.lastMove = lastMove;
 	}
 
 	public void setPattern(MovePattern pattern) {
