@@ -1,11 +1,4 @@
-/*.ser
-*.ser
-PlikNPC
-*.ser
-*.class
 board.ser
-out/production/TeamProjectGame/game/TeamProjectGame/board.ser
-out/production/TeamProjectGame/game/TeamProjectGame/Player.ser
-out/production/TeamProjectGame/game/TeamProjectGame/PlikNPC
 Player.ser
+Player.p
 PlikNPC
