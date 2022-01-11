@@ -105,6 +105,8 @@ public class Game implements ActionListener{
 
 	public void UpdateBoardGUI ()
 	{
+		//trzeba jeszcze dodac warunek zeby nie usunal npc ktory w tym samym ruchu wejdzie w miejsce w ktorym byl player
+
 		int [] coordinates = new int[2];
 		String symbol;
 
