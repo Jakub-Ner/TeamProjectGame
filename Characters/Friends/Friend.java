@@ -1,6 +1,5 @@
 package game.TeamProjectGame.Characters.Friends;
 
-import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.Npc;
 import game.TeamProjectGame.Cries.Cry;
 import game.TeamProjectGame.MovePattern.MovePattern;
@@ -9,12 +8,8 @@ import game.TeamProjectGame.MovePattern.MovePattern;
 public abstract class Friend extends Npc {
 
     protected Cry cry;
-    private String name;
-//
-//    public Friend(){ // w npc też musi byc konstruktor domyslny jesli chcemy go zrobic dla friend
-//    }
 
-    public Friend(int hp, int dmg, int speed, String name, MovePattern pattern, Cry cry, char symbol){
+    public Friend(int hp, int dmg, int speed, MovePattern pattern, Cry cry, char symbol){
         super(hp,dmg,speed, pattern, symbol);
         this.cry = cry;
     }
@@ -33,13 +28,6 @@ public abstract class Friend extends Npc {
         this.cry = cry;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Override
     public String toString() {

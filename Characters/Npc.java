@@ -3,7 +3,9 @@ package game.TeamProjectGame.Characters;
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.MovePattern.MovePattern;
 
-public abstract class Npc extends Character {
+import java.io.Serializable;
+
+public abstract class Npc extends Character implements Serializable {
 
 	//fields
 
@@ -11,7 +13,7 @@ public abstract class Npc extends Character {
 
 	MovePattern pattern;
 	private int turn = wait;
-	private int nextMove = 0;
+	private int lastMove = -1;
 
 	//constructor
 
@@ -28,20 +30,23 @@ public abstract class Npc extends Character {
 		turn -= speed;
 
 		if (turn <= 0) {
+			lastMove++;
 
-			moveCharacter(pattern.pattern()[nextMove % pattern.pattern().length], board);
-
-			nextMove++;
+			moveCharacter(pattern.pattern()[lastMove % pattern.pattern().length], board);
 
 			turn = wait;
 		}
 	}
 
+	public int[] oldCoordinates() {
+		return uncodeCoordinates(pattern.pattern()[lastMove % pattern.pattern().length]);
+	}
+
 
 	//getters
 
-	public int getNextMove() {
-		return nextMove;
+	public int getLastMove() {
+		return lastMove;
 	}
 
 	public int getTurn() {
@@ -59,7 +64,7 @@ public abstract class Npc extends Character {
 	//setters
 
 	public void setNextMove(int nextMove) {
-		this.nextMove = nextMove;
+		this.lastMove = nextMove;
 	}
 
 	public void setPattern(MovePattern pattern) {

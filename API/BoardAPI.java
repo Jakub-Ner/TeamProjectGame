@@ -2,6 +2,7 @@ package game.TeamProjectGame.API;
 
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.Characters.Player;
+import game.TeamProjectGame.Game;
 
 import java.io.*;
 import java.util.Scanner;
@@ -26,6 +27,8 @@ public class BoardAPI {
 		}
 		File file = new File ("board.ser");
 //		System.out.println(File);
+
+		Board.board[Game.player.getY()][Game.player.getX()] = 'B';
 
 	}
 

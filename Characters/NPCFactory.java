@@ -2,15 +2,12 @@ package game.TeamProjectGame.Characters;
 
 import game.TeamProjectGame.Characters.Friends.*;
 import game.TeamProjectGame.Characters.Villains.*;
-import game.TeamProjectGame.Characters.Villains.Orc;
 import game.TeamProjectGame.MovePattern.*;
 
 import java.util.Random;
 import java.util.Vector;
 
-public enum NPCFactory {
-	HUMAN, DWARF, ELF, ORC, PHANTOM, DRAGON;
-
+public class NPCFactory {
 	private static MovePattern[] movePatterns = {
 			new LPattern(),
 			new PlusPattern(),
@@ -19,23 +16,24 @@ public enum NPCFactory {
 			new SPattern(),
 			new SquarePattern()
 	};
-	private static Vector<Npc> characters = new Vector<>();
+	private static Random random = new Random();
+
+	private static Vector<Npc> characters = new Vector<>();	//but dont touch
 
 	//returns pointer to a newly created character
-	private static Npc createNew(NPCFactory type){
+	private static Npc createNew(NPCTypes type){
 		switch (type) {
-			case HUMAN:		return new Human(generateMovePattern());
-			case DWARF:		return new Dwarf(generateMovePattern());
-			case ELF:		return new Elf(generateMovePattern());
-			case ORC:		return new Orc(generateMovePattern());
-			case PHANTOM:	return new Phantom(generateMovePattern());
-			case DRAGON:	return new Dragon(generateMovePattern());
+			case HUMAN: return new Human(chooseMovePattern());
+			case DWARF: return new Dwarf(chooseMovePattern());
+			case ELF: return new Elf(chooseMovePattern());
+			case ORC: return new Orc(chooseMovePattern());
+			case PHANTOM: return new Phantom(chooseMovePattern());
+			case DRAGON: return new Dragon(chooseMovePattern());
 		}
 		return null;
 	}
 
-	private static MovePattern generateMovePattern(){
-		Random random = new Random();
+	private static MovePattern chooseMovePattern(){
 		return movePatterns[random.nextInt(movePatterns.length)];
 	}
 
@@ -52,8 +50,8 @@ public enum NPCFactory {
 	 * @param	type	number to be interpreted
 	 * @return	returns int as a type of character
 	 */
-	public static NPCFactory toCharacterType(int type){
-		return NPCFactory.values()[type];
+	public static NPCTypes toCharacterType(int type){
+		return NPCTypes.values()[type];
 	}
 
 	/**
@@ -65,30 +63,32 @@ public enum NPCFactory {
 		return characters;
 	}
 
+	//setter for characters
+	public static void setCharacters(Vector<Npc> newCharacters){
+		characters = newCharacters;
+	}
+
 	/**
 	 * Adds new character to the list
 	 *
 	 * @param type	enum type of character to be created
 	 * @return returns newly created character
 	 */
-	public static Character addCharacter(NPCFactory type){
+	public static Npc addCharacter(NPCTypes type){
 		characters.add(createNew(type));
 		return characters.lastElement();
 	}
 
 	/**
-	 * Adds new character to the list
+	 * Adds new npc to the list
 	 *
 	 * @param type	is promoted to an enum type required for internal work
 	 * @return returns newly created character
 	 */
-	public static Character addCharacter(int type){
+	public static Npc addCharacter(int type){
 		characters.add(createNew(toCharacterType(type)));
 		return characters.lastElement();
 	}
 
-	@Override
-	public String toString(){
-		return super.toString().charAt(0) + super.toString().substring(1).toLowerCase();
-	}
+
 }

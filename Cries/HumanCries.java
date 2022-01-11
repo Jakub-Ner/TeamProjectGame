@@ -1,6 +1,8 @@
 package game.TeamProjectGame.Cries;
 
-public class HumanCries implements Cry{
+import java.io.Serializable;
+
+public class HumanCries implements Cry, Serializable {
 	@Override
 	public void battleShout() { System.out.println("*Battle cry in Human Language*"); }
 	@Override

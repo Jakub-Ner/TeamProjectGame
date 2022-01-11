@@ -1,13 +1,11 @@
 package game.TeamProjectGame.Board;
 
-import game.TeamProjectGame.API.BoardAPI;
 import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.NPCFactory;
 import game.TeamProjectGame.Characters.Npc;
 
 import java.util.Arrays;
 import java.util.Random;
-import java.util.Vector;
 
 
 public class Board {
@@ -17,13 +15,14 @@ public class Board {
     public static char[][] board;
     Character character;
 
+    //constructor
     public Board(Character character) {
         board = new char[HEIGHT][WIDTH];
         this.character = character;
         initBoard();
     }
 
-
+    //filling the board with obstacles # and X
     private void obstacles() {
         Random random = new Random();
         for (int i = 0; i < HEIGHT; i++) {
@@ -35,16 +34,20 @@ public class Board {
         }
     }
 
+    //generating walkable paths for characters
     private void partOfBoard(int limit, int[][] start) {
         Random random = new Random();
-        boolean newField = true;
         do {
-//            if (newField) {
+
             limit--;
-            for (int i = 0; i < start.length; i++) {
-                board[start[i][0]][start[i][1]] = ' ';
+
+            //making a part of the path
+            if (board[start[0][0]][start[0][1]] != ' ') {
+                for (int i = 0; i < start.length; i++) {
+                    board[start[i][0]][start[i][1]] = ' ';
+                }
             }
-//            }
+
             int direction = 2 * (int) Math.pow(-1, random.nextInt(2));
             int coordinate = random.nextInt(2);
             int licznik = 0;
@@ -57,18 +60,17 @@ public class Board {
                 }
                 licznik++;
             }
-//            newField = false;
+
             if (licznik == start.length) {
-//                if (board[start[0][0] + ((coordinate + 1) % 2) * direction][start[0][1] + ((coordinate + 0) % 2) * direction] != ' ') {
                 for (int i = 0; i < start.length; i++) {
                     start[i][coordinate] += direction;
                 }
-//                    newField = true;
-//                }
             }
+
         } while (limit > 0);
     }
 
+    //filling the board with paths and obstacles
     private void drawBoard() {
         obstacles();
 
@@ -87,16 +89,8 @@ public class Board {
 
     public void initBoard() {
         drawBoard();
-        NPC_generator.generateNPC(this);
-        updateBoard('w');
-    }
-
-    public void drawScreen() {
-        for (int i = 0; i < HEIGHT; i++) {
-            System.out.print(Arrays.toString(board[i]));
-            System.out.println(" ");
-        }
-
+        NPC_generator_NEW.generateNPC(this);
+        board[character.getY()][character.getY()] = 'B';
     }
 
     public void space() {
@@ -108,8 +102,6 @@ public class Board {
 
         character.moveCharacter(goFurther, this);
 
-        space();
-        drawScreen();
 		updateNPC();
     }
 

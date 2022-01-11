@@ -4,8 +4,9 @@ import game.TeamProjectGame.Characters.Friends.Friend;
 import game.TeamProjectGame.Cries.Cry;
 
 import java.io.Serial;
+import java.io.Serializable;
 
-public class Player extends Character {
+public class Player extends Character implements Serializable {
 	private Cry cry;
 
 	@Serial
@@ -17,8 +18,6 @@ public class Player extends Character {
 	 *
 	 * @param type takes Friend which represents player's race
 	 */
-	public Player(){
-	}
 	public Player(Friend type){
 		super(type.getHp(), type.getDmg(), type.getSpeed(), 'B');
 		this.cry = type.getCry();
@@ -26,6 +25,10 @@ public class Player extends Character {
 
 	public Cry getCry(){
 		return this.cry;
+	}
+
+	public int[] oldCoordinates(int lastMove) {
+		return uncodeCoordinates(lastMove);
 	}
 
 }

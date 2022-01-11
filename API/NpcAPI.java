@@ -4,40 +4,34 @@ import game.TeamProjectGame.Characters.NPCFactory;
 import game.TeamProjectGame.Characters.Npc;
 
 import java.io.*;
+import java.util.Vector;
 
 public class NpcAPI implements Serializable {
 
-    public void SaveNPC() {
+	public static void SaveNPC() {
 
-        try {
-            ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream("PlikNPC"));
+		try {
+			ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream("PlikNPC"));
 
-            for(int i = 0; i < NPCFactory.getCharacters().size(); i++) {
+			so.writeObject(NPCFactory.getCharacters());
 
-                so.writeObject(NPCFactory.getCharacters().get(i));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-            }
+	public static void LoadNPC() {
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+		try {
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream("PlikNPC"));
+			Object czyBrakObiektu = null;
 
-    public void LoadNPC() {
+			Object addedNPCS = is.readObject();
 
-        try{
-            ObjectInputStream is = new ObjectInputStream(new FileInputStream("PlikNPC"));
-            Object czyBrakObiektu = null;
+			NPCFactory.setCharacters((Vector<Npc>) addedNPCS);
 
-            while ( (czyBrakObiektu = is.readObject()) != null ) {
-
-                Object addedNPC = is.readObject();
-
-                NPCFactory.addCharacter( (Npc) addedNPC );
-            }
-
-        }catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -1,104 +1,200 @@
 package game.TeamProjectGame;
 
-import game.TeamProjectGame.Board.Board;
-import game.TeamProjectGame.Characters.Character;
-import game.TeamProjectGame.Characters.Friends.Friend;
-import game.TeamProjectGame.Characters.NPCFactory;
+import game.TeamProjectGame.API.*;
+import game.TeamProjectGame.Board.*;
+import game.TeamProjectGame.Characters.Friends.*;
 import game.TeamProjectGame.Characters.Player;
+import game.TeamProjectGame.MovePattern.SquarePattern;
+import game.TeamProjectGame.Game;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static game.TeamProjectGame.API.PlayerAPI.loadPlayer;
 import static game.TeamProjectGame.API.BoardAPI.LoadBoard;
-public class Menu {
+
+public class Menu implements Serializable {
+
+    private int framesize_X = 450;
+    private int framesize_Y = 200;
+
+    private JDialog frame = new JDialog();
+
+    private JLabel welcome = new JLabel("Welcome to our game!");
+
+    private JRadioButton loadButton1 = new JRadioButton("New game");
+    private JRadioButton loadButton2 = new JRadioButton("Load game from file");
+    private ButtonGroup loadGroup = new ButtonGroup();
+
+    private JLabel charLabel = new JLabel("Choose your character:");
+    private JRadioButton charButton1 = new JRadioButton("Human");
+    private JRadioButton charButton2 = new JRadioButton("Elf");
+    private JRadioButton charButton3 = new JRadioButton("Dwarf");
+    private ButtonGroup charGroup = new ButtonGroup();
+
+    private JButton startButton = new JButton("Play!");
+
+    private JPanel panel1 = new JPanel();
+    private JPanel panel2 = new JPanel();
+    private JPanel panel3 = new JPanel();
+    private JPanel panel4 = new JPanel();
+    private JPanel panel5 = new JPanel();
+
+    private static boolean startNewGame = true;
+
+    private static int chosenCharacter;
+
+    private boolean menuON = true;
+
+    public boolean isMenuON() {
+        return menuON;
+    }
+
+    public void drawMenu() {
+
+        frame.getContentPane().add(BorderLayout.NORTH, panel1);
+        frame.getContentPane().add(BorderLayout.WEST, panel2);
+        frame.getContentPane().add(BorderLayout.CENTER, panel3);
+        frame.getContentPane().add(BorderLayout.EAST, panel4);
+
+        panel1.add(welcome);
+
+        loadGroup.add(loadButton1);
+        loadGroup.add(loadButton2);
+
+        panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+        panel2.add(loadButton1);
+        panel2.add(loadButton2);
+
+        loadButton1.addActionListener(new loadButtonReaction());
+        loadButton2.addActionListener(new loadButtonReaction());
+
+        charGroup.add(charButton1);
+        charGroup.add(charButton2);
+        charGroup.add(charButton3);
+
+        panel3.setLayout(new BoxLayout(panel3, BoxLayout.Y_AXIS));
+        panel3.add(charLabel);
+        panel3.add(charButton1);
+        panel3.add(charButton2);
+        panel3.add(charButton3);
+
+        charButton1.addActionListener(new charButtonReaction());
+        charButton2.addActionListener(new charButtonReaction());
+        charButton3.addActionListener(new charButtonReaction());
+
+        panel4.add(startButton);
+
+        startButton.addActionListener(new startButtonReaction());
 
 
-        public static void start(Player player, Board board){
-                System.out.println("Welcome to our game!");
-                load(player,board);
+
+        loadButton1.setSelected(true);
+        charButton1.setSelected(true);
+
+        frame.setModal(true);
+
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+        frame.setSize(framesize_X,framesize_Y);
+
+        frame.setVisible(true);
+
+    }
+
+    public class loadButtonReaction implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if (e.getSource() == loadButton1) {
+
+                startNewGame = true;
+            }
+            if(e.getSource() == loadButton2) {
+
+                startNewGame = false;
+            }
         }
-        public static int choosingNumber(int options){ //sprawdza czy uzytkownik podaje dobrą liczbe
+    }
 
-                Scanner scanner = new Scanner(System.in);
+    public class charButtonReaction implements ActionListener {
 
-                int input;
+        @Override
+        public void actionPerformed(ActionEvent e) {
 
-                try{input = scanner.nextInt();} catch (InputMismatchException e){
-                        scanner.nextLine();
-                        input = -1;
-                }
+            if(e.getSource() == charButton1) {
 
-                while(1 > input || options <= input){
-                        System.out.print("Answer out of reach! Try again.\n>");
+                chosenCharacter = 1;
+            }else if(e.getSource() == charButton2) {
 
-                        try{input = scanner.nextInt();} catch (InputMismatchException e){
-                                scanner.nextLine();
-                                input = -1;
-                        }
-                }
+                chosenCharacter = 2;
+            }else if(e.getSource() == charButton3) {
 
-                return input;
+                chosenCharacter = 3;
+            }
         }
-        public static Friend chooseCharacterMenu(){ //obowiązkowo do wywołania na początku
-        public static Player chooseCharacterMenu(){
-                System.out.println("Choose number of a character:\n" +
-                        "1 - HUMAN\n" +
-                        "2 - DWARF\n" +
-                        "3 - ELF");
+    }
 
-                int n = choosingNumber(4);
-// <<<<<<< HEAD
-        //         while(n == 0){
-	// 				n = choosingNumber(4);
-	// 			}
-        //         switch (n){
-	// 				default: return new Human(new SquarePattern());
-	// 				case 2: return new Dwarf(new SquarePattern());
-	// 				case 3: return new Elf(new SquarePattern());
-        //         }
-        // }
+    public class startButtonReaction implements ActionListener {
 
-        // public static void printStats(Player player){
-        //                 System.out.println(player.getClass().getSimpleName()
-        //                 + "\tHP: " + player.getHp()
-        //                 + "\tDmg: "+ player.getDmg()
-        //                 + "\tSpeed: " + player.getSpeed());
-// =======
+        @Override
+        public void actionPerformed(ActionEvent e) {
 
-                return new Player((Friend) NPCFactory.addCharacter(n-1));
+            frame.dispose();
         }
+    }
 
-        public static void load(Player player, Board board){
+    public static Friend GUI_chooseCharacter () {
 
-                Scanner scanner = new Scanner(System.in);
-
-
-                if(loadPlayer(player)){ //load player tworzy Playera z danych z pliku oraz zwraca true jesli plik jest pusty(wtedy player pozostaje domyslny)
-                        player = chooseCharacterMenu();
-                }
-                else{
-                        System.out.println("Choose:\n" +
-                                "1 - if you want to use data from previous game\n" +
-                                "2 - if you want to start from the beginning\n");
-                        int n = scanner.nextInt();
-                        if(n == 1){
-                                LoadBoard(board);
-                        }
-                        else{
-                                player = chooseCharacterMenu();
-                        }
-                }
+        switch (chosenCharacter) {
+            default:
+                return new Human(new SquarePattern());
+            case 2:
+                return new Dwarf(new SquarePattern());
+            case 3:
+                return new Elf(new SquarePattern());
         }
+    }
 
-        public static void printStats(){
 
-                        System.out.println(NPCFactory.getCharacters().get(0).getClass().getSimpleName()
-                        + "\tHP: " + NPCFactory.getCharacters().get(0).getHp()
-                        + "\tDmg: "+ NPCFactory.getCharacters().get(0).getDmg()
-                        + "\tSpeed: " + NPCFactory.getCharacters().get(0).getSpeed());
+    public static void start() {
 
+        load();
+    }
+
+    public static void printStats(Player player) {
+        System.out.println(player.getClass().getSimpleName()
+                + "\tHP: " + player.getHp()
+                + "\tDmg: " + player.getDmg()
+                + "\tSpeed: " + player.getSpeed());
+    }
+
+    public static void load() {
+        File file = new File("Player.ser");
+
+        if (PlayerAPI.checkFile(file)) {
+
+            if (!startNewGame) {
+                Game.player = PlayerAPI.loadPlayer();
+                Game.board = new Board(Game.player);
+                LoadBoard(Game.board);
+                NpcAPI.LoadNPC();
+            } else {
+                startGame();
+            }
+        } else {
+            startGame();
         }
+    }
 
+    public static void startGame() { //from the beginning
+        Game.player = new Player(GUI_chooseCharacter());
+        Game.board = new Board(Game.player);
+        NPC_generator_NEW.generateNPC(Game.board);
+    }
 }

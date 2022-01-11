@@ -3,8 +3,9 @@ package game.TeamProjectGame.Characters;
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.MeetingAndFight.MeetingAndFight;
 
+import java.io.Serializable;
 
-public abstract class Character {
+public abstract class Character implements Serializable {
 
     //fields
     private int x = 0;
@@ -18,13 +19,6 @@ public abstract class Character {
 
     //constructor
 
-    public Character() {
-        hp = 1;
-        dmg = 1;
-        speed = 1;
-
-    }
-
     public Character(int hp, int dmg, int speed, char symbol) {
 
         this.hp = hp;
@@ -35,6 +29,7 @@ public abstract class Character {
 
     //methods
 
+    //finds the NPC standing at given coordinates and initiates meeting
     private void meet(int y, int x, Board board) {
 
         for (int i = 0; i < NPCFactory.getCharacters().size(); i++) {
@@ -45,6 +40,7 @@ public abstract class Character {
         }
     }
 
+    //checks nearby squares for NPCs
     private void surroundings(Board board) {
         String npc = "hdeDOP";
 
@@ -65,71 +61,79 @@ public abstract class Character {
         }
     }
 
+    //moves position on map and changes coordinates if we're able to
     public void moveCharacter(int further, Board board) {
+
         Board.board[getY()][getX()] = ' ';
 
         switch(further) {
             case 2:
             {
                 if ( y + 1 < board.HEIGHT ) {
-
                     if ( Board.board[y+1][x] == ' ' ) {
                         y++;
                     }
-
                 }
-
-                surroundings(board);
                 break;
-
             }
             case 8:
             {
                 if ( y > 0 ) {
-
                     if ( Board.board[y-1][x] == ' ' ) {
                         y--;
                     }
                 }
-
-                surroundings(board);
                 break;
-
             }
             case 6:
             {
                 if ( x + 1 < board.WIDTH ) {
-
                     if ( Board.board[y][x+1] == ' ' ) {
                         x++;
                     }
                 }
-
-                surroundings(board);
                 break;
-
             }
             case 4:
             {
                 if ( x > 0 ) {
-
                     if ( Board.board[y][x-1] == ' ' ) {
                         x--;
                     }
                 }
-
-                surroundings(board);
                 break;
-
             }
             default: {
                 System.out.println("Please use NumPad to move");
                 break;
             }
-
         }
 
         Board.board[getY()][getX()] = symbol;
+        surroundings(board);
+    }
+
+    //returns a type[] array with previous coordinates
+    // c = [x,y]
+    public int [] uncodeCoordinates(int lastMove) {
+        int[] c = new int[2];
+
+        switch(lastMove) {
+            case 8:
+                c[0] = getY()+1;
+                c[1] = getX();
+            case 2:
+                c[0] = getY()-1;
+                c[1] = getX();
+            case 4:
+                c[0] = getY();
+                c[1] = getX()+1;
+            case 6:
+                c[0] = getY();
+                c[1] = getX()-1;
+        }
+
+        return c;
     }
 
     //geters
@@ -174,5 +178,9 @@ public abstract class Character {
 
     public int getSpeed() {
         return speed;
+    }
+
+    public char getSymbol() {
+        return symbol;
     }
 }
