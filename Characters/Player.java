@@ -27,4 +27,8 @@ public class Player extends Character implements Serializable {
 		return this.cry;
 	}
 
+	public int[] oldCoordinates(int lastMove) {
+		return uncodeCoordinates(lastMove);
+	}
+
 }
