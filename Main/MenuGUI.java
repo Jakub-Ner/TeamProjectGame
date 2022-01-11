@@ -1,4 +1,4 @@
-package game.TeamProjectGame;
+package game.TeamProjectGame.Main;
 
 import game.TeamProjectGame.Characters.Friends.Dwarf;
 import game.TeamProjectGame.Characters.Friends.Elf;
@@ -148,17 +148,8 @@ public class MenuGUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
             frame.dispose();
         }
     }
-
-
-
-
-
-
-
-
 
 }
