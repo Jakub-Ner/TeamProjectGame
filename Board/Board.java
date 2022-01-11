@@ -4,9 +4,7 @@ import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.NPCFactory;
 import game.TeamProjectGame.Characters.Npc;
 
-import java.util.Arrays;
 import java.util.Random;
-
 
 public class Board {
     public final int HEIGHT = 25;

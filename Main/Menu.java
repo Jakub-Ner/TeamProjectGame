@@ -1,20 +1,11 @@
-package game.TeamProjectGame;
+package game.TeamProjectGame.Main;
 
 import game.TeamProjectGame.API.*;
 import game.TeamProjectGame.Board.*;
-import game.TeamProjectGame.Characters.Friends.*;
 import game.TeamProjectGame.Characters.Player;
-import game.TeamProjectGame.MovePattern.SquarePattern;
-import game.TeamProjectGame.Game;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.Serializable;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 import static game.TeamProjectGame.API.BoardAPI.LoadBoard;
 
@@ -54,10 +45,8 @@ public class Menu implements Serializable {
     }
 
     public void startMenu() {
-
         menuGUI.drawMenu();
         load();
-
     }
 
 

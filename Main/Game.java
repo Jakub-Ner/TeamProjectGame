@@ -1,10 +1,6 @@
-package game.TeamProjectGame;
+package game.TeamProjectGame.Main;
 
-import game.TeamProjectGame.API.BoardAPI;
-import game.TeamProjectGame.API.PlayerAPI;
 import game.TeamProjectGame.Board.Board;
-import game.TeamProjectGame.Characters.Character;
-import game.TeamProjectGame.Characters.NPCFactory;
 import game.TeamProjectGame.Characters.Player;
 
 import javax.swing.border.EmptyBorder;
@@ -12,8 +8,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 import javax.swing.*;
 
 public class Game implements ActionListener {
