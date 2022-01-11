@@ -1,11 +1,9 @@
 package game.TeamProjectGame.API;
 
 import game.TeamProjectGame.Board.Board;
-import game.TeamProjectGame.Characters.Player;
-import game.TeamProjectGame.Game;
+import game.TeamProjectGame.Main.Game;
 
 import java.io.*;
-import java.util.Scanner;
 
 public class BoardAPI {
 	public static void SaveBoard(Board board){

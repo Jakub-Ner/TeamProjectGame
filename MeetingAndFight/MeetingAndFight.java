@@ -11,8 +11,8 @@ import game.TeamProjectGame.Characters.Friends.Friend;
 
 
 import game.TeamProjectGame.Characters.Villains.Villain;
-import game.TeamProjectGame.Game;
-import game.TeamProjectGame.Menu;
+import game.TeamProjectGame.Main.Game;
+import game.TeamProjectGame.Main.Menu;
 
 import javax.swing.*;
 
