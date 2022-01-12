@@ -40,6 +40,9 @@ public abstract class Npc extends Character implements Serializable {
 	}
 
 	public int[] oldCoordinates() {
+		//lastMove zaczyna jako -1, niezbędny jest warunek by funkcja się nie wykrzaczała
+		if(-1 == lastMove) return uncodeCoordinates(pattern.pattern()[0]);
+
 		return uncodeCoordinates(pattern.pattern()[lastMove % pattern.pattern().length]);
 	}
 
