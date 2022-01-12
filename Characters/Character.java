@@ -4,6 +4,8 @@ import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.MeetingAndFight.MeetingAndFight;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Vector;
 
 public abstract class Character implements Serializable {
 
@@ -17,10 +19,11 @@ public abstract class Character implements Serializable {
 
     protected char symbol;
 
+    private Vector<int[]> moves = new Vector<>();
+
     //constructor
 
     public Character(int hp, int dmg, int speed, char symbol) {
-
         this.hp = hp;
         this.dmg = dmg;
         this.speed = speed;
@@ -64,7 +67,10 @@ public abstract class Character implements Serializable {
     //moves position on map and changes coordinates if we're able to
     public void moveCharacter(int further, Board board) {
 
-        Board.board[getY()][getX()] = ' ';
+        Board.board[y][x] = ' ';
+
+        moves.add(new int[]{y, x});
+
 
         switch(further) {
             case 2:
@@ -109,33 +115,19 @@ public abstract class Character implements Serializable {
             }
         }
 
-        Board.board[getY()][getX()] = symbol;
+        Board.board[y][x] = symbol;
         surroundings(board);
     }
 
-    public int [] uncodeCoordinates(int lastMove) {
-        int[] c = new int[2];
+    public int[] oldCoordinates(){
+        return moves.lastElement();
+    }
 
-        switch(lastMove) {
-            case 8:
-                c[0] = getY() + 1;
-                c[1] = getX();
-                break;
-            case 2:
-                c[0] = getY()-1;
-                c[1] = getX();
-                break;
-            case 4:
-                c[0] = getY();
-                c[1] = getX()+1;
-                break;
-            case 6:
-                c[0] = getY();
-                c[1] = getX()-1;
-                break;
-        }
+    public void firstCoordinates(int x, int y){
+        this.x = x;
+        this.y = y;
 
-        return c;
+        moves.add(new int[]{y, x});
     }
 
     //geters

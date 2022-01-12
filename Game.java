@@ -16,15 +16,15 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.*;
 
-public class Game implements ActionListener{
+public class Game implements ActionListener {
 
 	public static Player player;
 	public static Board board;
-	private int input=-1;
+	private int input = -1;
 	public static GUIGame GUIWindow;
 	public static Menu menu = new Menu();
 
-	public void run(){
+	public void run() {
 
 		menu.drawMenu();
 		menu.start();
@@ -37,8 +37,7 @@ public class Game implements ActionListener{
 	}
 
 	//adds action listeners
-	public void AddAL ()
-	{
+	public void AddAL() {
 		GUIWindow.getW().addActionListener(this);
 		GUIWindow.getS().addActionListener(this);
 		GUIWindow.getA().addActionListener(this);
@@ -46,8 +45,7 @@ public class Game implements ActionListener{
 	}
 
 	//updating board in gui after a move
-	public void UpdateBoardGUI2 (JTextArea BoardArea)
-	{
+	public void UpdateBoardGUI2(JTextArea BoardArea) {
 		char newboard[][] = board.rewriteBoard2();
 		//clear textarea
 		BoardArea.setText("");
@@ -60,8 +58,7 @@ public class Game implements ActionListener{
 	}
 
 	//method used to finish the game in GUI
-	public void GameOverMan ()
-	{
+	public void GameOverMan() {
 
 		GUIWindow.getBoardArea().setText(null);
 		GUIWindow.getBoardArea().append("" +
@@ -83,14 +80,10 @@ public class Game implements ActionListener{
 		GUIWindow.getD().setEnabled(false);
 		player.setHp(0);
 		printStatsGUI();
-
-
-
 	}
 
 	//updating player stats
-	public void printStatsGUI ()
-	{
+	public void printStatsGUI() {
 		GUIWindow.getPlayerstats().setText(null);
 
 		int PlayerHp = player.getHp();
@@ -103,50 +96,33 @@ public class Game implements ActionListener{
 		GUIWindow.getPlayerstats().append(" Speed: " + PlayerSpeed + "\n");
 	}
 
-	public void UpdateBoardGUI ()
-	{
-		//trzeba jeszcze dodac warunek zeby nie usunal npc ktory w tym samym ruchu wejdzie w miejsce w ktorym byl player
+	public void UpdateBoardGUI() {
+		for (Npc c : NPCFactory.getCharacters()) {
+			if(c.oldCoordinates()[0] == c.getY() && c.oldCoordinates()[1] == c.getX()) continue;
 
-		int [] coordinates = new int[2];
-		String symbol;
-
-		//System.out.println(input);
-
-		//update npc (not working D:)
-		//for (Npc c: NPCFactory.getCharacters())
-		for (int i=0; i<NPCFactory.getCharacters().size(); i++)
-		{
-			Npc c=NPCFactory.getCharacters().get(i);
-			coordinates=c.oldCoordinates();
-			symbol="";
-			symbol+=c.getSymbol();
-			//System.out.println((board.WIDTH+1)*coordinates[0]+coordinates[1] + " " + (board.WIDTH+1)*coordinates[0]+coordinates[1]+1);
-
-			GUIWindow.getBoardArea().replaceRange(" ", ((board.WIDTH+1)*coordinates[0])+coordinates[1], ((board.WIDTH+1)*coordinates[0])+coordinates[1]+1);
-			GUIWindow.getBoardArea().replaceRange(symbol, ((board.WIDTH+1)*c.getY())+c.getX(), ((board.WIDTH+1)*c.getY())+c.getX()+1);
+			GUIWindow.getBoardArea().replaceRange(
+					Character.toString(Board.board[c.oldCoordinates()[0]][c.oldCoordinates()[1]]),
+					((board.WIDTH + 1) * c.oldCoordinates()[0]) + c.oldCoordinates()[1],
+					((board.WIDTH + 1) * c.oldCoordinates()[0]) + c.oldCoordinates()[1] + 1);
+			GUIWindow.getBoardArea().replaceRange(
+					Character.toString(Board.board[c.getY()][c.getX()]),
+					((board.WIDTH + 1) * c.getY()) + c.getX(),
+					((board.WIDTH + 1) * c.getY()) + c.getX() + 1);
 		}
 
-		//update player (working (i hope))
-		coordinates = player.uncodeCoordinates(input);
-		symbol="";
-		symbol+=player.getSymbol();
-
-		//System.out.println("previous coordinates: " + coordinates[0] + " " + coordinates[1]);
-		//System.out.println("player's coordinates: " + player.getY() + " " + player.getX());
-		//System.out.println(board.WIDTH+1);
-
-		int temp = ((board.WIDTH+1)*coordinates[0])+coordinates[1];
-
-		//System.out.println((board.WIDTH+1)*coordinates[0]+coordinates[1] + " " + (board.WIDTH+1)*coordinates[0]+coordinates[1]+1);
-		//GUIWindow.getBoardArea().insert(" ", ((board.WIDTH+1)*coordinates[0])+coordinates[1]);
-		//GUIWindow.getBoardArea().insert(symbol,((board.WIDTH+1)*player.getY())+player.getX());
-		GUIWindow.getBoardArea().replaceRange(" ",temp, temp+1);
-		GUIWindow.getBoardArea().replaceRange(symbol, ((board.WIDTH+1)*player.getY())+player.getX(), ((board.WIDTH+1)*player.getY())+player.getX()+1);
+		GUIWindow.getBoardArea().replaceRange(
+				Character.toString(Board.board[player.oldCoordinates()[0]][player.oldCoordinates()[1]]),
+				((board.WIDTH + 1) * player.oldCoordinates()[0]) + player.oldCoordinates()[1],
+				((board.WIDTH + 1) * player.oldCoordinates()[0]) + player.oldCoordinates()[1] + 1);
+		GUIWindow.getBoardArea().replaceRange(
+				Character.toString(Board.board[player.getY()][player.getX()]),
+				((board.WIDTH + 1) * player.getY()) + player.getX(),
+				((board.WIDTH + 1) * player.getY()) + player.getX() + 1);
 	}
 
-	public void actionPerformed (ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {
 
-		if (player.getHp()<=0)
+		if (player.getHp() <= 0)
 			GameOverMan();
 		else {
 			//zamienia wybrana litere na liczbe, ktora jest wykorzystywana w moveCharacter do poruszenia postaci w zadanym kierunku

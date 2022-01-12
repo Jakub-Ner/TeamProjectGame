@@ -6,7 +6,6 @@ import game.TeamProjectGame.MovePattern.MovePattern;
 import java.io.Serializable;
 
 public abstract class Npc extends Character implements Serializable {
-
 	//fields
 
 	final private int wait = 10;
@@ -38,14 +37,6 @@ public abstract class Npc extends Character implements Serializable {
 			turn = wait;
 		}
 	}
-
-	public int[] oldCoordinates() {
-		//lastMove zaczyna jako -1, niezbędny jest warunek by funkcja się nie wykrzaczała
-		if(-1 == lastMove) return uncodeCoordinates(pattern.pattern()[0]);
-
-		return uncodeCoordinates(pattern.pattern()[lastMove % pattern.pattern().length]);
-	}
-
 
 	//getters
 
