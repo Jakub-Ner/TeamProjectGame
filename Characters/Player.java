@@ -21,6 +21,7 @@ public class Player extends Character implements Serializable {
 	public Player(Friend type){
 		super(type.getHp(), type.getDmg(), type.getSpeed(), 'B');
 		this.cry = type.getCry();
+		firstCoordinates(0, 0);
 	}
 
 	public Cry getCry(){
