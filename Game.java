@@ -26,7 +26,7 @@ public class Game implements ActionListener{
 	private JButton A;
 	private JButton D;
 	private JTextArea BoardArea;
-	private JTextArea playerstats;
+	private JTextArea playerstats = new JTextArea(5,5);
 	private int input=-1;
 	//private boolean run = true;
 	public static Menu menu = new Menu();

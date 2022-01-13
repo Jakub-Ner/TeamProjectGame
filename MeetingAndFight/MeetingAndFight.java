@@ -39,7 +39,7 @@ public class MeetingAndFight {
 
 		if (friend.getHp() > 0) {
 			System.out.println("You won the fight!");
-			Menu.printStats(friend);
+			//Menu.printStats(friend);
 		} else
 			System.out.println("You lost the fight!");
 

@@ -170,12 +170,12 @@ public class Menu implements Serializable {
         load();
     }
 
-    public static void printStats(Player player) {
-        System.out.println(player.getClass().getSimpleName()
-                + "\tHP: " + player.getHp()
-                + "\tDmg: " + player.getDmg()
-                + "\tSpeed: " + player.getSpeed());
-    }
+    //public static void printStats(Player player) {
+    //    System.out.println(player.getClass().getSimpleName()
+    //            + "\tHP: " + player.getHp()
+    //            + "\tDmg: " + player.getDmg()
+    //            + "\tSpeed: " + player.getSpeed());
+    //}
 
     public static void load() {
 
