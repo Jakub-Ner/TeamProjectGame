@@ -81,7 +81,7 @@ public class Game implements ActionListener{
 		BoardArea = new JTextArea();
 		playerstats = new JTextArea();
 		JTextField Title = new JTextField("Welcome to the game!");
-		JTextField WSADtitle = new JTextField("Use WSAD buttons to move your character\n\n");
+		JTextField WSADtitle = new JTextField("Use WSAD buttons to move your character");
 
 		//user can't change the text in textfields and textareas
 		playerstats.setEditable(false);
