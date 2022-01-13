@@ -10,8 +10,8 @@ import java.util.Random;
 
 
 public class Board {
-    public final int HEIGHT = 25;
-    public final int WIDTH = 61;
+    public final int HEIGHT = 35;
+    public final int WIDTH = 100;
 
     public static char[][] board;
     Character character;
@@ -78,12 +78,12 @@ public class Board {
         int[][] fields = new int[][]{
                 {0, 0}, {0, 1},
                 {1, 0}, {1, 1}};
-        partOfBoard(520, fields);
+        partOfBoard(1120, fields);
 
         int[][] fields2 = new int[][]{
                 {board.length - 2, board[0].length - 2}, {board.length - 2, board[0].length - 1},
                 {board.length - 1, board[0].length - 2}, {board.length - 1, board[0].length - 1}};
-        partOfBoard(352, fields2);
+        partOfBoard(1052, fields2);
 
     }
 
