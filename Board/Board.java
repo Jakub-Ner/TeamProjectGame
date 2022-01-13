@@ -4,6 +4,7 @@ import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.NPCFactory;
 import game.TeamProjectGame.Characters.Npc;
 
+import javax.swing.*;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -135,17 +136,17 @@ public class Board {
         for (int i = 0; i < 10; i++) System.out.println("");
     }
 
-    public void updateBoard(int goFurther) {
+    public void updateBoard(int goFurther, JLabel messages) {
          //erases previous location
 
-        character.moveCharacter(goFurther, this);
+        character.moveCharacter(goFurther, this,messages);
 
-		updateNPC();
+		updateNPC(messages);
     }
 
-    private void updateNPC(){
+    private void updateNPC(JLabel messages){
 		for (Npc c: NPCFactory.getCharacters()) {
-			c.move(this);
+			c.move(this, messages);
 		}
     }
 }

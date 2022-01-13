@@ -14,18 +14,22 @@ import game.TeamProjectGame.Characters.Villains.Villain;
 import game.TeamProjectGame.Game;
 import game.TeamProjectGame.Menu;
 
+import javax.swing.*;
+
+
 public class MeetingAndFight {
 
-	public static void Meeting(Character char1, Character char2, Board board) {
+
+	public static void Meeting(Character char1, Character char2, Board board, JLabel messages) {
 		if(char1 instanceof Player){
 			// Przyjaciel i przyjaciel, tu nie ma walki to dokończe później
 			if (char2 instanceof Friend) {
-				((Player) char1).getCry().friendlyShout();
+				messages.setText(((Player) char1).getCry().friendlyShout());
 			}
 			//  Przyjaciel i wróg, tu będzie wywoływana walka
 			else if (char2 instanceof Villain) {
-				((Player) char1).getCry().battleShout();
-				PlayerFight((Player) char1, char2, board);
+				messages.setText(((Player) char1).getCry().battleShout());
+				PlayerFight((Player) char1, char2, board, messages);
 			}
 		} else{
 			if(char1.getClass() != char2.getClass()){
@@ -34,14 +38,13 @@ public class MeetingAndFight {
 		}
 	}
 
-	public static void PlayerFight(Player friend, Character enemy, Board board) {
+	public static void PlayerFight(Player friend, Character enemy, Board board, JLabel messages) {
 		Fight(friend, enemy, board);
 
 		if (friend.getHp() > 0) {
-			System.out.println("You won the fight!");
-			//Menu.printStats(friend);
+			messages.setText("You won the fight!");
 		} else
-			System.out.println("You lost the fight!");
+			messages.setText("You lost the fight!");
 
 		PlayerAPI.savePlayer(Game.player);
 		BoardAPI.SaveBoard(Game.board);

@@ -21,6 +21,7 @@ public class Game implements ActionListener{
 	public static Player player;
 	public static Board board;
 
+	private JLabel messages = new JLabel(); //AGATA
 	private JButton W;
 	private JButton S;
 	private JButton A;
@@ -82,6 +83,9 @@ public class Game implements ActionListener{
 		playerstats = new JTextArea();
 		JTextField Title = new JTextField("Welcome to the game!");
 		JTextField WSADtitle = new JTextField("Use WSAD buttons to move your character");
+		messages = new JLabel();
+
+
 
 		//user can't change the text in textfields and textareas
 		playerstats.setEditable(false);
@@ -98,11 +102,13 @@ public class Game implements ActionListener{
 		//panels declaration
 		JPanel BoardPanel = new JPanel();
 		JPanel SidePanel = new JPanel();
+		JPanel BottomPanel = new JPanel(); //AGATA
 
 		//filling mainframe with panels
 		mainframe.getContentPane().add(BorderLayout.NORTH, Title);
 		mainframe.getContentPane().add(BorderLayout.CENTER, BoardPanel);
 		mainframe.getContentPane().add(BorderLayout.EAST, SidePanel);
+		mainframe.getContentPane().add(BorderLayout.SOUTH,BottomPanel); ///AGATA
 
 		//setting panels
 		SidePanel.setLayout(new GridBagLayout());
@@ -117,14 +123,20 @@ public class Game implements ActionListener{
 		playerstats.setFont(new Font("Calibri", Font.BOLD, 20));
 		BoardArea.setFont(new Font("Courier New", Font.PLAIN, 20));
 
-
-
 		GridBagConstraints coordinates = new GridBagConstraints();
+
 
 		SidePanel.add(playerstats);
 		coordinates.fill = GridBagConstraints.BOTH;
 		BoardPanel.add(BoardArea);
+		messages.setText("");
+		BottomPanel.add(messages); //AGATA
+		messages.setFont(new Font("Calibri",Font.ITALIC,40));
 
+
+
+		JLabel jLabel = new JLabel("");
+		BottomPanel.add(jLabel);
 		UpdateBoardGUI2(); //we have to do it for the first time to display the board
 		printStatsGUI(); //we have to do it for the first time to display player stats
 
@@ -223,7 +235,7 @@ public class Game implements ActionListener{
 				input = 6;
 			}
 
-			board.updateBoard(input);
+			board.updateBoard(input,messages);
 			UpdateBoardGUI2();
 			printStatsGUI();
 		}
