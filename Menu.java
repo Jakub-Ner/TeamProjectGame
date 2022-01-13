@@ -22,8 +22,8 @@ public class Menu implements Serializable {
     //creates GUI (menu where one can choose a player character and decide if to play a new game or the already existing one)
     private JDialog frame = new JDialog();
     private JLabel welcome = new JLabel("Welcome to The Game! ");
-    Font specialFont = new Font("Impact", Font.ITALIC,33);
-    Font casualFont = new Font("Palatino", Font.PLAIN,33);
+    static public Font specialFont = new Font("Impact", Font.ITALIC,33);
+    static public Font casualFont = new Font("Palatino", Font.PLAIN,33);
 
 
     private JRadioButton loadButton1 = new JRadioButton("New game");
@@ -108,6 +108,7 @@ public class Menu implements Serializable {
 
         frame.setVisible(true);
 
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public class loadButtonReaction implements ActionListener {
