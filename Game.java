@@ -103,6 +103,7 @@ public class Game implements ActionListener{
 		JPanel BoardPanel = new JPanel();
 		JPanel SidePanel = new JPanel();
 		JPanel BottomPanel = new JPanel(); //AGATA
+		JPanel MovePanel = new JPanel();
 
 		//filling mainframe with panels
 		mainframe.getContentPane().add(BorderLayout.NORTH, Title);
