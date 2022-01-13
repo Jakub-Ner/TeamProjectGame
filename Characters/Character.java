@@ -44,7 +44,6 @@ public abstract class Character implements Serializable {
     private void surroundings(Board board, JLabel messages) {
         String npc = "hdeDOP";
 
-
         if ( ( y+1 < board.HEIGHT) && (npc.indexOf( board.board[y+1][x] ) != -1) ) {
             meet( (y+1), x, board, messages);
         }
