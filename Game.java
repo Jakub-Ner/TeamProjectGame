@@ -81,7 +81,7 @@ public class Game implements ActionListener{
 		BoardArea = new JTextArea();
 		playerstats = new JTextArea();
 		JTextField Title = new JTextField("Welcome to the game!");
-		JTextField WSADtitle = new JTextField("Use WSAD buttons to move your character");
+		JTextField WSADtitle = new JTextField("Use WSAD buttons to move your character\n\n");
 
 		//user can't change the text in textfields and textareas
 		playerstats.setEditable(false);
@@ -98,6 +98,7 @@ public class Game implements ActionListener{
 		//panels declaration
 		JPanel BoardPanel = new JPanel();
 		JPanel SidePanel = new JPanel();
+		JPanel MovePanel = new JPanel();
 
 		//filling mainframe with panels
 		mainframe.getContentPane().add(BorderLayout.NORTH, Title);
@@ -105,11 +106,11 @@ public class Game implements ActionListener{
 		mainframe.getContentPane().add(BorderLayout.EAST, SidePanel);
 
 		//setting panels
-		SidePanel.setLayout(new GridBagLayout());
+		MovePanel.setLayout(new GridBagLayout());
 		BoardPanel.setLayout(new GridBagLayout());
 		SidePanel.setLayout(new BoxLayout(SidePanel, BoxLayout.Y_AXIS));
 		SidePanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
-		SidePanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
+		MovePanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
 
 		//setting text fonts
 		Title.setFont(new Font("Calibri", Font.ITALIC, 25));
@@ -133,29 +134,29 @@ public class Game implements ActionListener{
 		coordinates.gridx = 0;
 		coordinates.gridy = 0;
 		coordinates.gridwidth = 4;
-		SidePanel.add(WSADtitle, coordinates);
+		MovePanel.add(WSADtitle, coordinates);
 
 		coordinates.ipadx = 8;
 		coordinates.ipady = 16;
 		coordinates.gridwidth = 1;
 		coordinates.gridx = 1;
 		coordinates.gridy = 1;
-		SidePanel.add(W, coordinates);
+		MovePanel.add(W, coordinates);
 
 		coordinates.anchor = GridBagConstraints.PAGE_END;
 		coordinates.gridx = 1;
 		coordinates.gridy = 2;
-		SidePanel.add(S, coordinates);
+		MovePanel.add(S, coordinates);
 
 		coordinates.gridx = 0;
 		coordinates.gridy = 2;
-		SidePanel.add(A, coordinates);
+		MovePanel.add(A, coordinates);
 
 		coordinates.gridx = 2;
 		coordinates.gridy = 2;
-		SidePanel.add(D, coordinates);
+		MovePanel.add(D, coordinates);
 
-
+		SidePanel.add(MovePanel);
 		//mainframe settings
 		mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainframe.pack();
