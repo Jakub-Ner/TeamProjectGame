@@ -6,6 +6,7 @@ import game.TeamProjectGame.Characters.NPCFactory;
 import game.TeamProjectGame.Characters.Npc;
 import game.TeamProjectGame.Characters.Player;
 import game.TeamProjectGame.GUI.GUIGame;
+import game.TeamProjectGame.GUI.StatusBox;
 
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -24,12 +25,15 @@ public class Game implements ActionListener {
 	public static GUIGame GUIWindow;
 	public static Menu menu = new Menu();
 
+	private StatusBox statusBox;
+
 	public void run() {
+		statusBox = new StatusBox(new Font("Courier New", Font.PLAIN, 13));
 
 		menu.drawMenu();
 		menu.start();
 
-		GUIWindow = new GUIGame();
+		GUIWindow = new GUIGame(statusBox);
 		AddAL();
 		UpdateBoardGUI2(GUIWindow.getBoardArea()); //we have to do it for the first time to display the board
 		printStatsGUI(); //we have to do it for the first time to display player stats
@@ -118,6 +122,8 @@ public class Game implements ActionListener {
 				Character.toString(Board.board[player.getY()][player.getX()]),
 				((board.WIDTH + 1) * player.getY()) + player.getX(),
 				((board.WIDTH + 1) * player.getY()) + player.getX() + 1);
+
+		statusBox.tick();
 	}
 
 	public void actionPerformed(ActionEvent e) {

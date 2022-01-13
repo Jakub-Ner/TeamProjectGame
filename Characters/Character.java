@@ -19,7 +19,7 @@ public abstract class Character implements Serializable {
 
     protected char symbol;
 
-    private Vector<int[]> moves = new Vector<>();
+    private int[] lastMove = {0, 0};
 
     //constructor
 
@@ -69,7 +69,7 @@ public abstract class Character implements Serializable {
 
         Board.board[y][x] = ' ';
 
-        moves.add(new int[]{y, x});
+        lastMove = new int[]{y, x};
 
 
         switch(further) {
@@ -120,14 +120,14 @@ public abstract class Character implements Serializable {
     }
 
     public int[] oldCoordinates(){
-        return moves.lastElement();
+        return lastMove;
     }
 
     public void firstCoordinates(int x, int y){
         this.x = x;
         this.y = y;
 
-        moves.add(new int[]{y, x});
+        lastMove = new int[]{y, x};
     }
 
     //geters

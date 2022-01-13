@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class ElvenCries implements Cry, Serializable {
 	@Override
-	public void battleShout() { System.out.println("*Battle cry in Elvish*"); }
+	public String battleShout() { return "*Battle cry in Elvish*"; }
 
 	@Override
-	public void friendlyShout() { System.out.println("*Friendly greeting in Elvish*"); }
+	public String friendlyShout() { return "*Friendly greeting in Elvish*"; }
 }

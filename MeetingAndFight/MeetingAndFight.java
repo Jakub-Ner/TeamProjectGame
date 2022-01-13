@@ -11,20 +11,23 @@ import game.TeamProjectGame.Characters.Friends.Friend;
 
 
 import game.TeamProjectGame.Characters.Villains.Villain;
+import game.TeamProjectGame.GUI.StatusBox;
 import game.TeamProjectGame.Game;
 import game.TeamProjectGame.Menu;
 
 public class MeetingAndFight {
+	private static StatusBox messageTarget;
+	private final static int messageLifetime = 2;
 
 	public static void Meeting(Character char1, Character char2, Board board) {
 		if(char1 instanceof Player){
 			// Przyjaciel i przyjaciel, tu nie ma walki to dokończe później
 			if (char2 instanceof Friend) {
-				((Player) char1).getCry().friendlyShout();
+				messageTarget.addMessage(((Player) char1).getCry().friendlyShout(), messageLifetime);
 			}
 			//  Przyjaciel i wróg, tu będzie wywoływana walka
 			else if (char2 instanceof Villain) {
-				((Player) char1).getCry().battleShout();
+				messageTarget.addMessage(((Player) char1).getCry().battleShout(), messageLifetime);
 				PlayerFight((Player) char1, char2, board);
 			}
 		} else{
@@ -38,10 +41,10 @@ public class MeetingAndFight {
 		Fight(friend, enemy, board);
 
 		if (friend.getHp() > 0) {
-			System.out.println("You won the fight!");
+			messageTarget.addMessage("You won the fight!", messageLifetime);
 			Menu.printStats(friend);
 		} else
-			System.out.println("You lost the fight!");
+			messageTarget.addMessage("You lost the fight!", messageLifetime);
 
 		PlayerAPI.savePlayer(Game.player);
 		BoardAPI.SaveBoard(Game.board);
@@ -64,5 +67,8 @@ public class MeetingAndFight {
 		} else {
 			board.board[friend.getY()][friend.getX()] = '+';
 		}
+	}
+	public static void setMessageTarget(StatusBox messageTarget1){
+		messageTarget = messageTarget1;
 	}
 }

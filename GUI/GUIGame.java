@@ -1,5 +1,7 @@
 package game.TeamProjectGame.GUI;
 
+import game.TeamProjectGame.MeetingAndFight.MeetingAndFight;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -23,9 +25,12 @@ public class GUIGame {
     private JPanel MovePanel;
     private JPanel StatsPanel;
 
+    //to show messages to user
+    private StatusBox statusBox;
+
 
     //konstruktor
-    public GUIGame ()
+    public GUIGame (StatusBox statusBox)
     {
         mainframe = new JFrame("TeamProjectGame.exe");
         W = new JButton("W");
@@ -42,17 +47,22 @@ public class GUIGame {
         BoardArea.setEditable(false);
         Title.setEditable(false);
         WSADtitle.setEditable(false);
-
+        statusBox.setEditable(false);
 
         //panels declaration
         BoardPanel = new JPanel();
         MovePanel = new JPanel();
         StatsPanel = new JPanel();
 
+        //test
+        JPanel rightPanel = new JPanel();
+
+
+
         //filling mainframe with panels
         mainframe.getContentPane().add(BorderLayout.NORTH, Title);
         mainframe.getContentPane().add(BorderLayout.CENTER, BoardPanel);
-        mainframe.getContentPane().add(BorderLayout.EAST, MovePanel);
+        mainframe.getContentPane().add(BorderLayout.EAST, rightPanel);
         mainframe.getContentPane().add(BorderLayout.WEST, StatsPanel);
 
         //setting panels
@@ -61,6 +71,7 @@ public class GUIGame {
         StatsPanel.setLayout(new BoxLayout(StatsPanel, BoxLayout.Y_AXIS));
         StatsPanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
         MovePanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 
         //setting text fonts
         Title.setFont(new Font("Calibri", Font.ITALIC, 16));
@@ -106,12 +117,18 @@ public class GUIGame {
         coordinates.gridy = 2;
         MovePanel.add(D, coordinates);
 
+        //test
+        rightPanel.add(statusBox);
+        rightPanel.add(MovePanel);
 
         //mainframe settings
         mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainframe.pack();
         mainframe.setSize(1000, 500);
         mainframe.setVisible(true);
+
+        //sets message target for MeetngAndFight
+        MeetingAndFight.setMessageTarget(statusBox);
     }
 
     public JButton getW() {
