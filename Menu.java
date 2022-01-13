@@ -20,12 +20,11 @@ import static game.TeamProjectGame.API.BoardAPI.LoadBoard;
 
 public class Menu implements Serializable {
     //creates GUI (menu where one can choose a player character and decide if to play a new game or the already existing one)
-    private int framesize_X = 450;
-    private int framesize_Y = 200;
-
     private JDialog frame = new JDialog();
+    private JLabel welcome = new JLabel("Welcome to The Game! ");
+    Font specialFont = new Font("Impact", Font.ITALIC,33);
+    Font casualFont = new Font("Palatino", Font.PLAIN,33);
 
-    private JLabel welcome = new JLabel("Welcome to our game!");
 
     private JRadioButton loadButton1 = new JRadioButton("New game");
     private JRadioButton loadButton2 = new JRadioButton("Load game from file");
@@ -63,6 +62,7 @@ public class Menu implements Serializable {
         frame.getContentPane().add(BorderLayout.EAST, panel4);
 
         panel1.add(welcome);
+        welcome.setFont(specialFont);
 
         loadGroup.add(loadButton1);
         loadGroup.add(loadButton2);
@@ -101,7 +101,8 @@ public class Menu implements Serializable {
 
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        frame.setSize(framesize_X,framesize_Y);
+        Dimension dimensions = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setSize((int)dimensions.getWidth(), (int)dimensions.getHeight());
 
         frame.setLocationRelativeTo(null);
 
