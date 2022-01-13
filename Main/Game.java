@@ -1,6 +1,10 @@
-package game.TeamProjectGame.Main;
+package game.TeamProjectGame;
 
+import game.TeamProjectGame.API.BoardAPI;
+import game.TeamProjectGame.API.PlayerAPI;
 import game.TeamProjectGame.Board.Board;
+import game.TeamProjectGame.Characters.Character;
+import game.TeamProjectGame.Characters.NPCFactory;
 import game.TeamProjectGame.Characters.Player;
 
 import javax.swing.border.EmptyBorder;
@@ -8,9 +12,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 import javax.swing.*;
 
-public class Game implements ActionListener {
+public class Game implements ActionListener{
 
 	public static Player player;
 	public static Board board;
@@ -20,28 +26,48 @@ public class Game implements ActionListener {
 	private JButton A;
 	private JButton D;
 	private JTextArea BoardArea;
-	private JTextArea playerstats;
-	private int input = -1;
+	private JTextArea playerstats = new JTextArea(5,5);
+	private int input=-1;
 	//private boolean run = true;
 	public static Menu menu = new Menu();
 
-	public void run() {
-		//Scanner scanner = new Scanner(System.in);
-		menu.startMenu();
+    public void run(){
+
+		menu.drawMenu();
+        menu.start();
 
 		Game GUIWindow = new Game();
 		GUIWindow.DrawGUI();
-	}
+
+
+    }
 
 	//updating board in gui after a move
-	public void UpdateBoardGUI2() {
+	public void UpdateBoardGUI2 ()
+	{
+		char newboard[][] = board.rewriteBoard2();
 		//clear textarea
 		BoardArea.setText("");
 
 		//add new board to cleared textarea
-		for (int i = 0; i < Board.board.length; i++) {
-			BoardArea.append(Arrays.toString(Board.board[i]));
+		for (int i = 0; i < newboard.length; i++) {
+			BoardArea.append(String.copyValueOf(newboard[i]));
 			BoardArea.append(" \n");
+		}
+	}
+
+
+	public void UpdateBoardGUI ()
+	{
+		String Sboard[] = board.rewriteBoard();
+
+		//clear textarea
+		BoardArea.setText("");
+
+		//add new board to cleared textarea
+		for (int i = 0; i < Sboard.length; i++) {
+			BoardArea.append(Sboard[i]);
+			BoardArea.append("\n");
 		}
 	}
 
@@ -91,7 +117,8 @@ public class Game implements ActionListener {
 		Title.setFont(new Font("Calibri", Font.ITALIC, 16));
 		WSADtitle.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 		playerstats.setFont(new Font("Calibri", Font.BOLD, 14));
-		//BoardArea.setFont(new Font("Console Font", Font.PLAIN, 13));
+		BoardArea.setFont(new Font("Courier New", Font.PLAIN, 13));
+
 
 
 		GridBagConstraints coordinates = new GridBagConstraints();
@@ -134,26 +161,27 @@ public class Game implements ActionListener {
 		//mainframe settings
 		mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainframe.pack();
-		mainframe.setSize(1400, 500);
+		mainframe.setSize(1000, 500);
 		mainframe.setVisible(true);
 	}
 
 	//method used to finish the game in GUI
-	public void GameOverMan() {
+	public void GameOverMan ()
+	{
 		BoardArea.setText(null);
 		BoardArea.append("" +
-				"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  \n" +
-				" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒\n" +
-				"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒\n" +
-				"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  \n" +
-				"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒\n" +
-				" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░\n" +
-				"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░\n" +
-				"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ \n" +
-				"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     \n" +
-				"                                                     ░                   \n" +
-				"																		  \n" +
-				"             Please use the X Windows button to close the game             ");
+					"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  \n" +
+					" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒\n" +
+					"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒\n" +
+					"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  \n" +
+					"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒\n" +
+					" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░\n" +
+					"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░\n" +
+					"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ \n" +
+					"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     \n" +
+					"                                                     ░                   \n" +
+					"																		  \n" +
+					"             Please use the X Windows button to close the game             ");
 		W.setEnabled(false);
 		S.setEnabled(false);
 		A.setEnabled(false);
@@ -165,7 +193,8 @@ public class Game implements ActionListener {
 	}
 
 	//updating player stats
-	public void printStatsGUI() {
+	public void printStatsGUI ()
+	{
 		playerstats.setText(null);
 
 		int PlayerHp = player.getHp();
@@ -179,12 +208,12 @@ public class Game implements ActionListener {
 	}
 
 
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed (ActionEvent e) {
 
-		if (player.getHp() <= 0)
+		if (player.getHp()<=0)
 			GameOverMan();
 		else {
-
+			//zamienia wybrana litere na liczbe, ktora jest wykorzystywana w moveCharacter do poruszenia postaci w zadanym kierunku
 			if (e.getSource() == W) {
 				input = 8;
 			} else if (e.getSource() == S) {

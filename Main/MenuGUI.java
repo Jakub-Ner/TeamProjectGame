@@ -1,18 +1,25 @@
-package game.TeamProjectGame.Main;
+package game.TeamProjectGame;
 
-import game.TeamProjectGame.Characters.Friends.Dwarf;
-import game.TeamProjectGame.Characters.Friends.Elf;
-import game.TeamProjectGame.Characters.Friends.Friend;
-import game.TeamProjectGame.Characters.Friends.Human;
+import game.TeamProjectGame.API.*;
+import game.TeamProjectGame.Board.*;
+import game.TeamProjectGame.Characters.Friends.*;
+import game.TeamProjectGame.Characters.Player;
 import game.TeamProjectGame.MovePattern.SquarePattern;
+import game.TeamProjectGame.Game;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.Serializable;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
-public class MenuGUI {
+import static game.TeamProjectGame.API.BoardAPI.LoadBoard;
 
+public class Menu implements Serializable {
+    //creates GUI (menu where one can choose a player character and decide if to play a new game or the already existing one)
     private int framesize_X = 450;
     private int framesize_Y = 200;
 
@@ -38,23 +45,14 @@ public class MenuGUI {
     private JPanel panel4 = new JPanel();
     private JPanel panel5 = new JPanel();
 
+    private static boolean startNewGame = true;
 
-    private boolean startNewGame;
+    private static int chosenCharacter;
 
-    private Friend chosenCharacter;
+    private boolean menuON = true;
 
-    public boolean isStartNewGame() {
-        return startNewGame;
-    }
-
-    public Friend getChosenCharacter() {
-        return chosenCharacter;
-    }
-
-    //konstruktor z default wyborami.
-    public MenuGUI() {
-        this.startNewGame = true;
-        this.chosenCharacter = new Human(new SquarePattern());
+    public boolean isMenuON() {
+        return menuON;
     }
 
     public void drawMenu() {
@@ -112,6 +110,7 @@ public class MenuGUI {
     }
 
     public class loadButtonReaction implements ActionListener {
+        //starts new game or loads the previous one depending on players choice
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -127,29 +126,79 @@ public class MenuGUI {
     }
 
     public class charButtonReaction implements ActionListener {
-
+        //creates our player depending on the choice of character in the menu
         @Override
         public void actionPerformed(ActionEvent e) {
 
             if(e.getSource() == charButton1) {
 
-                chosenCharacter = new Human(new SquarePattern());
+                chosenCharacter = 1;
             }else if(e.getSource() == charButton2) {
 
-                chosenCharacter = new Dwarf(new SquarePattern());
+                chosenCharacter = 2;
             }else if(e.getSource() == charButton3) {
 
-                chosenCharacter = new Elf(new SquarePattern());
+                chosenCharacter = 3;
             }
         }
     }
 
     public class startButtonReaction implements ActionListener {
-
+        //clears the menu window
         @Override
         public void actionPerformed(ActionEvent e) {
+
             frame.dispose();
         }
     }
 
+    public static Friend GUI_chooseCharacter () {
+
+        switch (chosenCharacter) {
+            default:
+                return new Human(new SquarePattern());
+            case 2:
+                return new Dwarf(new SquarePattern());
+            case 3:
+                return new Elf(new SquarePattern());
+        }
+    }
+
+
+    public static void start() {
+
+        load();
+    }
+
+    //public static void printStats(Player player) {
+    //    System.out.println(player.getClass().getSimpleName()
+    //            + "\tHP: " + player.getHp()
+    //            + "\tDmg: " + player.getDmg()
+    //            + "\tSpeed: " + player.getSpeed());
+    //}
+
+    public static void load() {
+
+        Scanner scanner = new Scanner(System.in);
+        File file = new File("Player.ser");
+        //checks if there's an already existing game (if yes, it loads data from it)
+        if (PlayerAPI.checkFile(file)) {
+            if (!startNewGame) {
+                Game.player = PlayerAPI.loadPlayer();
+                Game.board = new Board(Game.player);
+                LoadBoard(Game.board);
+                NpcAPI.LoadNPC();
+            } else {
+                startGame();
+            }
+        } else {
+            startGame();
+        }
+    }
+
+    public static void startGame() { //from the beginning
+        Game.player = new Player(GUI_chooseCharacter());
+        Game.board = new Board(Game.player);
+        NPC_generator_NEW.generateNPC(Game.board);
+    }
 }
