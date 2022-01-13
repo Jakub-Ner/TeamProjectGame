@@ -21,8 +21,8 @@ public class Menu implements Serializable {
     private JDialog frame = new JDialog();
 
     private JLabel welcome = new JLabel("Welcome to The Game! ");
-    Font specialFont = new Font("Impact", Font.ITALIC,33);
-    Font casualFont = new Font("Palatino", Font.PLAIN,33);
+    static public Font specialFont = new Font("Impact", Font.ITALIC,33);
+    static public Font casualFont = new Font("Palatino", Font.PLAIN,33);
 
 
 
@@ -125,6 +125,7 @@ public class Menu implements Serializable {
 
         frame.setVisible(true);
 
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public class loadButtonReaction implements ActionListener {

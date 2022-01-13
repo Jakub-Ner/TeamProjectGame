@@ -97,33 +97,31 @@ public class Game implements ActionListener{
 
 		//panels declaration
 		JPanel BoardPanel = new JPanel();
-		JPanel MovePanel = new JPanel();
-		JPanel StatsPanel = new JPanel();
+		JPanel SidePanel = new JPanel();
 
 		//filling mainframe with panels
 		mainframe.getContentPane().add(BorderLayout.NORTH, Title);
 		mainframe.getContentPane().add(BorderLayout.CENTER, BoardPanel);
-		mainframe.getContentPane().add(BorderLayout.EAST, MovePanel);
-		mainframe.getContentPane().add(BorderLayout.WEST, StatsPanel);
+		mainframe.getContentPane().add(BorderLayout.EAST, SidePanel);
 
 		//setting panels
-		MovePanel.setLayout(new GridBagLayout());
+		SidePanel.setLayout(new GridBagLayout());
 		BoardPanel.setLayout(new GridBagLayout());
-		StatsPanel.setLayout(new BoxLayout(StatsPanel, BoxLayout.Y_AXIS));
-		StatsPanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
-		MovePanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
+		SidePanel.setLayout(new BoxLayout(SidePanel, BoxLayout.Y_AXIS));
+		SidePanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
+		SidePanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
 
 		//setting text fonts
-		Title.setFont(new Font("Calibri", Font.ITALIC, 16));
-		WSADtitle.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
-		playerstats.setFont(new Font("Calibri", Font.BOLD, 14));
-		BoardArea.setFont(new Font("Courier New", Font.PLAIN, 13));
+		Title.setFont(new Font("Calibri", Font.ITALIC, 25));
+		WSADtitle.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		playerstats.setFont(new Font("Calibri", Font.BOLD, 20));
+		BoardArea.setFont(new Font("Courier New", Font.PLAIN, 20));
 
 
 
 		GridBagConstraints coordinates = new GridBagConstraints();
 
-		StatsPanel.add(playerstats);
+		SidePanel.add(playerstats);
 		coordinates.fill = GridBagConstraints.BOTH;
 		BoardPanel.add(BoardArea);
 
@@ -135,33 +133,34 @@ public class Game implements ActionListener{
 		coordinates.gridx = 0;
 		coordinates.gridy = 0;
 		coordinates.gridwidth = 4;
-		MovePanel.add(WSADtitle, coordinates);
+		SidePanel.add(WSADtitle, coordinates);
 
 		coordinates.ipadx = 8;
 		coordinates.ipady = 16;
 		coordinates.gridwidth = 1;
 		coordinates.gridx = 1;
 		coordinates.gridy = 1;
-		MovePanel.add(W, coordinates);
+		SidePanel.add(W, coordinates);
 
 		coordinates.anchor = GridBagConstraints.PAGE_END;
 		coordinates.gridx = 1;
 		coordinates.gridy = 2;
-		MovePanel.add(S, coordinates);
+		SidePanel.add(S, coordinates);
 
 		coordinates.gridx = 0;
 		coordinates.gridy = 2;
-		MovePanel.add(A, coordinates);
+		SidePanel.add(A, coordinates);
 
 		coordinates.gridx = 2;
 		coordinates.gridy = 2;
-		MovePanel.add(D, coordinates);
+		SidePanel.add(D, coordinates);
 
 
 		//mainframe settings
 		mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainframe.pack();
-		mainframe.setSize(1000, 500);
+		Dimension dimensions = Toolkit.getDefaultToolkit().getScreenSize();
+		mainframe.setSize((int)dimensions.getWidth(), (int)dimensions.getHeight());
 		mainframe.setVisible(true);
 	}
 
