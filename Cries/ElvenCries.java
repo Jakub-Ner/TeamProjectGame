@@ -7,5 +7,5 @@ public class ElvenCries implements Cry, Serializable {
 	public String battleShout() { return "*Battle cry in Elvish*"; }
 
 	@Override
-	public String friendlyShout() { return "*Friendly greeting in Elvish*"; }
+	public String friendlyShout() { return"*Friendly greeting in Elvish*"; }
 }
