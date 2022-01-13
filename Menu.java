@@ -5,7 +5,6 @@ import game.TeamProjectGame.Board.*;
 import game.TeamProjectGame.Characters.Friends.*;
 import game.TeamProjectGame.Characters.Player;
 import game.TeamProjectGame.MovePattern.SquarePattern;
-import game.TeamProjectGame.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.Serializable;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static game.TeamProjectGame.API.BoardAPI.LoadBoard;
@@ -21,9 +19,11 @@ import static game.TeamProjectGame.API.BoardAPI.LoadBoard;
 public class Menu implements Serializable {
     //creates GUI (menu where one can choose a player character and decide if to play a new game or the already existing one)
     private JDialog frame = new JDialog();
+
     private JLabel welcome = new JLabel("Welcome to The Game! ");
     Font specialFont = new Font("Impact", Font.ITALIC,33);
     Font casualFont = new Font("Palatino", Font.PLAIN,33);
+
 
 
     private JRadioButton loadButton1 = new JRadioButton("New game");
@@ -55,6 +55,25 @@ public class Menu implements Serializable {
     }
 
     public void drawMenu() {
+        Dimension dimensions = Toolkit.getDefaultToolkit().getScreenSize();
+
+        //JLayeredPane jp = new JLayeredPane();
+        //JButton bottom = new JButton();
+//
+        //ImageIcon background = new ImageIcon("background.jpg");
+        //Image img = background.getImage();
+        //Image temp = img.getScaledInstance((int)dimensions.getWidth(), (int)dimensions.getHeight(),Image.SCALE_SMOOTH);
+        //background = new ImageIcon(temp);
+        //JLabel back = new JLabel(background);
+        ////back.setLayout(null);
+        //back.setBounds(0, 0,(int)dimensions.getWidth(), (int)dimensions.getHeight());
+//
+        //bottom.add(back);
+        //jp.add(bottom,new Integer(1));
+        //frame.add(jp);
+        //frame.add(back);
+
+
 
         frame.getContentPane().add(BorderLayout.NORTH, panel1);
         frame.getContentPane().add(BorderLayout.WEST, panel2);
@@ -93,7 +112,6 @@ public class Menu implements Serializable {
         startButton.addActionListener(new startButtonReaction());
 
 
-
         loadButton1.setSelected(true);
         charButton1.setSelected(true);
 
@@ -101,7 +119,6 @@ public class Menu implements Serializable {
 
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        Dimension dimensions = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize((int)dimensions.getWidth(), (int)dimensions.getHeight());
 
         frame.setLocationRelativeTo(null);
@@ -119,7 +136,7 @@ public class Menu implements Serializable {
 
                 startNewGame = true;
             }
-            if(e.getSource() == loadButton2) {
+            if (e.getSource() == loadButton2) {
 
                 startNewGame = false;
             }
@@ -131,13 +148,13 @@ public class Menu implements Serializable {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if(e.getSource() == charButton1) {
+            if (e.getSource() == charButton1) {
 
                 chosenCharacter = 1;
-            }else if(e.getSource() == charButton2) {
+            } else if (e.getSource() == charButton2) {
 
                 chosenCharacter = 2;
-            }else if(e.getSource() == charButton3) {
+            } else if (e.getSource() == charButton3) {
 
                 chosenCharacter = 3;
             }
@@ -153,7 +170,7 @@ public class Menu implements Serializable {
         }
     }
 
-    public static Friend GUI_chooseCharacter () {
+    public static Friend GUI_chooseCharacter() {
 
         switch (chosenCharacter) {
             default:
