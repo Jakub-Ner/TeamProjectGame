@@ -21,6 +21,7 @@ public class MeetingAndFight {
 
 
 	public static void Meeting(Character char1, Character char2, Board board, JLabel messages) {
+		messages.setText("");
 		if(char1 instanceof Player){
 			// Przyjaciel i przyjaciel, tu nie ma walki to dokończe później
 			if (char2 instanceof Friend) {
@@ -40,7 +41,8 @@ public class MeetingAndFight {
 
 	public static void PlayerFight(Player friend, Character enemy, Board board, JLabel messages) {
 		Fight(friend, enemy, board);
-
+		messages.setText("");
+		
 		if (friend.getHp() > 0) {
 			messages.setText("You won the fight!");
 		} else
