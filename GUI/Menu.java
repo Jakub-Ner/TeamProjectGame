@@ -176,12 +176,12 @@ public class Menu implements Serializable {
 				Game.player.setCry(new HumanCries());
 				break;
 			case 2:
-				Game.player = new Player(new Dwarf(new SquarePattern()));
-				Game.player.setCry(new DwarvenCries());
-				break;
-			case 3:
 				Game.player = new Player(new Elf(new SquarePattern()));
 				Game.player.setCry(new ElvenCries());
+				break;
+			case 3:
+				Game.player = new Player(new Dwarf(new SquarePattern()));
+				Game.player.setCry(new DwarvenCries());
 				break;
 		}
 	}
