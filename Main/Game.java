@@ -6,7 +6,7 @@ import game.TeamProjectGame.Characters.NPCFactory;
 import game.TeamProjectGame.Characters.Npc;
 import game.TeamProjectGame.Characters.Player;
 import game.TeamProjectGame.GUI.GUIGame;
-import game.TeamProjectGame.GUI.Menu;
+import game.TeamProjectGame.GUI.MenuGUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,11 +18,12 @@ public class Game implements ActionListener {
 	public static Board board;
 	private int input = -1;
 	public static GUIGame GUIWindow;
+	public static MenuGUI menuGUI = new MenuGUI();
 	public static Menu menu = new Menu();
 
 	public void run() {
-		menu.drawMenu();
-		menu.start();
+		menuGUI.drawMenu();
+		menu.start(menuGUI.getChosenCharacter());
 
 		GUIWindow = new GUIGame();
 		AddAL();
