@@ -10,7 +10,8 @@ import java.util.Random;
 //22 linie, optymalniejsze
 public class NPC_generator_NEW {
 	final static int n = 30;
-	public static void generateNPC (Board board){
+
+	public static void generateNPC(Board board) {
 		Random rand = new Random();
 		Map<Integer, Integer> data = new HashMap<>();
 		int counter = 0;
@@ -23,7 +24,7 @@ public class NPC_generator_NEW {
 		 */
 		for (int y = 0; y < board.HEIGHT; y++)
 			for (int x = 0; x < board.WIDTH; x++)
-				if(Board.board[y][x] == ' ') data.put(data.size(), x + y * board.WIDTH);
+				if (Board.board[y][x] == ' ') data.put(data.size(), x + y * board.WIDTH);
 
 		//tu dopiero tworzę NPC
 		for (int i = 0; i < n; i++) {

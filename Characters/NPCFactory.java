@@ -18,22 +18,28 @@ public class NPCFactory {
 	};
 	private static Random random = new Random();
 
-	private static Vector<Npc> characters = new Vector<>();	//but dont touch
+	private static Vector<Npc> characters = new Vector<>();    //but dont touch
 
 	//returns pointer to a newly created character
-	private static Npc createNew(NPCTypes type){
+	private static Npc createNew(NPCTypes type) {
 		switch (type) {
-			case HUMAN: return new Human(chooseMovePattern());
-			case DWARF: return new Dwarf(chooseMovePattern());
-			case ELF: return new Elf(chooseMovePattern());
-			case ORC: return new Orc(chooseMovePattern());
-			case PHANTOM: return new Phantom(chooseMovePattern());
-			case DRAGON: return new Dragon(chooseMovePattern());
+			case HUMAN:
+				return new Human(chooseMovePattern());
+			case DWARF:
+				return new Dwarf(chooseMovePattern());
+			case ELF:
+				return new Elf(chooseMovePattern());
+			case ORC:
+				return new Orc(chooseMovePattern());
+			case PHANTOM:
+				return new Phantom(chooseMovePattern());
+			case DRAGON:
+				return new Dragon(chooseMovePattern());
 		}
 		return null;
 	}
 
-	private static MovePattern chooseMovePattern(){
+	private static MovePattern chooseMovePattern() {
 		return movePatterns[random.nextInt(movePatterns.length)];
 	}
 
@@ -47,34 +53,35 @@ public class NPCFactory {
 	 * <p>toCharacterType(3) returns ORC.</p>
 	 * <p>toCharacterType(4) returns PHANTOM.</p>
 	 * <p>toCharacterType(5) returns DRAGON.</p>
-	 * @param	type	number to be interpreted
-	 * @return	returns int as a type of character
+	 *
+	 * @param    type    number to be interpreted
+	 * @return returns int as a type of character
 	 */
-	public static NPCTypes toCharacterType(int type){
+	public static NPCTypes toCharacterType(int type) {
 		return NPCTypes.values()[type];
 	}
 
 	/**
 	 * Inteface to work with character list
 	 *
-	 * @return	pointer to vector aggregating all the characters
+	 * @return pointer to vector aggregating all the characters
 	 */
-	public static Vector<Npc> getCharacters(){
+	public static Vector<Npc> getCharacters() {
 		return characters;
 	}
 
 	//setter for characters
-	public static void setCharacters(Vector<Npc> newCharacters){
+	public static void setCharacters(Vector<Npc> newCharacters) {
 		characters = newCharacters;
 	}
 
 	/**
 	 * Adds new character to the list
 	 *
-	 * @param type	enum type of character to be created
+	 * @param type enum type of character to be created
 	 * @return returns newly created character
 	 */
-	public static Npc addCharacter(NPCTypes type){
+	public static Npc addCharacter(NPCTypes type) {
 		characters.add(createNew(type));
 		return characters.lastElement();
 	}
@@ -82,10 +89,10 @@ public class NPCFactory {
 	/**
 	 * Adds new npc to the list
 	 *
-	 * @param type	is promoted to an enum type required for internal work
+	 * @param type is promoted to an enum type required for internal work
 	 * @return returns newly created character
 	 */
-	public static Npc addCharacter(int type){
+	public static Npc addCharacter(int type) {
 		characters.add(createNew(toCharacterType(type)));
 		return characters.lastElement();
 	}

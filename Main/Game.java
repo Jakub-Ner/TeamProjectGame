@@ -1,4 +1,4 @@
-package game.TeamProjectGame;
+package game.TeamProjectGame.Main;
 
 
 import game.TeamProjectGame.Board.Board;
@@ -6,15 +6,10 @@ import game.TeamProjectGame.Characters.NPCFactory;
 import game.TeamProjectGame.Characters.Npc;
 import game.TeamProjectGame.Characters.Player;
 import game.TeamProjectGame.GUI.GUIGame;
-import game.TeamProjectGame.GUI.StatusBox;
+import game.TeamProjectGame.GUI.Menu;
 
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 import javax.swing.*;
 
 public class Game implements ActionListener {
@@ -25,15 +20,11 @@ public class Game implements ActionListener {
 	public static GUIGame GUIWindow;
 	public static Menu menu = new Menu();
 
-	private StatusBox statusBox;
-
 	public void run() {
-		statusBox = new StatusBox(new Font("Courier New", Font.PLAIN, 13));
-
 		menu.drawMenu();
 		menu.start();
 
-		GUIWindow = new GUIGame(statusBox);
+		GUIWindow = new GUIGame();
 		AddAL();
 		UpdateBoardGUI2(GUIWindow.getBoardArea()); //we have to do it for the first time to display the board
 		printStatsGUI(); //we have to do it for the first time to display player stats
@@ -90,19 +81,15 @@ public class Game implements ActionListener {
 	public void printStatsGUI() {
 		GUIWindow.getPlayerstats().setText(null);
 
-		int PlayerHp = player.getHp();
-		int PlayerDmg = player.getDmg();
-		int PlayerSpeed = player.getSpeed();
-
 		GUIWindow.getPlayerstats().append("PLAYER STATS" + "\n");
-		GUIWindow.getPlayerstats().append(" HP: " + PlayerHp + "\n");
-		GUIWindow.getPlayerstats().append(" Damage: " + PlayerDmg + "\n");
-		GUIWindow.getPlayerstats().append(" Speed: " + PlayerSpeed + "\n");
+		GUIWindow.getPlayerstats().append(" HP: " + player.getHp() + "\n");
+		GUIWindow.getPlayerstats().append(" Damage: " + player.getDmg() + "\n");
+		GUIWindow.getPlayerstats().append(" Speed: " + player.getSpeed() + "\n");
 	}
 
 	public void UpdateBoardGUI() {
 		for (Npc c : NPCFactory.getCharacters()) {
-			if(c.oldCoordinates()[0] == c.getY() && c.oldCoordinates()[1] == c.getX()) continue;
+			if (c.oldCoordinates()[0] == c.getY() && c.oldCoordinates()[1] == c.getX()) continue;
 
 			GUIWindow.getBoardArea().replaceRange(
 					Character.toString(Board.board[c.oldCoordinates()[0]][c.oldCoordinates()[1]]),
@@ -122,8 +109,6 @@ public class Game implements ActionListener {
 				Character.toString(Board.board[player.getY()][player.getX()]),
 				((board.WIDTH + 1) * player.getY()) + player.getX(),
 				((board.WIDTH + 1) * player.getY()) + player.getX() + 1);
-
-		statusBox.tick();
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -142,8 +127,7 @@ public class Game implements ActionListener {
 				input = 6;
 			}
 
-			board.updateBoard(input);
-			//UpdateBoardGUI2(GUIWindow.getBoardArea());
+			board.updateBoard(input, GUIWindow.getMessages());
 			UpdateBoardGUI();
 			printStatsGUI();
 		}

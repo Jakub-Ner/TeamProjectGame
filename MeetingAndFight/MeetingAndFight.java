@@ -11,47 +11,44 @@ import game.TeamProjectGame.Characters.Friends.Friend;
 
 
 import game.TeamProjectGame.Characters.Villains.Villain;
-import game.TeamProjectGame.GUI.StatusBox;
-import game.TeamProjectGame.Game;
-import game.TeamProjectGame.Menu;
+import game.TeamProjectGame.Main.Game;
+
+import javax.swing.*;
 
 public class MeetingAndFight {
-	private static StatusBox messageTarget;
-	private final static int messageLifetime = 2;
 
-	public static void Meeting(Character char1, Character char2, Board board) {
-		if(char1 instanceof Player){
+	public static void Meeting(Character char1, Character char2, Board board, JLabel messages) {
+		if (char1 instanceof Player) {
 			// Przyjaciel i przyjaciel, tu nie ma walki to dokończe później
 			if (char2 instanceof Friend) {
-				messageTarget.addMessage(((Player) char1).getCry().friendlyShout(), messageLifetime);
+				messages.setText(((Player) char1).getCry().friendlyShout());
 			}
 			//  Przyjaciel i wróg, tu będzie wywoływana walka
 			else if (char2 instanceof Villain) {
-				messageTarget.addMessage(((Player) char1).getCry().battleShout(), messageLifetime);
-				PlayerFight((Player) char1, char2, board);
+				messages.setText(((Player) char1).getCry().battleShout());
+				PlayerFight((Player) char1, char2, board, messages);
 			}
-		} else{
-			if(char1.getClass() != char2.getClass()){
+		} else {
+			if (char1.getClass() != char2.getClass()) {
 				Fight(char1, char2, board);
 			}
 		}
 	}
 
-	public static void PlayerFight(Player friend, Character enemy, Board board) {
+	public static void PlayerFight(Player friend, Character enemy, Board board, JLabel messages) {
 		Fight(friend, enemy, board);
 
 		if (friend.getHp() > 0) {
-			messageTarget.addMessage("You won the fight!", messageLifetime);
-			Menu.printStats(friend);
+			messages.setText("You won the fight!");
 		} else
-			messageTarget.addMessage("You lost the fight!", messageLifetime);
+			messages.setText("You lost the fight!");
 
 		PlayerAPI.savePlayer(Game.player);
 		BoardAPI.SaveBoard(Game.board);
 		NpcAPI.SaveNPC();
 	}
 
-	private static void Fight(Character friend, Character enemy, Board board){
+	private static void Fight(Character friend, Character enemy, Board board) {
 		if (friend.getSpeed() > enemy.getSpeed())
 			enemy.setHp(enemy.getHp() - friend.getDmg());
 
@@ -67,8 +64,5 @@ public class MeetingAndFight {
 		} else {
 			board.board[friend.getY()][friend.getX()] = '+';
 		}
-	}
-	public static void setMessageTarget(StatusBox messageTarget1){
-		messageTarget = messageTarget1;
 	}
 }
