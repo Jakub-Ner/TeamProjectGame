@@ -4,11 +4,14 @@ import game.TeamProjectGame.Characters.Character;
 import game.TeamProjectGame.Characters.NPCFactory;
 import game.TeamProjectGame.Characters.Npc;
 
+import javax.swing.*;
+import java.util.Arrays;
 import java.util.Random;
 
+
 public class Board {
-    public final int HEIGHT = 25;
-    public final int WIDTH = 61;
+    public final int HEIGHT = 35;
+    public final int WIDTH = 100;
 
     public static char[][] board;
     Character character;
@@ -75,12 +78,12 @@ public class Board {
         int[][] fields = new int[][]{
                 {0, 0}, {0, 1},
                 {1, 0}, {1, 1}};
-        partOfBoard(520, fields);
+        partOfBoard(1120, fields);
 
         int[][] fields2 = new int[][]{
                 {board.length - 2, board[0].length - 2}, {board.length - 2, board[0].length - 1},
                 {board.length - 1, board[0].length - 2}, {board.length - 1, board[0].length - 1}};
-        partOfBoard(352, fields2);
+        partOfBoard(1052, fields2);
 
     }
 
@@ -91,21 +94,59 @@ public class Board {
         board[character.getY()][character.getY()] = 'B';
     }
 
+    public void drawScreen() {
+        space();
+
+        for (int i = 0; i < HEIGHT; i++) {
+            System.out.print(Arrays.toString(board[i]));
+            System.out.println(" ");
+        }
+
+    }
+
+    //added method for GUI
+    public String [] rewriteBoard ()
+    {
+        String [] temp = new String[board.length];
+
+        for (int i=0; i< board.length; i++)
+        {
+            temp[i]=Arrays.toString(board[i]);
+            temp[i]+=" ";
+        }
+
+        return temp;
+    }
+
+    //added method for GUI
+    public char [][] rewriteBoard2 ()
+    {
+        char [][] temp = new char[board.length][board[0].length];
+        for (int i=0; i< temp.length; i++)
+        {
+            for (int j=0; j<temp[i].length; j++)
+            {
+                temp[i][j]=board[i][j];
+            }
+        }
+        return temp;
+    }
+
     public void space() {
         for (int i = 0; i < 10; i++) System.out.println("");
     }
 
-    public void updateBoard(int goFurther) {
+    public void updateBoard(int goFurther, JLabel messages) {
          //erases previous location
 
-        character.moveCharacter(goFurther, this);
+        character.moveCharacter(goFurther, this,messages);
 
-		updateNPC();
+		updateNPC(messages);
     }
 
-    private void updateNPC(){
+    private void updateNPC(JLabel messages){
 		for (Npc c: NPCFactory.getCharacters()) {
-			c.move(this);
+			c.move(this, messages);
 		}
     }
 }

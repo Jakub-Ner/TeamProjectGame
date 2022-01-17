@@ -3,6 +3,7 @@ package game.TeamProjectGame.Characters;
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.MeetingAndFight.MeetingAndFight;
 
+import javax.swing.*;
 import java.io.Serializable;
 
 public abstract class Character implements Serializable {
@@ -30,39 +31,38 @@ public abstract class Character implements Serializable {
     //methods
 
     //finds the NPC standing at given coordinates and initiates meeting
-    private void meet(int y, int x, Board board) {
-
+    private void meet(int y, int x, Board board, JLabel messages) {
         for (int i = 0; i < NPCFactory.getCharacters().size(); i++) {
             if ( (NPCFactory.getCharacters().elementAt(i).getX() == x) && (NPCFactory.getCharacters().elementAt(i).getY() == y)) {
-                MeetingAndFight.Meeting(this, NPCFactory.getCharacters().elementAt(i), board);
+                MeetingAndFight.Meeting(this, NPCFactory.getCharacters().elementAt(i), board,messages);
                 break;
             }
         }
     }
 
     //checks nearby squares for NPCs
-    private void surroundings(Board board) {
+    private void surroundings(Board board, JLabel messages) {
         String npc = "hdeDOP";
 
         if ( ( y+1 < board.HEIGHT) && (npc.indexOf( board.board[y+1][x] ) != -1) ) {
-            meet( (y+1), x, board);
+            meet( (y+1), x, board, messages);
         }
 
         if ( ( y-1 >= 0) && (npc.indexOf( board.board[y-1][x] ) != -1) ) {
-            meet( (y-1), x, board );
+            meet( (y-1), x, board,messages );
         }
 
         if ( ( x-1 >= 0) && (npc.indexOf( board.board[y][x-1] ) != -1) ) {
-            meet( y, (x-1), board );
+            meet( y, (x-1), board,messages );
         }
 
         if ( ( x+1 < board.WIDTH) && (npc.indexOf( board.board[y][x+1] ) != -1) ) {
-            meet( y, (x+1), board );
-        }
+            meet( y, (x+1), board,messages );}
+        
     }
 
     //moves position on map and changes coordinates if we're able to
-    public void moveCharacter(int further, Board board) {
+    public void moveCharacter(int further, Board board, JLabel messages) {
 
         Board.board[getY()][getX()] = ' ';
 
@@ -110,7 +110,51 @@ public abstract class Character implements Serializable {
         }
 
         Board.board[getY()][getX()] = symbol;
-        surroundings(board);
+        surroundings(board,messages);
+    }
+
+    public int [] uncodeCoordinates(int lastMove) {
+        int[] c = new int[2];
+
+        switch(lastMove) {
+            case 8:
+                c[0] = getY()+1;
+                c[1] = getX();
+            case 2:
+                c[0] = getY()-1;
+                c[1] = getX();
+            case 4:
+                c[0] = getY();
+                c[1] = getX()+1;
+            case 6:
+                c[0] = getY();
+                c[1] = getX()-1;
+        }
+
+        return c;
+    }
+
+    //returns a type[] array with previous coordinates
+    // c = [x,y]
+    public int [] uncodeCoordinates(int lastMove) {
+        int[] c = new int[2];
+
+        switch(lastMove) {
+            case 8:
+                c[0] = getY()+1;
+                c[1] = getX();
+            case 2:
+                c[0] = getY()-1;
+                c[1] = getX();
+            case 4:
+                c[0] = getY();
+                c[1] = getX()+1;
+            case 6:
+                c[0] = getY();
+                c[1] = getX()-1;
+        }
+
+        return c;
     }
 
     //returns a type[] array with previous coordinates

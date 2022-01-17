@@ -24,8 +24,8 @@ public class BoardAPI {
 			e.printStackTrace();
 		}
 		File file = new File ("board.ser");
-//		System.out.println(File);
 
+		//puts our character on a loaded board
 		Board.board[Game.player.getY()][Game.player.getX()] = 'B';
 
 	}
