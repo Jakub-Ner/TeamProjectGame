@@ -1,47 +1,45 @@
 package game.TeamProjectGame.Main;
 
-
 import game.TeamProjectGame.Board.Board;
-import game.TeamProjectGame.Characters.NPCFactory;
-import game.TeamProjectGame.Characters.Npc;
 import game.TeamProjectGame.Characters.Player;
-import game.TeamProjectGame.GUI.GUIGame;
-import game.TeamProjectGame.GUI.MenuGUI;
 
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import javax.swing.*;
 
-public class Game implements ActionListener {
+public class Game implements ActionListener{
 
 	public static Player player;
 	public static Board board;
-	private int input = -1;
-	public static GUIGame GUIWindow;
-	public static MenuGUI menuGUI = new MenuGUI();
+
+	private JLabel messages = new JLabel(); //AGATA
+	private JButton W;
+	private JButton S;
+	private JButton A;
+	private JButton D;
+	private JTextArea BoardArea;
+	private JTextArea playerstats = new JTextArea(5,5);
+	private int input=-1;
+	//private boolean run = true;
 	public static Menu menu = new Menu();
 
-	public void run() {
-		menuGUI.drawMenu();
-		menu.start(menuGUI.getChosenCharacter());
+    public void run(){
 
-		GUIWindow = new GUIGame();
-		AddAL();
-		UpdateBoardGUI2(GUIWindow.getBoardArea()); //we have to do it for the first time to display the board
-		printStatsGUI(); //we have to do it for the first time to display player stats
+		menu.drawMenu();
+        menu.start();
 
-	}
+		Game GUIWindow = new Game();
+		GUIWindow.DrawGUI();
 
-	//adds action listeners
-	public void AddAL() {
-		GUIWindow.getW().addActionListener(this);
-		GUIWindow.getS().addActionListener(this);
-		GUIWindow.getA().addActionListener(this);
-		GUIWindow.getD().addActionListener(this);
-	}
+
+    }
 
 	//updating board in gui after a move
-	public void UpdateBoardGUI2(JTextArea BoardArea) {
+	public void UpdateBoardGUI2 ()
+	{
 		char newboard[][] = board.rewriteBoard2();
 		//clear textarea
 		BoardArea.setText("");
@@ -49,87 +47,191 @@ public class Game implements ActionListener {
 		//add new board to cleared textarea
 		for (int i = 0; i < newboard.length; i++) {
 			BoardArea.append(String.copyValueOf(newboard[i]));
+			BoardArea.append(" \n");
+		}
+	}
+
+
+	public void UpdateBoardGUI ()
+	{
+		String Sboard[] = board.rewriteBoard();
+
+		//clear textarea
+		BoardArea.setText("");
+
+		//add new board to cleared textarea
+		for (int i = 0; i < Sboard.length; i++) {
+			BoardArea.append(Sboard[i]);
 			BoardArea.append("\n");
 		}
 	}
 
-	//method used to finish the game in GUI
-	public void GameOverMan() {
+	public void DrawGUI() {
 
-		GUIWindow.getBoardArea().setText(null);
-		GUIWindow.getBoardArea().append("" +
-				"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  \n" +
-				" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒\n" +
-				"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒\n" +
-				"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  \n" +
-				"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒\n" +
-				" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░\n" +
-				"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░\n" +
-				"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ \n" +
-				"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     \n" +
-				"                                                     ░                   \n" +
-				"																		  \n" +
-				"             Please use the X Windows button to close the game             ");
-		GUIWindow.getW().setEnabled(false);
-		GUIWindow.getS().setEnabled(false);
-		GUIWindow.getA().setEnabled(false);
-		GUIWindow.getD().setEnabled(false);
+		JFrame mainframe = new JFrame("TeamProjectGame.exe");
+		W = new JButton("W");
+		S = new JButton("S");
+		A = new JButton("A");
+		D = new JButton("D");
+		BoardArea = new JTextArea();
+		playerstats = new JTextArea();
+		JTextField Title = new JTextField("Welcome to the game!");
+		JTextField WSADtitle = new JTextField("Use WSAD buttons to move your character");
+		messages = new JLabel();
+
+
+
+		//user can't change the text in textfields and textareas
+		playerstats.setEditable(false);
+		BoardArea.setEditable(false);
+		Title.setEditable(false);
+		WSADtitle.setEditable(false);
+
+		W.addActionListener(this);
+		S.addActionListener(this);
+		A.addActionListener(this);
+		D.addActionListener(this);
+
+
+		//panels declaration
+		JPanel BoardPanel = new JPanel();
+		JPanel SidePanel = new JPanel();
+		JPanel BottomPanel = new JPanel(); //AGATA
+		JPanel MovePanel = new JPanel();
+
+		//filling mainframe with panels
+		mainframe.getContentPane().add(BorderLayout.NORTH, Title);
+		mainframe.getContentPane().add(BorderLayout.CENTER, BoardPanel);
+		mainframe.getContentPane().add(BorderLayout.EAST, SidePanel);
+		mainframe.getContentPane().add(BorderLayout.SOUTH,BottomPanel); ///AGATA
+
+		//setting panels
+		MovePanel.setLayout(new GridBagLayout());
+		BoardPanel.setLayout(new GridBagLayout());
+		SidePanel.setLayout(new BoxLayout(SidePanel, BoxLayout.Y_AXIS));
+		SidePanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
+		MovePanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
+
+		//setting text fonts
+		Title.setFont(new Font("Calibri", Font.ITALIC, 25));
+		WSADtitle.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		playerstats.setFont(new Font("Calibri", Font.BOLD, 20));
+		BoardArea.setFont(new Font("Courier New", Font.PLAIN, 20));
+
+		GridBagConstraints coordinates = new GridBagConstraints();
+
+
+		SidePanel.add(playerstats);
+		coordinates.fill = GridBagConstraints.BOTH;
+		BoardPanel.add(BoardArea);
+		messages.setText("");
+		BottomPanel.add(messages); //AGATA
+		messages.setFont(new Font("Calibri",Font.ITALIC,40));
+
+
+
+		JLabel jLabel = new JLabel("");
+		BottomPanel.add(jLabel);
+		UpdateBoardGUI2(); //we have to do it for the first time to display the board
+		printStatsGUI(); //we have to do it for the first time to display player stats
+
+		//setting MovePanel
+		coordinates.fill = GridBagConstraints.HORIZONTAL;
+		coordinates.gridx = 0;
+		coordinates.gridy = 0;
+		coordinates.gridwidth = 4;
+		MovePanel.add(WSADtitle, coordinates);
+
+		coordinates.ipadx = 8;
+		coordinates.ipady = 16;
+		coordinates.gridwidth = 1;
+		coordinates.gridx = 1;
+		coordinates.gridy = 1;
+		MovePanel.add(W, coordinates);
+
+		coordinates.anchor = GridBagConstraints.PAGE_END;
+		coordinates.gridx = 1;
+		coordinates.gridy = 2;
+		MovePanel.add(S, coordinates);
+
+		coordinates.gridx = 0;
+		coordinates.gridy = 2;
+		MovePanel.add(A, coordinates);
+
+		coordinates.gridx = 2;
+		coordinates.gridy = 2;
+		MovePanel.add(D, coordinates);
+
+		SidePanel.add(MovePanel);
+		//mainframe settings
+		mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainframe.pack();
+		Dimension dimensions = Toolkit.getDefaultToolkit().getScreenSize();
+		mainframe.setSize((int)dimensions.getWidth(), (int)dimensions.getHeight());
+		mainframe.setVisible(true);
+	}
+
+	//method used to finish the game in GUI
+	public void GameOverMan ()
+	{
+		BoardArea.setText(null);
+		BoardArea.append("" +
+					"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  \n" +
+					" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒\n" +
+					"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒\n" +
+					"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  \n" +
+					"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒\n" +
+					" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░\n" +
+					"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░\n" +
+					"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ \n" +
+					"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     \n" +
+					"                                                     ░                   \n" +
+					"																		  \n" +
+					"             Please use the X Windows button to close the game             ");
+		W.setEnabled(false);
+		S.setEnabled(false);
+		A.setEnabled(false);
+		D.setEnabled(false);
 		player.setHp(0);
 		printStatsGUI();
+
+
 	}
 
 	//updating player stats
-	public void printStatsGUI() {
-		GUIWindow.getPlayerstats().setText(null);
+	public void printStatsGUI ()
+	{
+		playerstats.setText(null);
 
-		GUIWindow.getPlayerstats().append("PLAYER STATS" + "\n");
-		GUIWindow.getPlayerstats().append(" HP: " + player.getHp() + "\n");
-		GUIWindow.getPlayerstats().append(" Damage: " + player.getDmg() + "\n");
-		GUIWindow.getPlayerstats().append(" Speed: " + player.getSpeed() + "\n");
+		int PlayerHp = player.getHp();
+		int PlayerDmg = player.getDmg();
+		int PlayerSpeed = player.getSpeed();
+
+		playerstats.append("PLAYER STATS" + "\n");
+		playerstats.append(" HP: " + PlayerHp + "\n");
+		playerstats.append(" Damage: " + PlayerDmg + "\n");
+		playerstats.append(" Speed: " + PlayerSpeed + "\n");
 	}
 
-	public void UpdateBoardGUI() {
-		for (Npc c : NPCFactory.getCharacters()) {
-			if (c.oldCoordinates()[0] == c.getY() && c.oldCoordinates()[1] == c.getX()) continue;
 
-			GUIWindow.getBoardArea().replaceRange(
-					Character.toString(Board.board[c.oldCoordinates()[0]][c.oldCoordinates()[1]]),
-					((board.WIDTH + 1) * c.oldCoordinates()[0]) + c.oldCoordinates()[1],
-					((board.WIDTH + 1) * c.oldCoordinates()[0]) + c.oldCoordinates()[1] + 1);
-			GUIWindow.getBoardArea().replaceRange(
-					Character.toString(Board.board[c.getY()][c.getX()]),
-					((board.WIDTH + 1) * c.getY()) + c.getX(),
-					((board.WIDTH + 1) * c.getY()) + c.getX() + 1);
-		}
+	public void actionPerformed (ActionEvent e) {
 
-		GUIWindow.getBoardArea().replaceRange(
-				Character.toString(Board.board[player.oldCoordinates()[0]][player.oldCoordinates()[1]]),
-				((board.WIDTH + 1) * player.oldCoordinates()[0]) + player.oldCoordinates()[1],
-				((board.WIDTH + 1) * player.oldCoordinates()[0]) + player.oldCoordinates()[1] + 1);
-		GUIWindow.getBoardArea().replaceRange(
-				Character.toString(Board.board[player.getY()][player.getX()]),
-				((board.WIDTH + 1) * player.getY()) + player.getX(),
-				((board.WIDTH + 1) * player.getY()) + player.getX() + 1);
-	}
-
-	public void actionPerformed(ActionEvent e) {
-
-		if (player.getHp() <= 0)
+		if (player.getHp()<=0)
 			GameOverMan();
 		else {
 			//zamienia wybrana litere na liczbe, ktora jest wykorzystywana w moveCharacter do poruszenia postaci w zadanym kierunku
-			if (e.getSource() == GUIWindow.getW()) {
+			if (e.getSource() == W) {
 				input = 8;
-			} else if (e.getSource() == GUIWindow.getS()) {
+			} else if (e.getSource() == S) {
 				input = 2;
-			} else if (e.getSource() == GUIWindow.getA()) {
+			} else if (e.getSource() == A) {
 				input = 4;
-			} else if (e.getSource() == GUIWindow.getD()) {
+			} else if (e.getSource() == D) {
 				input = 6;
 			}
 
-			board.updateBoard(input, GUIWindow.getMessages());
-			UpdateBoardGUI();
+			board.updateBoard(input,messages);
+			UpdateBoardGUI2();
 			printStatsGUI();
 		}
 	}
