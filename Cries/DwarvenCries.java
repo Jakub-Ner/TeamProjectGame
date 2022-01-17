@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class DwarvenCries implements Cry, Serializable {
 	@Override
-	public String battleShout() { return "*Battle cry in Dwarven*"; }
+	public void battleShout() { System.out.println("*Battle cry in Dwarven*"); }
 	@Override
-	public String friendlyShout() { return "*Friendly greeting in Dwarven*"; }
+	public void friendlyShout() { System.out.println("*Friendly greeting in Dwarven*"); }
 }

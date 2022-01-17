@@ -3,7 +3,6 @@ package game.TeamProjectGame.Characters;
 import game.TeamProjectGame.Board.Board;
 import game.TeamProjectGame.MovePattern.MovePattern;
 
-import javax.swing.*;
 import java.io.Serializable;
 
 public abstract class Npc extends Character implements Serializable {
@@ -25,16 +24,15 @@ public abstract class Npc extends Character implements Serializable {
 
 	//methods
 
-	public void move(Board board, JLabel messages) {
+	public void move(Board board) {
 		if(getHp() <= 0) return;
 
 		turn -= speed;
 
 		if (turn <= 0) {
-
 			lastMove++;
 
-			moveCharacter(pattern.pattern()[lastMove % pattern.pattern().length], board, messages);
+			moveCharacter(pattern.pattern()[lastMove % pattern.pattern().length], board);
 
 			turn = wait;
 		}
@@ -65,8 +63,8 @@ public abstract class Npc extends Character implements Serializable {
 
 	//setters
 
-	public void setLastMove(int lastMove) {
-		this.lastMove = lastMove;
+	public void setNextMove(int nextMove) {
+		this.lastMove = nextMove;
 	}
 
 	public void setPattern(MovePattern pattern) {

@@ -10,59 +10,38 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import javax.swing.*;
 
-public class Game implements ActionListener{
+public class Game implements ActionListener {
 
 	public static Player player;
 	public static Board board;
 
-	private JLabel messages = new JLabel(); //AGATA
 	private JButton W;
 	private JButton S;
 	private JButton A;
 	private JButton D;
 	private JTextArea BoardArea;
-	private JTextArea playerstats = new JTextArea(5,5);
-	private int input=-1;
+	private JTextArea playerstats;
+	private int input = -1;
 	//private boolean run = true;
 	public static Menu menu = new Menu();
 
-    public void run(){
-
-		menu.drawMenu();
-        menu.start();
+	public void run() {
+		//Scanner scanner = new Scanner(System.in);
+		menu.startMenu();
 
 		Game GUIWindow = new Game();
 		GUIWindow.DrawGUI();
-
-
-    }
-
-	//updating board in gui after a move
-	public void UpdateBoardGUI2 ()
-	{
-		char newboard[][] = board.rewriteBoard2();
-		//clear textarea
-		BoardArea.setText("");
-
-		//add new board to cleared textarea
-		for (int i = 0; i < newboard.length; i++) {
-			BoardArea.append(String.copyValueOf(newboard[i]));
-			BoardArea.append(" \n");
-		}
 	}
 
-
-	public void UpdateBoardGUI ()
-	{
-		String Sboard[] = board.rewriteBoard();
-
+	//updating board in gui after a move
+	public void UpdateBoardGUI2() {
 		//clear textarea
 		BoardArea.setText("");
 
 		//add new board to cleared textarea
-		for (int i = 0; i < Sboard.length; i++) {
-			BoardArea.append(Sboard[i]);
-			BoardArea.append("\n");
+		for (int i = 0; i < Board.board.length; i++) {
+			BoardArea.append(Arrays.toString(Board.board[i]));
+			BoardArea.append(" \n");
 		}
 	}
 
@@ -77,9 +56,6 @@ public class Game implements ActionListener{
 		playerstats = new JTextArea();
 		JTextField Title = new JTextField("Welcome to the game!");
 		JTextField WSADtitle = new JTextField("Use WSAD buttons to move your character");
-		messages = new JLabel();
-
-
 
 		//user can't change the text in textfields and textareas
 		playerstats.setEditable(false);
@@ -95,43 +71,35 @@ public class Game implements ActionListener{
 
 		//panels declaration
 		JPanel BoardPanel = new JPanel();
-		JPanel SidePanel = new JPanel();
-		JPanel BottomPanel = new JPanel(); //AGATA
 		JPanel MovePanel = new JPanel();
+		JPanel StatsPanel = new JPanel();
 
 		//filling mainframe with panels
 		mainframe.getContentPane().add(BorderLayout.NORTH, Title);
 		mainframe.getContentPane().add(BorderLayout.CENTER, BoardPanel);
-		mainframe.getContentPane().add(BorderLayout.EAST, SidePanel);
-		mainframe.getContentPane().add(BorderLayout.SOUTH,BottomPanel); ///AGATA
+		mainframe.getContentPane().add(BorderLayout.EAST, MovePanel);
+		mainframe.getContentPane().add(BorderLayout.WEST, StatsPanel);
 
 		//setting panels
 		MovePanel.setLayout(new GridBagLayout());
 		BoardPanel.setLayout(new GridBagLayout());
-		SidePanel.setLayout(new BoxLayout(SidePanel, BoxLayout.Y_AXIS));
-		SidePanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
+		StatsPanel.setLayout(new BoxLayout(StatsPanel, BoxLayout.Y_AXIS));
+		StatsPanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
 		MovePanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
 
 		//setting text fonts
-		Title.setFont(new Font("Calibri", Font.ITALIC, 25));
-		WSADtitle.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-		playerstats.setFont(new Font("Calibri", Font.BOLD, 20));
-		BoardArea.setFont(new Font("Courier New", Font.PLAIN, 20));
+		Title.setFont(new Font("Calibri", Font.ITALIC, 16));
+		WSADtitle.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+		playerstats.setFont(new Font("Calibri", Font.BOLD, 14));
+		//BoardArea.setFont(new Font("Console Font", Font.PLAIN, 13));
+
 
 		GridBagConstraints coordinates = new GridBagConstraints();
 
-
-		SidePanel.add(playerstats);
+		StatsPanel.add(playerstats);
 		coordinates.fill = GridBagConstraints.BOTH;
 		BoardPanel.add(BoardArea);
-		messages.setText("");
-		BottomPanel.add(messages); //AGATA
-		messages.setFont(new Font("Calibri",Font.ITALIC,40));
 
-
-
-		JLabel jLabel = new JLabel("");
-		BottomPanel.add(jLabel);
 		UpdateBoardGUI2(); //we have to do it for the first time to display the board
 		printStatsGUI(); //we have to do it for the first time to display player stats
 
@@ -162,32 +130,30 @@ public class Game implements ActionListener{
 		coordinates.gridy = 2;
 		MovePanel.add(D, coordinates);
 
-		SidePanel.add(MovePanel);
+
 		//mainframe settings
 		mainframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainframe.pack();
-		Dimension dimensions = Toolkit.getDefaultToolkit().getScreenSize();
-		mainframe.setSize((int)dimensions.getWidth(), (int)dimensions.getHeight());
+		mainframe.setSize(1400, 500);
 		mainframe.setVisible(true);
 	}
 
 	//method used to finish the game in GUI
-	public void GameOverMan ()
-	{
+	public void GameOverMan() {
 		BoardArea.setText(null);
 		BoardArea.append("" +
-					"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  \n" +
-					" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒\n" +
-					"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒\n" +
-					"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  \n" +
-					"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒\n" +
-					" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░\n" +
-					"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░\n" +
-					"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ \n" +
-					"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     \n" +
-					"                                                     ░                   \n" +
-					"																		  \n" +
-					"             Please use the X Windows button to close the game             ");
+				"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  \n" +
+				" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒\n" +
+				"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒\n" +
+				"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  \n" +
+				"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒\n" +
+				" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░\n" +
+				"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░\n" +
+				"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ \n" +
+				"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     \n" +
+				"                                                     ░                   \n" +
+				"																		  \n" +
+				"             Please use the X Windows button to close the game             ");
 		W.setEnabled(false);
 		S.setEnabled(false);
 		A.setEnabled(false);
@@ -199,8 +165,7 @@ public class Game implements ActionListener{
 	}
 
 	//updating player stats
-	public void printStatsGUI ()
-	{
+	public void printStatsGUI() {
 		playerstats.setText(null);
 
 		int PlayerHp = player.getHp();
@@ -214,12 +179,12 @@ public class Game implements ActionListener{
 	}
 
 
-	public void actionPerformed (ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {
 
-		if (player.getHp()<=0)
+		if (player.getHp() <= 0)
 			GameOverMan();
 		else {
-			//zamienia wybrana litere na liczbe, ktora jest wykorzystywana w moveCharacter do poruszenia postaci w zadanym kierunku
+
 			if (e.getSource() == W) {
 				input = 8;
 			} else if (e.getSource() == S) {
@@ -230,7 +195,7 @@ public class Game implements ActionListener{
 				input = 6;
 			}
 
-			board.updateBoard(input,messages);
+			board.updateBoard(input);
 			UpdateBoardGUI2();
 			printStatsGUI();
 		}
