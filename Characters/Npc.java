@@ -30,7 +30,6 @@ public abstract class Npc extends Character implements Serializable {
 		turn -= speed;
 
 		if (turn <= 0) {
-
 			lastMove++;
 
 			moveCharacter(pattern.pattern()[lastMove % pattern.pattern().length], board, messages);
@@ -59,8 +58,8 @@ public abstract class Npc extends Character implements Serializable {
 
 	//setters
 
-	public void setLastMove(int lastMove) {
-		this.lastMove = lastMove;
+	public void setNextMove(int nextMove) {
+		this.lastMove = nextMove;
 	}
 
 	public void setPattern(MovePattern pattern) {

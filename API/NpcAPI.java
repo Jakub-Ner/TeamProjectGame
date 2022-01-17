@@ -9,8 +9,12 @@ import java.util.Vector;
 public class NpcAPI implements Serializable {
 
 	public static void SaveNPC() {
-		try (ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream("PlikNPC"));) {
+
+		try {
+			ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream("PlikNPC"));
+
 			so.writeObject(NPCFactory.getCharacters());
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -18,7 +22,8 @@ public class NpcAPI implements Serializable {
 
 	public static void LoadNPC() {
 
-		try (ObjectInputStream is = new ObjectInputStream(new FileInputStream("PlikNPC"));) {
+		try {
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream("PlikNPC"));
 			Object czyBrakObiektu = null;
 
 			Object addedNPCS = is.readObject();
