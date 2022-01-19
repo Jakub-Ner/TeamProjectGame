@@ -46,7 +46,7 @@ public class MeetingAndFight {
 		NpcAPI.SaveNPC();
 	}
 
-	private static void Fight(Character friend, Character enemy, Board board) {
+	public static void Fight(Character friend, Character enemy, Board board) {
 		if (friend.getSpeed() > enemy.getSpeed())
 			enemy.setHp(enemy.getHp() - friend.getDmg());
 
