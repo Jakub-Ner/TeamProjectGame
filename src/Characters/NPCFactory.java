@@ -39,7 +39,7 @@ public class NPCFactory {
 		return null;
 	}
 
-	private static MovePattern chooseMovePattern() {
+	public static MovePattern chooseMovePattern() {
 		return movePatterns[random.nextInt(movePatterns.length)];
 	}
 
