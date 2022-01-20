@@ -6,7 +6,6 @@ import Characters.Friends.Human;
 import Characters.Villains.Dragon;
 import Characters.Villains.Orc;
 import Characters.Villains.Phantom;
-import MovePattern.MovePattern;
 import org.junit.jupiter.api.Test;
 
 import static Characters.NPCFactory.*;
