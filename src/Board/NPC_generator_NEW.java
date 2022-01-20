@@ -42,4 +42,8 @@ public class NPC_generator_NEW {
 			Board.board[counter / board.WIDTH][counter % board.WIDTH] = NPCFactory.getCharacters().lastElement().getSymbol();
 		}
 	}
+
+	public int getN() {
+		return n;
+	}
 }
