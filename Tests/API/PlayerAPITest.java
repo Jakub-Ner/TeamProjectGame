@@ -3,6 +3,7 @@ package API;
 import Characters.Friends.Friend;
 import Characters.Friends.Human;
 import Characters.Player;
+import Main.Game;
 import MovePattern.LPattern;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
@@ -20,20 +21,12 @@ public class PlayerAPITest {
 
     Player player = new Player(new Human(new LPattern()));
 
-    @BeforeEach
-    public void setUp() {
-
-        PlayerAPI.savePlayer(player);
-    }
-
     @Test
-    public void testLoading() throws IOException, ClassNotFoundException {
+    public void testSaving() throws IOException, ClassNotFoundException {
+        PlayerAPI.savePlayer(player);
 
-        Assertions.assertEquals(player, PlayerAPI.loadPlayer());
+        Assertions.assertEquals(player, new ObjectInputStream(new FileInputStream("Player.ser")).readObject());
     }
-
-
-
 
 
 }
