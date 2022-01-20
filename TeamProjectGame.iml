@@ -41,5 +41,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="jar_files" level="project" />
+    <orderEntry type="library" name="jar_files1" level="project" />
+    <orderEntry type="library" name="jars" level="project" />
   </component>
 </module>
