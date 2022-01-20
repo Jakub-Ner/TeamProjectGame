@@ -1,5 +1,4 @@
-package game.TeamProjectGame.src.Characters;
-
+package Characters;
 
 import Board.Board;
 import MovePattern.MovePattern;

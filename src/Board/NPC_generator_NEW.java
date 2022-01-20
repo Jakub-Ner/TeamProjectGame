@@ -1,5 +1,4 @@
-package game.TeamProjectGame.src.Board;
-
+package Board;
 
 import Characters.NPCFactory;
 import Characters.NPCTypes;

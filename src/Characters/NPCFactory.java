@@ -1,5 +1,4 @@
-package game.TeamProjectGame.src.Characters;
-
+package Characters;
 
 import Characters.Friends.*;
 import Characters.Villains.*;

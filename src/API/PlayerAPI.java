@@ -1,5 +1,4 @@
-package game.TeamProjectGame.src.API;
-
+package API;
 
 import Characters.Player;
 

@@ -1,4 +1,4 @@
-package game.TeamProjectGame.src.Main;
+package Main;
 
 import java.util.Arrays;
 import java.util.List;
