@@ -1,4 +1,5 @@
-package Main;
+package game.TeamProjectGame.src.Main;
+
 
 
 import Board.Board;

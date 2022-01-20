@@ -1,4 +1,5 @@
-package Characters;
+package game.TeamProjectGame.src.Characters;
+
 
 import Characters.Friends.Dwarf;
 import Characters.Friends.Elf;

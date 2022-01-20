@@ -1,4 +1,5 @@
-package API;
+package game.TeamProjectGame.src.API;
+
 
 import Characters.NPCFactory;
 import Characters.Npc;

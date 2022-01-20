@@ -1,6 +1,8 @@
 package Characters;
 
 import Board.*;
+import game.TeamProjectGame.src.Board.Board;
+import game.TeamProjectGame.src.Board.NPC_generator_NEW;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
