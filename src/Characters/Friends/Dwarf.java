@@ -1,4 +1,4 @@
-package Characters.Friends;
+package game.TeamProjectGame.src.Characters.Friends;
 
 import Cries.DwarvenCries;
 import MovePattern.MovePattern;
