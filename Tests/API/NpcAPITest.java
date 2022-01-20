@@ -1,18 +1,12 @@
 package API;
-
-
-
 import Characters.Friends.Dwarf;
-import Characters.Friends.Human;
 import Characters.NPCFactory;
 import Characters.Npc;
 import Characters.Villains.Dragon;
 import MovePattern.*;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,8 +14,6 @@ import java.io.ObjectInputStream;
 import java.util.Vector;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class NpcAPITest {
     private Vector<Npc> expectedValue;
