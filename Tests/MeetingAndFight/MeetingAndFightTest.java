@@ -4,13 +4,8 @@ import Board.Board;
 import Characters.Character;
 import Characters.Friends.Friend;
 import Characters.Player;
-import Characters.Villains.Villain;
 import Cries.Cry;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
-import org.mockito.internal.verification.VerificationModeFactory;
-import org.mockito.verification.VerificationMode;
-import org.powermock.*;
 
 import javax.swing.*;
 
