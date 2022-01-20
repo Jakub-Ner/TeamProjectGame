@@ -36,7 +36,6 @@ public class BoardTest {
 
         for(int Y=0;Y<board.HEIGHT;Y++){
             for(int X = 0;X<board.WIDTH;X++){
-                System.out.println(board.board[Y][X]);
                 Assert.assertTrue("X#B dheOPD".contains(String.valueOf(board.board[Y][X])));
             }
 

@@ -1,9 +1,12 @@
 package Characters;
 
+import Characters.Friends.Human;
+import MovePattern.SquarePattern;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import Board.Board;
 import Characters.Character;
+import Characters.*;
 
 import javax.swing.*;
 
@@ -12,7 +15,7 @@ import static org.mockito.Mockito.*;
 
 class CharacterTest {
 
-    private Character player;
+    private Player player;
     private Board board;
 
     private int []lastMove = {1,1};
@@ -21,7 +24,7 @@ class CharacterTest {
 
     @BeforeEach
     void setUp() throws Exception{
-        player = mock (Character.class);
+        player = new Player(new Human(new SquarePattern()));
         player.firstCoordinates(1,1);
 
         board = mock (Board.class);
