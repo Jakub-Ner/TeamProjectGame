@@ -19,9 +19,8 @@ class CharacterTest {
     private int []coordinates = {0,0,-1,-1,0,-1,-1,0,14,2,3,10,15,1}; //7 pairs of coordinates, -1 values will be replaced in setUp
     private JLabel messages = new JLabel("a");
 
-    @org.junit.jupiter.api.BeforeEach
+    @BeforeEach
     void setUp() throws Exception{
-
         player = mock (Character.class);
         player.firstCoordinates(1,1);
 
