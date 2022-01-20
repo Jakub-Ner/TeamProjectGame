@@ -16,35 +16,38 @@ import java.util.Vector;
 import static org.junit.Assert.assertEquals;
 
 public class NpcAPITest {
-    private Vector<Npc> expectedValue;
+    private Vector<Npc> expectedValue = new Vector<>();
 
     public void createVector(){
-       expectedValue.add(new Dragon(new SquarePattern()));
+       //expectedValue.add(new Dragon(new SquarePattern()));
        expectedValue.add(new Dwarf(new LPattern()));
-       expectedValue.add(new Dragon(new PlusPattern()));
+       //expectedValue.add(new Dragon(new PlusPattern()));
     }
 
     @BeforeEach
     public void setData(){
+        createVector();
         NPCFactory.setCharacters(expectedValue);
     }
     @Test
     public void SaveNPCTest() throws IOException, ClassNotFoundException{
+        //setData();
         NpcAPI.SaveNPC();
+
+
         assertEquals(
-                expectedValue,
-                new ObjectInputStream(new FileInputStream("PlikNPC.ser")).readObject()
-        );
+                expectedValue.toString(),
+                (new ObjectInputStream(new FileInputStream("PlikNPC.ser")).readObject().toString()));
     }
     @Test
     public void LoadNPCTest() throws IOException, ClassNotFoundException{
-        NpcAPI.SaveNPC();
 
+        NpcAPI.SaveNPC();
         NpcAPI.LoadNPC();
 
         assertEquals(
-                expectedValue,
-                NPCFactory.getCharacters()
+                expectedValue.toString(),
+                NPCFactory.getCharacters().toString()
         );
     }
 }
