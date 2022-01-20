@@ -31,9 +31,7 @@ public class NpcAPITest {
     }
     @Test
     public void SaveNPCTest() throws IOException, ClassNotFoundException{
-        //setData();
         NpcAPI.SaveNPC();
-
 
         assertEquals(
                 expectedValue.toString(),
@@ -41,7 +39,6 @@ public class NpcAPITest {
     }
     @Test
     public void LoadNPCTest() throws IOException, ClassNotFoundException{
-
         NpcAPI.SaveNPC();
         NpcAPI.LoadNPC();
 
