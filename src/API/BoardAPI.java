@@ -17,8 +17,7 @@ public class BoardAPI {
 	public static void LoadBoard(Board board) {
 		try (ObjectInputStream is = new ObjectInputStream(new FileInputStream("board.ser"))) {
 			Object obj1 = is.readObject();
-			board.board = null;
-			board.board = (char[][]) obj1;
+			Board.board = (char[][]) obj1;
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}

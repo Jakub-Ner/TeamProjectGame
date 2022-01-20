@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 public class Main {
 	public static void main(String[] args) {
 		new Game().run();
-		//new Main().test();
 	}
 	//strumienie a java
 	public static void test(){
