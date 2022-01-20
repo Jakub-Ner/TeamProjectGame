@@ -7,6 +7,7 @@ import API.PlayerAPI;
 import Board.Board;
 import Characters.Character;
 import Characters.Friends.Friend;
+import Characters.NPCFactory;
 import Characters.Player;
 import Characters.Villains.Villain;
 import Main.Game;
