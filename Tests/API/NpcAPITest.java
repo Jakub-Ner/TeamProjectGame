@@ -19,9 +19,9 @@ public class NpcAPITest {
     private Vector<Npc> expectedValue = new Vector<>();
 
     public void createVector(){
-       //expectedValue.add(new Dragon(new SquarePattern()));
+       expectedValue.add(new Dragon(new SquarePattern()));
        expectedValue.add(new Dwarf(new LPattern()));
-       //expectedValue.add(new Dragon(new PlusPattern()));
+       expectedValue.add(new Dragon(new PlusPattern()));
     }
 
     @BeforeEach
