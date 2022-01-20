@@ -1,4 +1,4 @@
-package game.TeamProjectGame.src.Characters.Villains;
+package Characters.Villains;
 
 import MovePattern.MovePattern;
 

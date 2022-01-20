@@ -1,7 +1,7 @@
-package game.TeamProjectGame.src.API;
+package API;
 
 import Board.Board;
-import game.TeamProjectGame.src.Main.Game;
+import Main.Game;
 
 import java.io.*;
 

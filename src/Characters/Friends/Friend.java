@@ -1,5 +1,4 @@
-package game.TeamProjectGame.src.Characters.Friends;
-;
+package Characters.Friends;
 
 import Characters.Npc;
 import Cries.Cry;

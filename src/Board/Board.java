@@ -1,4 +1,4 @@
-package game.TeamProjectGame.src.Board;
+package Board;
 
 import javax.swing.*;
 import java.util.Arrays;

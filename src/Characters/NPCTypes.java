@@ -1,5 +1,4 @@
-package game.TeamProjectGame.src.Characters;
-
+package Characters;
 
 public enum NPCTypes {
 	HUMAN, DWARF, ELF, ORC, PHANTOM, DRAGON;

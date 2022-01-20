@@ -1,5 +1,4 @@
-package game.TeamProjectGame.src.Main;
-
+package Main;
 
 import API.NpcAPI;
 import API.PlayerAPI;
