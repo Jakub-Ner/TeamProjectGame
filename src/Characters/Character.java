@@ -90,6 +90,7 @@ public abstract class Character implements Serializable {
 			}
 			case 6: {
 				if (x + 1 < board.WIDTH) {
+
 					if (Board.board[y][x + 1] == ' ') {
 						x++;
 					}

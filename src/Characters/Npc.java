@@ -70,4 +70,5 @@ public abstract class Npc extends Character implements Serializable {
 	public void setTurn(int turn) {
 		this.turn = turn;
 	}
+
 }
