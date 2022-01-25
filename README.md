@@ -1,6 +1,6 @@
 # TeamProjectGame
 The first team project for programming class.
-There are 6 character classe:
+There are 6 character classes:
 - **Friends** - 3 classes that are available for the User and NPC
 - **Villains** - NPC only
 
