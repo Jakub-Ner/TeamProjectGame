@@ -9,3 +9,5 @@ There are 6 character classe:
 When user meets (stands next to) Villain they fight, when meets Friend only friendly cry is displayed.
 
 ![Zrzut ekranu 2022-01-25 123413](https://user-images.githubusercontent.com/78165526/150970892-320fba8a-4c8d-4b03-95fa-fb595a084fcb.jpg)
+
+*Project contains Unit Tests*
